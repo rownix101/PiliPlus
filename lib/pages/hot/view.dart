@@ -66,6 +66,8 @@ class _HotPageState extends CommonPageState<HotPage, HotController>
         child: CustomScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           controller: controller.scrollController,
+          // 添加缓存区域，优化滚动性能
+          cacheExtent: 200,
           slivers: [
             if (Pref.showHotRcmd)
               SliverToBoxAdapter(

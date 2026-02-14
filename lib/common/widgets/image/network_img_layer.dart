@@ -43,8 +43,18 @@ class NetworkImgLayer extends StatelessWidget {
   Widget build(BuildContext context) {
     final isEmote = type == ImageType.emote;
     final isAvatar = type == ImageType.avatar;
+    // 一次性获取主题颜色，避免重复调用 Theme.of
+    final placeholderColor = Theme.of(context)
+        .colorScheme
+        .onInverseSurface
+        .withValues(alpha: 0.4);
     if (src?.isNotEmpty == true) {
-      Widget child = _buildImage(context, isEmote: isEmote, isAvatar: isAvatar);
+      Widget child = _buildImage(
+        context,
+        isEmote: isEmote,
+        isAvatar: isAvatar,
+        placeholderColor: placeholderColor,
+      );
       if (isEmote) {
         return child;
       } else if (isAvatar) {
@@ -54,7 +64,12 @@ class NetworkImgLayer extends StatelessWidget {
       }
     } else {
       return getPlaceHolder?.call() ??
-          _placeholder(context, isEmote: isEmote, isAvatar: isAvatar);
+          _placeholder(
+            context,
+            isEmote: isEmote,
+            isAvatar: isAvatar,
+            placeholderColor: placeholderColor,
+          );
     }
   }
 
@@ -62,6 +77,7 @@ class NetworkImgLayer extends StatelessWidget {
     BuildContext context, {
     required bool isEmote,
     required bool isAvatar,
+    required Color placeholderColor,
   }) {
     int? memCacheWidth, memCacheHeight;
     if (cacheWidth ?? width <= height) {
@@ -79,12 +95,22 @@ class NetworkImgLayer extends StatelessWidget {
       alignment: alignment,
       fadeOutDuration: fadeOutDuration,
       fadeInDuration: fadeInDuration,
+      placeholderFadeInDuration: fadeInDuration,
       filterQuality: FilterQuality.low,
       placeholder: (_, _) =>
           getPlaceHolder?.call() ??
-          _placeholder(context, isEmote: isEmote, isAvatar: isAvatar),
-      errorWidget: (_, _, _) =>
-          _placeholder(context, isEmote: isEmote, isAvatar: isAvatar),
+          _placeholder(
+            context,
+            isEmote: isEmote,
+            isAvatar: isAvatar,
+            placeholderColor: placeholderColor,
+          ),
+      errorWidget: (_, _, _) => _placeholder(
+        context,
+        isEmote: isEmote,
+        isAvatar: isAvatar,
+        placeholderColor: placeholderColor,
+      ),
       colorBlendMode: reduce ? BlendMode.modulate : null,
       color: reduce ? reduceLuxColor : null,
     );
@@ -94,6 +120,7 @@ class NetworkImgLayer extends StatelessWidget {
     BuildContext context, {
     required bool isEmote,
     required bool isAvatar,
+    required Color placeholderColor,
   }) {
     return Container(
       width: width,
@@ -101,9 +128,7 @@ class NetworkImgLayer extends StatelessWidget {
       clipBehavior: isEmote ? Clip.none : Clip.antiAlias,
       decoration: BoxDecoration(
         shape: isAvatar ? BoxShape.circle : BoxShape.rectangle,
-        color: Theme.of(
-          context,
-        ).colorScheme.onInverseSurface.withValues(alpha: 0.4),
+        color: placeholderColor,
         borderRadius: isEmote || isAvatar ? null : borderRadius,
       ),
       child: Center(

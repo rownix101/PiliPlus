@@ -29,6 +29,8 @@ class _RcmdPageState extends CommonPageState<RcmdPage, RcmdController>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+    // 提前获取主题色，避免在列表构建时重复调用
+    final onSurfaceVariant = Theme.of(context).colorScheme.onSurfaceVariant;
     return onBuild(
       Container(
         clipBehavior: .hardEdge,
@@ -39,10 +41,12 @@ class _RcmdPageState extends CommonPageState<RcmdPage, RcmdController>
           child: CustomScrollView(
             controller: controller.scrollController,
             physics: const AlwaysScrollableScrollPhysics(),
+            // 添加缓存区域，优化滚动性能
+            cacheExtent: 200,
             slivers: [
               SliverPadding(
                 padding: const .only(top: StyleString.cardSpace, bottom: 100),
-                sliver: Obx(() => _buildBody(controller.loadingState.value)),
+                sliver: Obx(() => _buildBody(controller.loadingState.value, onSurfaceVariant)),
               ),
             ],
           ),
@@ -59,7 +63,7 @@ class _RcmdPageState extends CommonPageState<RcmdPage, RcmdController>
     mainAxisExtent: MediaQuery.textScalerOf(context).scale(90),
   );
 
-  Widget _buildBody(LoadingState<List<dynamic>?> loadingState) {
+  Widget _buildBody(LoadingState<List<dynamic>?> loadingState, Color onSurfaceVariant) {
     return switch (loadingState) {
       Loading() => _buildSkeleton,
       Success(:final response) =>
@@ -84,9 +88,7 @@ class _RcmdPageState extends CommonPageState<RcmdPage, RcmdController>
                               '上次看到这里\n点击刷新',
                               textAlign: .center,
                               style: TextStyle(
-                                color: Theme.of(
-                                  context,
-                                ).colorScheme.onSurfaceVariant,
+                                color: onSurfaceVariant,
                               ),
                             ),
                           ),
