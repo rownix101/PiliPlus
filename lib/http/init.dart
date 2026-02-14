@@ -19,7 +19,7 @@ import 'package:brotli/brotli.dart';
 import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:dio_http2_adapter/dio_http2_adapter.dart';
-import 'package:flutter/foundation.dart' show kDebugMode;
+import 'package:flutter/foundation.dart' show debugPrint, kDebugMode;
 
 class Request {
   static const _gzipDecoder = GZipDecoder();
@@ -285,18 +285,43 @@ class Request {
   static List<int> responseBytesDecoder(
     List<int> responseBytes,
     Map<String, List<String>> headers,
-  ) => switch (headers['content-encoding']?.firstOrNull) {
-    'gzip' => _gzipDecoder.decodeBytes(responseBytes),
-    'br' => _brotliDecoder.convert(responseBytes),
-    _ => responseBytes,
-  };
+  ) {
+    // 空数据直接返回，避免解压器报错
+    if (responseBytes.isEmpty) {
+      return responseBytes;
+    }
+
+    final encoding = headers['content-encoding']?.firstOrNull;
+
+    try {
+      return switch (encoding) {
+        'gzip' => _gzipDecoder.decodeBytes(responseBytes),
+        'br' => _brotliDecoder.convert(responseBytes),
+        _ => responseBytes,
+      };
+    } catch (e) {
+      // 解压失败时返回原始数据（可能是服务器错误地标记了编码）
+      if (kDebugMode) {
+        debugPrint('响应解压失败: $encoding, 错误: $e, 返回原始数据');
+      }
+      return responseBytes;
+    }
+  }
 
   static String _responseDecoder(
     List<int> responseBytes,
     RequestOptions options,
     ResponseBody responseBody,
-  ) => utf8.decode(
-    responseBytesDecoder(responseBytes, responseBody.headers),
-    allowMalformed: true,
-  );
+  ) {
+    // HEAD 请求或连接预热请求通常没有 body，直接返回空字符串
+    if (options.method == 'HEAD' ||
+        options.extra['connection_warmup'] == true) {
+      return '';
+    }
+
+    return utf8.decode(
+      responseBytesDecoder(responseBytes, responseBody.headers),
+      allowMalformed: true,
+    );
+  }
 }

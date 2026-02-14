@@ -964,4 +964,17 @@ abstract final class Pref {
 
   static double get touchSlopH =>
       _setting.get(SettingBoxKey.touchSlopH, defaultValue: 24.0);
+
+  // DNS 缓存持久化
+  static List<Map<String, dynamic>>? get dnsCacheData {
+    final data = _localCache.get(LocalCacheKey.dnsCacheData);
+    if (data is List) {
+      return data.cast<Map<String, dynamic>>();
+    }
+    return null;
+  }
+
+  static Future<void> setDnsCacheData(List<Map<String, dynamic>> cacheData) async {
+    await _localCache.put(LocalCacheKey.dnsCacheData, cacheData);
+  }
 }
