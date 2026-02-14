@@ -92,12 +92,6 @@ List<SettingsModel> get styleSettings => [
     leading: const Icon(Icons.zoom_in_outlined),
     onTap: _showUiScaleDialog,
   ),
-  NormalModel(
-    title: '页面过渡动画',
-    leading: const Icon(Icons.animation),
-    getSubtitle: () => '当前：${Pref.pageTransition.name}',
-    onTap: _showTransitionDialog,
-  ),
   const SwitchModel(
     title: '优化平板导航栏',
     leading: Icon(MdiIcons.soundbar),
@@ -633,25 +627,6 @@ Future<void> _showFontWeightDialog(BuildContext context) async {
   if (res != null) {
     await GStorage.setting.put(SettingBoxKey.appFontWeight, res.toInt() - 1);
     Get.forceAppUpdate();
-  }
-}
-
-Future<void> _showTransitionDialog(
-  BuildContext context,
-  VoidCallback setState,
-) async {
-  final res = await showDialog<Transition>(
-    context: context,
-    builder: (context) => SelectDialog<Transition>(
-      title: '页面过渡动画',
-      value: Pref.pageTransition,
-      values: Transition.values.map((e) => (e, e.name)).toList(),
-    ),
-  );
-  if (res != null) {
-    await GStorage.setting.put(SettingBoxKey.pageTransition, res.index);
-    SmartDialog.showToast('重启生效');
-    setState();
   }
 }
 
