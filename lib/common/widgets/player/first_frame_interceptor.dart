@@ -1,7 +1,5 @@
 import 'dart:async';
-import 'dart:ui' as ui;
 
-import 'package:PiliPlus/common/widgets/image/network_img_layer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -43,7 +41,6 @@ class _FirstFrameInterceptorState extends State<FirstFrameInterceptor>
   late AnimationController _fadeController;
   late Animation<double> _fadeAnimation;
   bool _isFirstFrameRendered = false;
-  ui.Image? _capturedFrame;
   bool _showPlaceholder = true;
 
   @override

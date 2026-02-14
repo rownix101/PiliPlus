@@ -285,7 +285,6 @@ class _StaggeredFadeInWrapper extends StatefulWidget {
 class _StaggeredFadeInWrapperState extends State<_StaggeredFadeInWrapper>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _animation;
 
   @override
   void initState() {
@@ -293,11 +292,6 @@ class _StaggeredFadeInWrapperState extends State<_StaggeredFadeInWrapper>
     _controller = AnimationController(
       duration: widget.duration,
       vsync: this,
-    );
-    
-    _animation = CurvedAnimation(
-      parent: _controller,
-      curve: widget.curve,
     );
 
     // 延迟后开始动画
@@ -316,14 +310,6 @@ class _StaggeredFadeInWrapperState extends State<_StaggeredFadeInWrapper>
 
   @override
   Widget build(BuildContext context) {
-    final item = StaggeredAnimationItem(
-      child: widget.child,
-      delay: Duration.zero,
-      duration: widget.duration,
-      curve: widget.curve,
-      animationType: widget.animationType,
-    );
-
     return _AnimatedItem(
       controller: _controller,
       delay: Duration.zero,

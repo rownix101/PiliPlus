@@ -48,15 +48,12 @@ class SharedElementTransition extends StatelessWidget {
     return Hero(
       tag: tag,
       transitionOnUserGestures: true,
-      placeholderBuilder: placeholderBuilder ?? _defaultPlaceholderBuilder,
+      placeholderBuilder: placeholderBuilder != null 
+          ? (context, size, child) => placeholderBuilder!(context) 
+          : null,
       flightShuttleBuilder: _flightShuttleBuilder,
       child: child,
     );
-  }
-
-  /// 默认占位图构建器
-  Widget _defaultPlaceholderBuilder(BuildContext context, Size heroSize, Widget child) {
-    return child;
   }
 
   /// 构建飞行过程中的 Shuttle 组件
