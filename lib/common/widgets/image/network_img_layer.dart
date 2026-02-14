@@ -1,8 +1,8 @@
-import 'package:PiliPlus/common/constants.dart';
-import 'package:PiliPlus/models/common/image_type.dart';
-import 'package:PiliPlus/utils/extension/num_ext.dart';
-import 'package:PiliPlus/utils/image_utils.dart';
-import 'package:PiliPlus/utils/storage_pref.dart';
+import 'package:PiliPro/common/constants.dart';
+import 'package:PiliPro/models/common/image_type.dart';
+import 'package:PiliPro/utils/extension/num_ext.dart';
+import 'package:PiliPro/utils/image_utils.dart';
+import 'package:PiliPro/utils/storage_pref.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 

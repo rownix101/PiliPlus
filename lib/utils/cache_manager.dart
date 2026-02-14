@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:PiliPlus/utils/platform_utils.dart';
-import 'package:PiliPlus/utils/storage_pref.dart';
+import 'package:PiliPro/utils/platform_utils.dart';
+import 'package:PiliPro/utils/storage_pref.dart';
 import 'package:path_provider/path_provider.dart';
 
 abstract final class CacheManager {

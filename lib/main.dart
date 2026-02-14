@@ -1,30 +1,30 @@
 import 'dart:io';
 
-import 'package:PiliPlus/build_config.dart';
-import 'package:PiliPlus/common/constants.dart';
-import 'package:PiliPlus/common/widgets/custom_toast.dart';
-import 'package:PiliPlus/common/widgets/scale_app.dart';
-import 'package:PiliPlus/http/init.dart';
-import 'package:PiliPlus/models/common/theme/theme_color_type.dart';
-import 'package:PiliPlus/router/app_pages.dart';
-import 'package:PiliPlus/services/account_service.dart';
-import 'package:PiliPlus/services/download/download_service.dart';
-import 'package:PiliPlus/services/service_locator.dart';
-import 'package:PiliPlus/utils/app_scheme.dart';
-import 'package:PiliPlus/utils/cache_manager.dart';
-import 'package:PiliPlus/utils/date_utils.dart';
-import 'package:PiliPlus/utils/extension/iterable_ext.dart';
-import 'package:PiliPlus/utils/extension/theme_ext.dart';
-import 'package:PiliPlus/utils/json_file_handler.dart';
-import 'package:PiliPlus/utils/page_utils.dart';
-import 'package:PiliPlus/utils/path_utils.dart';
-import 'package:PiliPlus/utils/platform_utils.dart';
-import 'package:PiliPlus/utils/request_utils.dart';
-import 'package:PiliPlus/utils/storage.dart';
-import 'package:PiliPlus/utils/storage_key.dart';
-import 'package:PiliPlus/utils/storage_pref.dart';
-import 'package:PiliPlus/utils/theme_utils.dart';
-import 'package:PiliPlus/utils/utils.dart';
+import 'package:PiliPro/build_config.dart';
+import 'package:PiliPro/common/constants.dart';
+import 'package:PiliPro/common/widgets/custom_toast.dart';
+import 'package:PiliPro/common/widgets/scale_app.dart';
+import 'package:PiliPro/http/init.dart';
+import 'package:PiliPro/models/common/theme/theme_color_type.dart';
+import 'package:PiliPro/router/app_pages.dart';
+import 'package:PiliPro/services/account_service.dart';
+import 'package:PiliPro/services/download/download_service.dart';
+import 'package:PiliPro/services/service_locator.dart';
+import 'package:PiliPro/utils/app_scheme.dart';
+import 'package:PiliPro/utils/cache_manager.dart';
+import 'package:PiliPro/utils/date_utils.dart';
+import 'package:PiliPro/utils/extension/iterable_ext.dart';
+import 'package:PiliPro/utils/extension/theme_ext.dart';
+import 'package:PiliPro/utils/json_file_handler.dart';
+import 'package:PiliPro/utils/page_utils.dart';
+import 'package:PiliPro/utils/path_utils.dart';
+import 'package:PiliPro/utils/platform_utils.dart';
+import 'package:PiliPro/utils/request_utils.dart';
+import 'package:PiliPro/utils/storage.dart';
+import 'package:PiliPro/utils/storage_key.dart';
+import 'package:PiliPro/utils/storage_pref.dart';
+import 'package:PiliPro/utils/theme_utils.dart';
+import 'package:PiliPro/utils/utils.dart';
 import 'package:catcher_2/catcher_2.dart';
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/foundation.dart';
@@ -180,8 +180,7 @@ class MyApp extends StatelessWidget {
   static ColorScheme? _light, _dark;
 
   static ThemeData? darkThemeData;
-    }
-  }
+
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:PiliPlus/utils/json_file_handler.dart';
-import 'package:PiliPlus/utils/storage_pref.dart';
+import 'package:PiliPro/utils/json_file_handler.dart';
+import 'package:PiliPro/utils/storage_pref.dart';
 import 'package:catcher_2/catcher_2.dart';
 import 'package:logger/logger.dart';
 import 'package:path/path.dart' as p;

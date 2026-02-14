@@ -1,15 +1,15 @@
-import 'package:PiliPlus/common/widgets/flutter/dyn/ink_well.dart';
-import 'package:PiliPlus/common/widgets/image/network_img_layer.dart';
-import 'package:PiliPlus/models/common/dynamic/up_panel_position.dart';
-import 'package:PiliPlus/models/common/image_type.dart';
-import 'package:PiliPlus/models/dynamics/up.dart';
-import 'package:PiliPlus/pages/dynamics/controller.dart';
-import 'package:PiliPlus/pages/live_follow/view.dart';
-import 'package:PiliPlus/utils/accounts.dart';
-import 'package:PiliPlus/utils/extension/num_ext.dart';
-import 'package:PiliPlus/utils/feed_back.dart';
-import 'package:PiliPlus/utils/page_utils.dart';
-import 'package:PiliPlus/utils/platform_utils.dart';
+import 'package:PiliPro/common/widgets/flutter/dyn/ink_well.dart';
+import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
+import 'package:PiliPro/models/common/dynamic/up_panel_position.dart';
+import 'package:PiliPro/models/common/image_type.dart';
+import 'package:PiliPro/models/dynamics/up.dart';
+import 'package:PiliPro/pages/dynamics/controller.dart';
+import 'package:PiliPro/pages/live_follow/view.dart';
+import 'package:PiliPro/utils/accounts.dart';
+import 'package:PiliPro/utils/extension/num_ext.dart';
+import 'package:PiliPro/utils/feed_back.dart';
+import 'package:PiliPro/utils/page_utils.dart';
+import 'package:PiliPro/utils/platform_utils.dart';
 import 'package:flutter/material.dart' hide InkWell;
 import 'package:get/get.dart';
 

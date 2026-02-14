@@ -1,4 +1,4 @@
-import 'package:PiliPlus/models_new/pgc/pgc_timeline/icon_font.dart';
+import 'package:PiliPro/models_new/pgc/pgc_timeline/icon_font.dart';
 
 class Episode {
   String? cover;

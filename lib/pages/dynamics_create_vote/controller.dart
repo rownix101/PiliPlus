@@ -1,10 +1,10 @@
-import 'package:PiliPlus/common/widgets/dialog/dialog.dart';
-import 'package:PiliPlus/http/dynamics.dart';
-import 'package:PiliPlus/http/loading_state.dart';
-import 'package:PiliPlus/http/msg.dart';
-import 'package:PiliPlus/models/dynamics/vote_model.dart';
-import 'package:PiliPlus/utils/accounts.dart';
-import 'package:PiliPlus/utils/utils.dart';
+import 'package:PiliPro/common/widgets/dialog/dialog.dart';
+import 'package:PiliPro/http/dynamics.dart';
+import 'package:PiliPro/http/loading_state.dart';
+import 'package:PiliPro/http/msg.dart';
+import 'package:PiliPro/models/dynamics/vote_model.dart';
+import 'package:PiliPro/utils/accounts.dart';
+import 'package:PiliPro/utils/utils.dart';
 import 'package:get/get.dart';
 
 class CreateVoteController extends GetxController {

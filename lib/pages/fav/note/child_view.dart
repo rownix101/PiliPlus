@@ -1,12 +1,12 @@
-import 'package:PiliPlus/common/widgets/button/icon_button.dart';
-import 'package:PiliPlus/common/widgets/dialog/dialog.dart';
-import 'package:PiliPlus/common/widgets/flutter/refresh_indicator.dart';
-import 'package:PiliPlus/common/widgets/loading_widget/http_error.dart';
-import 'package:PiliPlus/http/loading_state.dart';
-import 'package:PiliPlus/models_new/fav/fav_note/list.dart';
-import 'package:PiliPlus/pages/fav/note/controller.dart';
-import 'package:PiliPlus/pages/fav/note/widget/item.dart';
-import 'package:PiliPlus/utils/grid.dart';
+import 'package:PiliPro/common/widgets/button/icon_button.dart';
+import 'package:PiliPro/common/widgets/dialog/dialog.dart';
+import 'package:PiliPro/common/widgets/flutter/refresh_indicator.dart';
+import 'package:PiliPro/common/widgets/loading_widget/http_error.dart';
+import 'package:PiliPro/http/loading_state.dart';
+import 'package:PiliPro/models_new/fav/fav_note/list.dart';
+import 'package:PiliPro/pages/fav/note/controller.dart';
+import 'package:PiliPro/pages/fav/note/widget/item.dart';
+import 'package:PiliPro/utils/grid.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

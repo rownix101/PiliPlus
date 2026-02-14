@@ -1,10 +1,10 @@
-import 'package:PiliPlus/common/constants.dart';
-import 'package:PiliPlus/common/skeleton/media_bangumi.dart';
-import 'package:PiliPlus/models/search/result.dart';
-import 'package:PiliPlus/pages/search_panel/controller.dart';
-import 'package:PiliPlus/pages/search_panel/pgc/widgets/item.dart';
-import 'package:PiliPlus/pages/search_panel/view.dart';
-import 'package:PiliPlus/utils/grid.dart';
+import 'package:PiliPro/common/constants.dart';
+import 'package:PiliPro/common/skeleton/media_bangumi.dart';
+import 'package:PiliPro/models/search/result.dart';
+import 'package:PiliPro/pages/search_panel/controller.dart';
+import 'package:PiliPro/pages/search_panel/pgc/widgets/item.dart';
+import 'package:PiliPro/pages/search_panel/view.dart';
+import 'package:PiliPro/utils/grid.dart';
 import 'package:flutter/material.dart'
     hide SliverGridDelegateWithMaxCrossAxisExtent;
 import 'package:get/get.dart';

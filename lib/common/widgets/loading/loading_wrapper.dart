@@ -1,6 +1,6 @@
-import 'package:PiliPlus/common/widgets/animation/staggered_animation.dart';
-import 'package:PiliPlus/common/widgets/skeleton/skeleton_screen.dart';
-import 'package:PiliPlus/http/loading_state.dart';
+import 'package:PiliPro/common/widgets/animation/staggered_animation.dart';
+import 'package:PiliPro/common/widgets/skeleton/skeleton_screen.dart';
+import 'package:PiliPro/http/loading_state.dart';
 import 'package:flutter/material.dart';
 
 /// 加载状态包装器

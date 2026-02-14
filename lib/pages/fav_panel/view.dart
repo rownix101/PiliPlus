@@ -1,9 +1,9 @@
-import 'package:PiliPlus/common/widgets/loading_widget/loading_widget.dart';
-import 'package:PiliPlus/http/loading_state.dart';
-import 'package:PiliPlus/models_new/fav/fav_folder/list.dart';
-import 'package:PiliPlus/pages/common/common_intro_controller.dart';
-import 'package:PiliPlus/utils/fav_utils.dart';
-import 'package:PiliPlus/utils/feed_back.dart';
+import 'package:PiliPro/common/widgets/loading_widget/loading_widget.dart';
+import 'package:PiliPro/http/loading_state.dart';
+import 'package:PiliPro/models_new/fav/fav_folder/list.dart';
+import 'package:PiliPro/pages/common/common_intro_controller.dart';
+import 'package:PiliPro/utils/fav_utils.dart';
+import 'package:PiliPro/utils/feed_back.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:PiliPlus/common/constants.dart';
-import 'package:PiliPlus/common/widgets/pair.dart';
-import 'package:PiliPlus/utils/extension/context_ext.dart';
-import 'package:PiliPlus/utils/platform_utils.dart';
-import 'package:PiliPlus/utils/storage.dart';
-import 'package:PiliPlus/utils/storage_pref.dart';
+import 'package:PiliPro/common/constants.dart';
+import 'package:PiliPro/common/widgets/pair.dart';
+import 'package:PiliPro/utils/extension/context_ext.dart';
+import 'package:PiliPro/utils/platform_utils.dart';
+import 'package:PiliPro/utils/storage.dart';
+import 'package:PiliPro/utils/storage_pref.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 import 'package:webdav_client/webdav_client.dart' as webdav;
@@ -58,7 +58,7 @@ class WebDav {
         : Get.context!.isTablet
         ? 'pad'
         : 'phone';
-    return 'piliplus_settings_$type.json';
+    return 'pilipro_settings_$type.json';
   }
 
   Future<void> backup() async {

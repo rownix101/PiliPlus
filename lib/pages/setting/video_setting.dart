@@ -1,4 +1,4 @@
-import 'package:PiliPlus/pages/setting/models/video_settings.dart';
+import 'package:PiliPro/pages/setting/models/video_settings.dart';
 import 'package:flutter/material.dart';
 
 class VideoSetting extends StatefulWidget {

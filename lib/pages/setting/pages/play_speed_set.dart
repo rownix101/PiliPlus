@@ -1,12 +1,12 @@
 import 'dart:math';
 
-import 'package:PiliPlus/common/widgets/flutter/list_tile.dart';
-import 'package:PiliPlus/common/widgets/view_safe_area.dart';
-import 'package:PiliPlus/pages/setting/widgets/switch_item.dart';
-import 'package:PiliPlus/utils/extension/context_ext.dart';
-import 'package:PiliPlus/utils/storage.dart';
-import 'package:PiliPlus/utils/storage_key.dart';
-import 'package:PiliPlus/utils/storage_pref.dart';
+import 'package:PiliPro/common/widgets/flutter/list_tile.dart';
+import 'package:PiliPro/common/widgets/view_safe_area.dart';
+import 'package:PiliPro/pages/setting/widgets/switch_item.dart';
+import 'package:PiliPro/utils/extension/context_ext.dart';
+import 'package:PiliPro/utils/storage.dart';
+import 'package:PiliPro/utils/storage_key.dart';
+import 'package:PiliPro/utils/storage_pref.dart';
 import 'package:flutter/material.dart' hide ListTile;
 import 'package:flutter/services.dart' show FilteringTextInputFormatter;
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';

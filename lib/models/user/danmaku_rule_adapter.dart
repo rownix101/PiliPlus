@@ -1,4 +1,4 @@
-import 'package:PiliPlus/models/user/danmaku_rule.dart';
+import 'package:PiliPro/models/user/danmaku_rule.dart';
 import 'package:hive/hive.dart';
 
 class RuleFilterAdapter extends TypeAdapter<RuleFilter> {

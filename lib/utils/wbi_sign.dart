@@ -5,11 +5,11 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:PiliPlus/http/api.dart';
-import 'package:PiliPlus/http/init.dart';
-import 'package:PiliPlus/utils/storage.dart';
-import 'package:PiliPlus/utils/storage_key.dart';
-import 'package:PiliPlus/utils/utils.dart';
+import 'package:PiliPro/http/api.dart';
+import 'package:PiliPro/http/init.dart';
+import 'package:PiliPro/utils/storage.dart';
+import 'package:PiliPro/utils/storage_key.dart';
+import 'package:PiliPro/utils/utils.dart';
 import 'package:crypto/crypto.dart';
 import 'package:hive/hive.dart';
 

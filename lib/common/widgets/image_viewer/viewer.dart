@@ -17,9 +17,9 @@
 
 import 'dart:math' as math;
 
-import 'package:PiliPlus/common/constants.dart';
-import 'package:PiliPlus/common/widgets/gesture/image_horizontal_drag_gesture_recognizer.dart';
-import 'package:PiliPlus/common/widgets/gesture/image_tap_gesture_recognizer.dart';
+import 'package:PiliPro/common/constants.dart';
+import 'package:PiliPro/common/widgets/gesture/image_horizontal_drag_gesture_recognizer.dart';
+import 'package:PiliPro/common/widgets/gesture/image_tap_gesture_recognizer.dart';
 import 'package:easy_debounce/easy_throttle.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';

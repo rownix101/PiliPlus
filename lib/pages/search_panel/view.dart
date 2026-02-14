@@ -1,9 +1,9 @@
-import 'package:PiliPlus/common/widgets/flutter/refresh_indicator.dart';
-import 'package:PiliPlus/common/widgets/loading_widget/http_error.dart';
-import 'package:PiliPlus/http/loading_state.dart';
-import 'package:PiliPlus/models/common/search/search_type.dart';
-import 'package:PiliPlus/models/search/result.dart';
-import 'package:PiliPlus/pages/search_panel/controller.dart';
+import 'package:PiliPro/common/widgets/flutter/refresh_indicator.dart';
+import 'package:PiliPro/common/widgets/loading_widget/http_error.dart';
+import 'package:PiliPro/http/loading_state.dart';
+import 'package:PiliPro/models/common/search/search_type.dart';
+import 'package:PiliPro/models/search/result.dart';
+import 'package:PiliPro/pages/search_panel/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

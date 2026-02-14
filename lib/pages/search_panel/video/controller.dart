@@ -1,15 +1,15 @@
 import 'dart:math';
 
-import 'package:PiliPlus/http/loading_state.dart';
-import 'package:PiliPlus/models/common/search/search_type.dart';
-import 'package:PiliPlus/models/common/search/video_search_type.dart';
-import 'package:PiliPlus/models/search/result.dart';
-import 'package:PiliPlus/pages/search/widgets/search_text.dart';
-import 'package:PiliPlus/pages/search_panel/controller.dart';
-import 'package:PiliPlus/utils/app_scheme.dart';
-import 'package:PiliPlus/utils/date_utils.dart';
-import 'package:PiliPlus/utils/extension/context_ext.dart';
-import 'package:PiliPlus/utils/id_utils.dart';
+import 'package:PiliPro/http/loading_state.dart';
+import 'package:PiliPro/models/common/search/search_type.dart';
+import 'package:PiliPro/models/common/search/video_search_type.dart';
+import 'package:PiliPro/models/search/result.dart';
+import 'package:PiliPro/pages/search/widgets/search_text.dart';
+import 'package:PiliPro/pages/search_panel/controller.dart';
+import 'package:PiliPro/utils/app_scheme.dart';
+import 'package:PiliPro/utils/date_utils.dart';
+import 'package:PiliPro/utils/extension/context_ext.dart';
+import 'package:PiliPro/utils/id_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';

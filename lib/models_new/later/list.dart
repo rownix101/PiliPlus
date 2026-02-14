@@ -1,10 +1,10 @@
-import 'package:PiliPlus/models/model_owner.dart';
-import 'package:PiliPlus/models_new/later/bangumi.dart';
-import 'package:PiliPlus/models_new/later/page.dart';
-import 'package:PiliPlus/models_new/later/rights.dart';
-import 'package:PiliPlus/models_new/later/stat.dart';
-import 'package:PiliPlus/models_new/video/video_detail/dimension.dart';
-import 'package:PiliPlus/pages/common/multi_select/base.dart';
+import 'package:PiliPro/models/model_owner.dart';
+import 'package:PiliPro/models_new/later/bangumi.dart';
+import 'package:PiliPro/models_new/later/page.dart';
+import 'package:PiliPro/models_new/later/rights.dart';
+import 'package:PiliPro/models_new/later/stat.dart';
+import 'package:PiliPro/models_new/video/video_detail/dimension.dart';
+import 'package:PiliPro/pages/common/multi_select/base.dart';
 
 class LaterItemModel with MultiSelectData {
   int? aid;

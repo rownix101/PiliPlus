@@ -1,13 +1,13 @@
 import 'dart:io';
 
-import 'package:PiliPlus/common/widgets/marquee.dart';
-import 'package:PiliPlus/pages/live_room/controller.dart';
-import 'package:PiliPlus/pages/video/widgets/header_control.dart';
-import 'package:PiliPlus/plugin/pl_player/controller.dart';
-import 'package:PiliPlus/plugin/pl_player/widgets/common_btn.dart';
-import 'package:PiliPlus/services/shutdown_timer_service.dart'
+import 'package:PiliPro/common/widgets/marquee.dart';
+import 'package:PiliPro/pages/live_room/controller.dart';
+import 'package:PiliPro/pages/video/widgets/header_control.dart';
+import 'package:PiliPro/plugin/pl_player/controller.dart';
+import 'package:PiliPro/plugin/pl_player/widgets/common_btn.dart';
+import 'package:PiliPro/services/shutdown_timer_service.dart'
     show shutdownTimerService;
-import 'package:PiliPlus/utils/platform_utils.dart';
+import 'package:PiliPro/utils/platform_utils.dart';
 import 'package:floating/floating.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

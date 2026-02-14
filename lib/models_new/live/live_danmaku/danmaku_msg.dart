@@ -1,6 +1,6 @@
-import 'package:PiliPlus/models/model_owner.dart';
-import 'package:PiliPlus/models_new/live/live_danmaku/live_emote.dart';
-import 'package:PiliPlus/pages/danmaku/danmaku_model.dart';
+import 'package:PiliPro/models/model_owner.dart';
+import 'package:PiliPro/models_new/live/live_danmaku/live_emote.dart';
+import 'package:PiliPro/pages/danmaku/danmaku_model.dart';
 
 class DanmakuMsg {
   final String name;

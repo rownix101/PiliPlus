@@ -1,10 +1,10 @@
-import 'package:PiliPlus/models/model_owner.dart';
-import 'package:PiliPlus/models_new/fav/fav_detail/cnt_info.dart';
-import 'package:PiliPlus/models_new/media_list/coin.dart';
-import 'package:PiliPlus/models_new/media_list/ogv_info.dart';
-import 'package:PiliPlus/models_new/media_list/page.dart';
-import 'package:PiliPlus/models_new/media_list/rights.dart';
-import 'package:PiliPlus/models_new/video/video_detail/episode.dart';
+import 'package:PiliPro/models/model_owner.dart';
+import 'package:PiliPro/models_new/fav/fav_detail/cnt_info.dart';
+import 'package:PiliPro/models_new/media_list/coin.dart';
+import 'package:PiliPro/models_new/media_list/ogv_info.dart';
+import 'package:PiliPro/models_new/media_list/page.dart';
+import 'package:PiliPro/models_new/media_list/rights.dart';
+import 'package:PiliPro/models_new/video/video_detail/episode.dart';
 
 class MediaListItemModel extends BaseEpisodeItem {
   @override

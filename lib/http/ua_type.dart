@@ -1,4 +1,4 @@
-import 'package:PiliPlus/utils/platform_utils.dart';
+import 'package:PiliPro/utils/platform_utils.dart';
 
 enum UaType {
   mob(

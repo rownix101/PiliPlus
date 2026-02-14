@@ -1,10 +1,10 @@
-import 'package:PiliPlus/common/constants.dart';
-import 'package:PiliPlus/models/common/enum_with_label.dart';
-import 'package:PiliPlus/pages/setting/widgets/normal_item.dart';
-import 'package:PiliPlus/pages/setting/widgets/popup_item.dart';
-import 'package:PiliPlus/pages/setting/widgets/select_dialog.dart';
-import 'package:PiliPlus/pages/setting/widgets/switch_item.dart';
-import 'package:PiliPlus/utils/storage.dart';
+import 'package:PiliPro/common/constants.dart';
+import 'package:PiliPro/models/common/enum_with_label.dart';
+import 'package:PiliPro/pages/setting/widgets/normal_item.dart';
+import 'package:PiliPro/pages/setting/widgets/popup_item.dart';
+import 'package:PiliPro/pages/setting/widgets/select_dialog.dart';
+import 'package:PiliPro/pages/setting/widgets/switch_item.dart';
+import 'package:PiliPro/utils/storage.dart';
 import 'package:flutter/material.dart' hide PopupMenuItemSelected;
 import 'package:flutter/services.dart' show FilteringTextInputFormatter;
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';

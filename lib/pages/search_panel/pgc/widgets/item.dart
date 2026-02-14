@@ -1,11 +1,11 @@
-import 'package:PiliPlus/common/constants.dart';
-import 'package:PiliPlus/common/widgets/badge.dart';
-import 'package:PiliPlus/common/widgets/image/image_save.dart';
-import 'package:PiliPlus/common/widgets/image/network_img_layer.dart';
-import 'package:PiliPlus/models/search/result.dart';
-import 'package:PiliPlus/utils/date_utils.dart';
-import 'package:PiliPlus/utils/page_utils.dart';
-import 'package:PiliPlus/utils/platform_utils.dart';
+import 'package:PiliPro/common/constants.dart';
+import 'package:PiliPro/common/widgets/badge.dart';
+import 'package:PiliPro/common/widgets/image/image_save.dart';
+import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
+import 'package:PiliPro/models/search/result.dart';
+import 'package:PiliPro/utils/date_utils.dart';
+import 'package:PiliPro/utils/page_utils.dart';
+import 'package:PiliPro/utils/platform_utils.dart';
 import 'package:flutter/material.dart';
 
 class SearchPgcItem extends StatelessWidget {

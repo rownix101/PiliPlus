@@ -33,10 +33,10 @@ class FirstFrameInterceptor extends StatefulWidget {
   final WidgetBuilder? placeholderBuilder;
 
   @override
-  State<FirstFrameInterceptor> createState() => _FirstFrameInterceptorState();
+  State<FirstFrameInterceptor> createState() => FirstFrameInterceptorState();
 }
 
-class _FirstFrameInterceptorState extends State<FirstFrameInterceptor>
+class FirstFrameInterceptorState extends State<FirstFrameInterceptor>
     with SingleTickerProviderStateMixin {
   late AnimationController _fadeController;
   late Animation<double> _fadeAnimation;

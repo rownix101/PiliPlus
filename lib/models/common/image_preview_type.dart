@@ -1,4 +1,4 @@
-import 'package:PiliPlus/common/constants.dart';
+import 'package:PiliPro/common/constants.dart';
 
 enum SourceType { fileImage, networkImage, livePhoto }
 

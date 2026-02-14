@@ -1,8 +1,8 @@
-# PiliPlus - 项目上下文指南
+# PiliPro - 项目上下文指南
 
 ## 项目概述
 
-**PiliPlus** 是一个使用 Flutter 开发的 BiliBili 第三方客户端，支持多平台运行。该项目 fork 自 PiliPalaX，并进行了更激进的修改和优化。
+**PiliPro** 是一个使用 Flutter 开发的 BiliBili 第三方客户端，支持多平台运行。该项目 fork 自 PiliPalaX，并进行了更激进的修改和优化。
 
 ### 主要功能特性
 
@@ -185,7 +185,7 @@ fvm flutter run
 
 - 所有导入必须使用 `package:` 绝对路径
 - 禁止相对路径导入（如 `../utils/storage.dart`）
-- 使用 `import 'package:PiliPlus/...'` 格式
+- 使用 `import 'package:PiliPro/...'` 格式
 
 ### 命名规范
 

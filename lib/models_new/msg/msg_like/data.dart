@@ -1,5 +1,5 @@
-import 'package:PiliPlus/models_new/msg/msg_like/latest.dart';
-import 'package:PiliPlus/models_new/msg/msg_like/total.dart';
+import 'package:PiliPro/models_new/msg/msg_like/latest.dart';
+import 'package:PiliPro/models_new/msg/msg_like/total.dart';
 
 class MsgLikeData {
   Latest? latest;

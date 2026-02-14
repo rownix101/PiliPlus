@@ -1,7 +1,7 @@
-import 'package:PiliPlus/common/widgets/time_picker.dart';
-import 'package:PiliPlus/pages/dynamics_create_reserve/controller.dart';
-import 'package:PiliPlus/utils/date_utils.dart';
-import 'package:PiliPlus/utils/utils.dart';
+import 'package:PiliPro/common/widgets/time_picker.dart';
+import 'package:PiliPro/pages/dynamics_create_reserve/controller.dart';
+import 'package:PiliPro/utils/date_utils.dart';
+import 'package:PiliPro/utils/utils.dart';
 import 'package:flutter/material.dart' hide showTimePicker;
 import 'package:flutter/services.dart'
     show TextInputFormatter, LengthLimitingTextInputFormatter;

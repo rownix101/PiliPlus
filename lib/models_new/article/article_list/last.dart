@@ -1,5 +1,5 @@
-import 'package:PiliPlus/models_new/article/article_list/category.dart';
-import 'package:PiliPlus/utils/extension/iterable_ext.dart';
+import 'package:PiliPro/models_new/article/article_list/category.dart';
+import 'package:PiliPro/utils/extension/iterable_ext.dart';
 
 class Last {
   int? id;

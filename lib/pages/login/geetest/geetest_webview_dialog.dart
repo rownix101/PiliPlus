@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-import 'package:PiliPlus/http/init.dart';
-import 'package:PiliPlus/http/loading_state.dart';
-import 'package:PiliPlus/http/ua_type.dart';
-import 'package:PiliPlus/main.dart';
-import 'package:PiliPlus/utils/accounts/account.dart';
+import 'package:PiliPro/http/init.dart';
+import 'package:PiliPro/http/loading_state.dart';
+import 'package:PiliPro/http/ua_type.dart';
+import 'package:PiliPro/main.dart';
+import 'package:PiliPro/utils/accounts/account.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';

@@ -4,9 +4,9 @@
 
 import 'dart:io' show File;
 
-import 'package:PiliPlus/common/widgets/gesture/image_horizontal_drag_gesture_recognizer.dart';
-import 'package:PiliPlus/common/widgets/gesture/image_tap_gesture_recognizer.dart';
-import 'package:PiliPlus/common/widgets/image_viewer/viewer.dart';
+import 'package:PiliPro/common/widgets/gesture/image_horizontal_drag_gesture_recognizer.dart';
+import 'package:PiliPro/common/widgets/gesture/image_tap_gesture_recognizer.dart';
+import 'package:PiliPro/common/widgets/image_viewer/viewer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';

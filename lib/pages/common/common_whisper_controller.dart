@@ -1,10 +1,10 @@
-import 'package:PiliPlus/grpc/bilibili/app/im/v1.pb.dart'
+import 'package:PiliPro/grpc/bilibili/app/im/v1.pb.dart'
     show SessionPageType, SessionId, Session;
-import 'package:PiliPlus/grpc/im.dart';
-import 'package:PiliPlus/http/loading_state.dart';
-import 'package:PiliPlus/http/msg.dart';
-import 'package:PiliPlus/pages/common/common_list_controller.dart';
-import 'package:PiliPlus/utils/accounts.dart';
+import 'package:PiliPro/grpc/im.dart';
+import 'package:PiliPro/http/loading_state.dart';
+import 'package:PiliPro/http/msg.dart';
+import 'package:PiliPro/pages/common/common_list_controller.dart';
+import 'package:PiliPro/utils/accounts.dart';
 import 'package:fixnum/fixnum.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 

@@ -1,7 +1,7 @@
-import 'package:PiliPlus/http/api.dart';
-import 'package:PiliPlus/http/init.dart';
-import 'package:PiliPlus/http/loading_state.dart';
-import 'package:PiliPlus/models_new/follow/data.dart';
+import 'package:PiliPro/http/api.dart';
+import 'package:PiliPro/http/init.dart';
+import 'package:PiliPro/http/loading_state.dart';
+import 'package:PiliPro/models_new/follow/data.dart';
 
 abstract final class FollowHttp {
   static Future<LoadingState<FollowData>> followings({

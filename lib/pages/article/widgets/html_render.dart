@@ -1,7 +1,7 @@
-import 'package:PiliPlus/models/common/image_preview_type.dart';
-import 'package:PiliPlus/utils/extension/num_ext.dart';
-import 'package:PiliPlus/utils/image_utils.dart';
-import 'package:PiliPlus/utils/page_utils.dart';
+import 'package:PiliPro/models/common/image_preview_type.dart';
+import 'package:PiliPro/utils/extension/num_ext.dart';
+import 'package:PiliPro/utils/image_utils.dart';
+import 'package:PiliPro/utils/page_utils.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';

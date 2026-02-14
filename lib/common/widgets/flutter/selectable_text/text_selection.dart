@@ -4,7 +4,7 @@
 
 import 'dart:math' as math;
 
-import 'package:PiliPlus/common/widgets/flutter/selectable_text/tap_and_drag.dart';
+import 'package:PiliPro/common/widgets/flutter/selectable_text/tap_and_drag.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart'
     hide

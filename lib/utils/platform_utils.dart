@@ -6,5 +6,5 @@ abstract final class PlatformUtils {
 
   /// 桌面端支持已停止，始终返回 false
   @pragma("vm:platform-const")
-  static const bool isDesktop = false;
+  static final bool isDesktop = false;
 }

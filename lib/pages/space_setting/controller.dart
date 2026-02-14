@@ -1,8 +1,8 @@
-import 'package:PiliPlus/http/loading_state.dart';
-import 'package:PiliPlus/http/user.dart';
-import 'package:PiliPlus/models_new/space_setting/data.dart';
-import 'package:PiliPlus/models_new/space_setting/privacy.dart';
-import 'package:PiliPlus/pages/common/common_data_controller.dart';
+import 'package:PiliPro/http/loading_state.dart';
+import 'package:PiliPro/http/user.dart';
+import 'package:PiliPro/models_new/space_setting/data.dart';
+import 'package:PiliPro/models_new/space_setting/privacy.dart';
+import 'package:PiliPro/pages/common/common_data_controller.dart';
 
 class SpaceSettingController
     extends CommonDataController<SpaceSettingData, Privacy?> {

@@ -1,18 +1,18 @@
 import 'dart:io' show File;
 
-import 'package:PiliPlus/common/constants.dart';
-import 'package:PiliPlus/grpc/bilibili/app/listener/v1.pb.dart' show DetailItem;
-import 'package:PiliPlus/models_new/download/bili_download_entry_info.dart';
-import 'package:PiliPlus/models_new/live/live_room_info_h5/data.dart';
-import 'package:PiliPlus/models_new/pgc/pgc_info_model/episode.dart';
-import 'package:PiliPlus/models_new/video/video_detail/data.dart';
-import 'package:PiliPlus/models_new/video/video_detail/page.dart';
-import 'package:PiliPlus/plugin/pl_player/controller.dart';
-import 'package:PiliPlus/plugin/pl_player/models/play_status.dart';
-import 'package:PiliPlus/utils/extension/iterable_ext.dart';
-import 'package:PiliPlus/utils/image_utils.dart';
-import 'package:PiliPlus/utils/path_utils.dart';
-import 'package:PiliPlus/utils/storage_pref.dart';
+import 'package:PiliPro/common/constants.dart';
+import 'package:PiliPro/grpc/bilibili/app/listener/v1.pb.dart' show DetailItem;
+import 'package:PiliPro/models_new/download/bili_download_entry_info.dart';
+import 'package:PiliPro/models_new/live/live_room_info_h5/data.dart';
+import 'package:PiliPro/models_new/pgc/pgc_info_model/episode.dart';
+import 'package:PiliPro/models_new/video/video_detail/data.dart';
+import 'package:PiliPro/models_new/video/video_detail/page.dart';
+import 'package:PiliPro/plugin/pl_player/controller.dart';
+import 'package:PiliPro/plugin/pl_player/models/play_status.dart';
+import 'package:PiliPro/utils/extension/iterable_ext.dart';
+import 'package:PiliPro/utils/image_utils.dart';
+import 'package:PiliPro/utils/path_utils.dart';
+import 'package:PiliPro/utils/storage_pref.dart';
 import 'package:audio_service/audio_service.dart';
 import 'package:path/path.dart' as path;
 
@@ -20,7 +20,7 @@ Future<VideoPlayerServiceHandler> initAudioService() {
   return AudioService.init(
     builder: VideoPlayerServiceHandler.new,
     config: const AudioServiceConfig(
-      androidNotificationChannelId: 'com.example.piliplus.audio',
+      androidNotificationChannelId: 'com.example.pilipro.audio',
       androidNotificationChannelName: 'Audio Service ${Constants.appName}',
       androidNotificationOngoing: true,
       androidStopForegroundOnPause: true,

@@ -1,4 +1,4 @@
-import 'package:PiliPlus/models_new/video/video_detail/dimension.dart';
+import 'package:PiliPro/models_new/video/video_detail/dimension.dart';
 
 class OgvInfo {
   int? epid;

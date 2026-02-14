@@ -1,13 +1,13 @@
 import 'dart:io';
 
-import 'package:PiliPlus/http/ua_type.dart';
-import 'package:PiliPlus/main.dart';
-import 'package:PiliPlus/models/common/webview_menu_type.dart';
-import 'package:PiliPlus/utils/app_scheme.dart';
-import 'package:PiliPlus/utils/cache_manager.dart';
-import 'package:PiliPlus/utils/login_utils.dart';
-import 'package:PiliPlus/utils/page_utils.dart';
-import 'package:PiliPlus/utils/utils.dart';
+import 'package:PiliPro/http/ua_type.dart';
+import 'package:PiliPro/main.dart';
+import 'package:PiliPro/models/common/webview_menu_type.dart';
+import 'package:PiliPro/utils/app_scheme.dart';
+import 'package:PiliPro/utils/cache_manager.dart';
+import 'package:PiliPro/utils/login_utils.dart';
+import 'package:PiliPro/utils/page_utils.dart';
+import 'package:PiliPro/utils/utils.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';

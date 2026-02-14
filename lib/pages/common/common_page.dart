@@ -1,7 +1,7 @@
-import 'package:PiliPlus/pages/common/common_controller.dart';
-import 'package:PiliPlus/pages/home/controller.dart';
-import 'package:PiliPlus/pages/main/controller.dart';
-import 'package:PiliPlus/utils/storage_pref.dart';
+import 'package:PiliPro/pages/common/common_controller.dart';
+import 'package:PiliPro/pages/home/controller.dart';
+import 'package:PiliPro/pages/main/controller.dart';
+import 'package:PiliPro/utils/storage_pref.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

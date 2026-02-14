@@ -1,4 +1,4 @@
-import 'package:PiliPlus/models_new/pgc/pgc_timeline/result.dart';
+import 'package:PiliPro/models_new/pgc/pgc_timeline/result.dart';
 
 class PgcTimeline {
   int? code;

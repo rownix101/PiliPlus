@@ -3,62 +3,62 @@ import 'dart:io';
 import 'dart:math';
 import 'dart:ui';
 
-import 'package:PiliPlus/common/constants.dart';
-import 'package:PiliPlus/common/widgets/custom_icon.dart';
-import 'package:PiliPlus/common/widgets/image/network_img_layer.dart';
-import 'package:PiliPlus/common/widgets/image_viewer/hero_dialog_route.dart';
-import 'package:PiliPlus/common/widgets/keep_alive_wrapper.dart';
-import 'package:PiliPlus/common/widgets/player/first_frame_interceptor.dart';
-import 'package:PiliPlus/common/widgets/scroll_physics.dart';
-import 'package:PiliPlus/http/loading_state.dart';
-import 'package:PiliPlus/main.dart';
-import 'package:PiliPlus/models/common/episode_panel_type.dart';
-import 'package:PiliPlus/models_new/pgc/pgc_info_model/result.dart';
-import 'package:PiliPlus/models_new/video/video_detail/episode.dart' as ugc;
-import 'package:PiliPlus/models_new/video/video_detail/page.dart';
-import 'package:PiliPlus/models_new/video/video_detail/ugc_season.dart';
-import 'package:PiliPlus/models_new/video/video_tag/data.dart';
-import 'package:PiliPlus/pages/common/common_intro_controller.dart';
-import 'package:PiliPlus/pages/danmaku/view.dart';
-import 'package:PiliPlus/pages/episode_panel/view.dart';
-import 'package:PiliPlus/pages/video/ai_conclusion/view.dart';
-import 'package:PiliPlus/pages/video/controller.dart';
-import 'package:PiliPlus/pages/video/introduction/local/controller.dart';
-import 'package:PiliPlus/pages/video/introduction/local/view.dart';
-import 'package:PiliPlus/pages/video/introduction/pgc/controller.dart';
-import 'package:PiliPlus/pages/video/introduction/pgc/view.dart';
-import 'package:PiliPlus/pages/video/introduction/pgc/widgets/intro_detail.dart';
-import 'package:PiliPlus/pages/video/introduction/ugc/controller.dart';
-import 'package:PiliPlus/pages/video/introduction/ugc/view.dart';
-import 'package:PiliPlus/pages/video/introduction/ugc/widgets/page.dart';
-import 'package:PiliPlus/pages/video/introduction/ugc/widgets/season.dart';
-import 'package:PiliPlus/pages/video/member/controller.dart';
-import 'package:PiliPlus/pages/video/member/view.dart';
-import 'package:PiliPlus/pages/video/related/view.dart';
-import 'package:PiliPlus/pages/video/reply/controller.dart';
-import 'package:PiliPlus/pages/video/reply/view.dart';
-import 'package:PiliPlus/pages/video/view_point/view.dart';
-import 'package:PiliPlus/pages/video/widgets/header_control.dart';
-import 'package:PiliPlus/pages/video/widgets/player_focus.dart';
-import 'package:PiliPlus/plugin/pl_player/controller.dart';
-import 'package:PiliPlus/plugin/pl_player/models/fullscreen_mode.dart';
-import 'package:PiliPlus/plugin/pl_player/models/play_repeat.dart';
-import 'package:PiliPlus/plugin/pl_player/models/play_status.dart';
-import 'package:PiliPlus/plugin/pl_player/utils/fullscreen.dart';
-import 'package:PiliPlus/plugin/pl_player/view.dart';
-import 'package:PiliPlus/services/service_locator.dart';
-import 'package:PiliPlus/services/shutdown_timer_service.dart'
+import 'package:PiliPro/common/constants.dart';
+import 'package:PiliPro/common/widgets/custom_icon.dart';
+import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
+import 'package:PiliPro/common/widgets/image_viewer/hero_dialog_route.dart';
+import 'package:PiliPro/common/widgets/keep_alive_wrapper.dart';
+import 'package:PiliPro/common/widgets/player/first_frame_interceptor.dart';
+import 'package:PiliPro/common/widgets/scroll_physics.dart';
+import 'package:PiliPro/http/loading_state.dart';
+import 'package:PiliPro/main.dart';
+import 'package:PiliPro/models/common/episode_panel_type.dart';
+import 'package:PiliPro/models_new/pgc/pgc_info_model/result.dart';
+import 'package:PiliPro/models_new/video/video_detail/episode.dart' as ugc;
+import 'package:PiliPro/models_new/video/video_detail/page.dart';
+import 'package:PiliPro/models_new/video/video_detail/ugc_season.dart';
+import 'package:PiliPro/models_new/video/video_tag/data.dart';
+import 'package:PiliPro/pages/common/common_intro_controller.dart';
+import 'package:PiliPro/pages/danmaku/view.dart';
+import 'package:PiliPro/pages/episode_panel/view.dart';
+import 'package:PiliPro/pages/video/ai_conclusion/view.dart';
+import 'package:PiliPro/pages/video/controller.dart';
+import 'package:PiliPro/pages/video/introduction/local/controller.dart';
+import 'package:PiliPro/pages/video/introduction/local/view.dart';
+import 'package:PiliPro/pages/video/introduction/pgc/controller.dart';
+import 'package:PiliPro/pages/video/introduction/pgc/view.dart';
+import 'package:PiliPro/pages/video/introduction/pgc/widgets/intro_detail.dart';
+import 'package:PiliPro/pages/video/introduction/ugc/controller.dart';
+import 'package:PiliPro/pages/video/introduction/ugc/view.dart';
+import 'package:PiliPro/pages/video/introduction/ugc/widgets/page.dart';
+import 'package:PiliPro/pages/video/introduction/ugc/widgets/season.dart';
+import 'package:PiliPro/pages/video/member/controller.dart';
+import 'package:PiliPro/pages/video/member/view.dart';
+import 'package:PiliPro/pages/video/related/view.dart';
+import 'package:PiliPro/pages/video/reply/controller.dart';
+import 'package:PiliPro/pages/video/reply/view.dart';
+import 'package:PiliPro/pages/video/view_point/view.dart';
+import 'package:PiliPro/pages/video/widgets/header_control.dart';
+import 'package:PiliPro/pages/video/widgets/player_focus.dart';
+import 'package:PiliPro/plugin/pl_player/controller.dart';
+import 'package:PiliPro/plugin/pl_player/models/fullscreen_mode.dart';
+import 'package:PiliPro/plugin/pl_player/models/play_repeat.dart';
+import 'package:PiliPro/plugin/pl_player/models/play_status.dart';
+import 'package:PiliPro/plugin/pl_player/utils/fullscreen.dart';
+import 'package:PiliPro/plugin/pl_player/view.dart';
+import 'package:PiliPro/services/service_locator.dart';
+import 'package:PiliPro/services/shutdown_timer_service.dart'
     show shutdownTimerService;
-import 'package:PiliPlus/utils/accounts.dart';
-import 'package:PiliPlus/utils/extension/num_ext.dart';
-import 'package:PiliPlus/utils/extension/scroll_controller_ext.dart';
-import 'package:PiliPlus/utils/extension/theme_ext.dart';
-import 'package:PiliPlus/utils/image_utils.dart';
-import 'package:PiliPlus/utils/num_utils.dart';
-import 'package:PiliPlus/utils/page_utils.dart';
-import 'package:PiliPlus/utils/platform_utils.dart';
-import 'package:PiliPlus/utils/storage.dart';
-import 'package:PiliPlus/utils/storage_key.dart';
+import 'package:PiliPro/utils/accounts.dart';
+import 'package:PiliPro/utils/extension/num_ext.dart';
+import 'package:PiliPro/utils/extension/scroll_controller_ext.dart';
+import 'package:PiliPro/utils/extension/theme_ext.dart';
+import 'package:PiliPro/utils/image_utils.dart';
+import 'package:PiliPro/utils/num_utils.dart';
+import 'package:PiliPro/utils/page_utils.dart';
+import 'package:PiliPro/utils/platform_utils.dart';
+import 'package:PiliPro/utils/storage.dart';
+import 'package:PiliPro/utils/storage_key.dart';
 import 'package:auto_orientation/auto_orientation.dart';
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:floating/floating.dart';
@@ -128,6 +128,7 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
   final videoReplyPanelKey = GlobalKey();
   final videoRelatedKey = GlobalKey();
   final videoIntroKey = GlobalKey();
+  final firstFrameInterceptorKey = GlobalKey<FirstFrameInterceptorState>();
 
   @override
   void initState() {
@@ -175,6 +176,11 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
 
   void positionListener(Duration position) {
     videoDetailController.playedTime = position;
+    
+    // 首帧检测：当 position > 0 且封面仍未隐藏时，通知 FirstFrameInterceptor
+    if (position.inMilliseconds > 0) {
+      firstFrameInterceptorKey.currentState?.onFirstFrameRendered();
+    }
   }
 
   @override
@@ -1747,6 +1753,7 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
     // 在自动播放模式下，使用首帧拦截避免黑屏闪烁
     if (videoDetailController.autoPlay) {
       playerContent = FirstFrameInterceptor(
+        key: firstFrameInterceptorKey,
         coverUrl: videoDetailController.cover.value,
         fadeDuration: const Duration(milliseconds: 200),
         child: playerContent,

@@ -1,8 +1,8 @@
-import 'package:PiliPlus/common/widgets/pendant_avatar.dart';
-import 'package:PiliPlus/models/search/result.dart';
-import 'package:PiliPlus/utils/extension/num_ext.dart';
-import 'package:PiliPlus/utils/num_utils.dart';
-import 'package:PiliPlus/utils/utils.dart';
+import 'package:PiliPro/common/widgets/pendant_avatar.dart';
+import 'package:PiliPro/models/search/result.dart';
+import 'package:PiliPro/utils/extension/num_ext.dart';
+import 'package:PiliPro/utils/num_utils.dart';
+import 'package:PiliPro/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

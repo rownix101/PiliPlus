@@ -1,18 +1,18 @@
 import 'dart:convert';
 
-import 'package:PiliPlus/common/widgets/disabled_icon.dart';
-import 'package:PiliPlus/common/widgets/loading_widget/loading_widget.dart';
-import 'package:PiliPlus/http/loading_state.dart';
-import 'package:PiliPlus/models_new/search/search_rcmd/data.dart';
-import 'package:PiliPlus/pages/about/view.dart' show showImportExportDialog;
-import 'package:PiliPlus/pages/search/controller.dart';
-import 'package:PiliPlus/pages/search/widgets/hot_keyword.dart';
-import 'package:PiliPlus/pages/search/widgets/search_text.dart';
-import 'package:PiliPlus/utils/em.dart' show Em;
-import 'package:PiliPlus/utils/extension/size_ext.dart';
-import 'package:PiliPlus/utils/storage.dart';
-import 'package:PiliPlus/utils/storage_key.dart';
-import 'package:PiliPlus/utils/utils.dart';
+import 'package:PiliPro/common/widgets/disabled_icon.dart';
+import 'package:PiliPro/common/widgets/loading_widget/loading_widget.dart';
+import 'package:PiliPro/http/loading_state.dart';
+import 'package:PiliPro/models_new/search/search_rcmd/data.dart';
+import 'package:PiliPro/pages/about/view.dart' show showImportExportDialog;
+import 'package:PiliPro/pages/search/controller.dart';
+import 'package:PiliPro/pages/search/widgets/hot_keyword.dart';
+import 'package:PiliPro/pages/search/widgets/search_text.dart';
+import 'package:PiliPro/utils/em.dart' show Em;
+import 'package:PiliPro/utils/extension/size_ext.dart';
+import 'package:PiliPro/utils/storage.dart';
+import 'package:PiliPro/utils/storage_key.dart';
+import 'package:PiliPro/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -1,6 +1,6 @@
-import 'package:PiliPlus/models_new/fav/fav_article/author.dart';
-import 'package:PiliPlus/models_new/fav/fav_article/cover.dart';
-import 'package:PiliPlus/models_new/fav/fav_article/stat.dart';
+import 'package:PiliPro/models_new/fav/fav_article/author.dart';
+import 'package:PiliPro/models_new/fav/fav_article/cover.dart';
+import 'package:PiliPro/models_new/fav/fav_article/stat.dart';
 
 class FavArticleItemModel {
   String? jumpUrl;
