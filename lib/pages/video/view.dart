@@ -4,11 +4,15 @@ import 'dart:math';
 import 'dart:ui';
 
 import 'package:PiliPlus/common/constants.dart';
+import 'package:PiliPlus/common/widgets/animation/staggered_animation.dart';
 import 'package:PiliPlus/common/widgets/custom_icon.dart';
 import 'package:PiliPlus/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPlus/common/widgets/image_viewer/hero_dialog_route.dart';
 import 'package:PiliPlus/common/widgets/keep_alive_wrapper.dart';
+import 'package:PiliPlus/common/widgets/player/first_frame_interceptor.dart';
 import 'package:PiliPlus/common/widgets/scroll_physics.dart';
+import 'package:PiliPlus/common/widgets/skeleton/skeleton_screen.dart';
+import 'package:PiliPlus/common/widgets/transition/shared_element_transition.dart';
 import 'package:PiliPlus/http/loading_state.dart';
 import 'package:PiliPlus/main.dart';
 import 'package:PiliPlus/models/common/episode_panel_type.dart';
@@ -1586,7 +1590,9 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
 
   Widget videoPlayer({required double width, required double height}) {
     final isFullScreen = this.isFullScreen;
-    return Stack(
+    
+    // 构建播放器内容
+    Widget playerContent = Stack(
       clipBehavior: Clip.none,
       children: [
         const Positioned.fill(child: ColoredBox(color: Colors.black)),
@@ -1738,6 +1744,22 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
           },
         ),
       ],
+    );
+    
+    // 使用 Hero 动画包装播放器区域，实现共享元素过渡
+    // 在自动播放模式下，使用首帧拦截避免黑屏闪烁
+    if (videoDetailController.autoPlay) {
+      playerContent = FirstFrameInterceptor(
+        coverUrl: videoDetailController.cover.value,
+        fadeDuration: const Duration(milliseconds: 200),
+        child: playerContent,
+      );
+    }
+    
+    return Hero(
+      tag: heroTag,
+      transitionOnUserGestures: true,
+      child: playerContent,
     );
   }
 

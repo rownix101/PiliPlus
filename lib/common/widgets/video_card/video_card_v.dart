@@ -3,6 +3,7 @@ import 'package:PiliPlus/common/widgets/badge.dart';
 import 'package:PiliPlus/common/widgets/image/image_save.dart';
 import 'package:PiliPlus/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPlus/common/widgets/stat/stat.dart';
+import 'package:PiliPlus/common/widgets/transition/shared_element_transition.dart';
 import 'package:PiliPlus/common/widgets/video_popup_menu.dart';
 import 'package:PiliPlus/http/search.dart';
 import 'package:PiliPlus/models/common/badge_type.dart';
@@ -48,6 +49,7 @@ class VideoCardV extends StatelessWidget {
             cid: cid,
             cover: videoItem.cover,
             title: videoItem.title,
+            extraArguments: {'heroTag': heroTag},
           );
         }
         break;
@@ -73,13 +75,17 @@ class VideoCardV extends StatelessWidget {
       cover: videoItem.cover,
       bvid: videoItem.bvid,
     );
+    
+    // 生成唯一的 heroTag 用于共享元素动画
+    final String heroTag = Utils.makeHeroTag(videoItem.aid);
+    
     return Stack(
       clipBehavior: Clip.none,
       children: [
         Card(
           clipBehavior: Clip.hardEdge,
           child: InkWell(
-            onTap: () => onPushDetail(Utils.makeHeroTag(videoItem.aid)),
+            onTap: () => onPushDetail(heroTag),
             onLongPress: onLongPress,
             onSecondaryTap: PlatformUtils.isMobile ? null : onLongPress,
             child: Column(
@@ -94,11 +100,16 @@ class VideoCardV extends StatelessWidget {
                       return Stack(
                         clipBehavior: Clip.none,
                         children: [
-                          NetworkImgLayer(
-                            src: videoItem.cover,
-                            width: maxWidth,
-                            height: maxHeight,
-                            type: .emote,
+                          // 使用 Hero 动画包装封面图
+                          Hero(
+                            tag: heroTag,
+                            transitionOnUserGestures: true,
+                            child: NetworkImgLayer(
+                              src: videoItem.cover,
+                              width: maxWidth,
+                              height: maxHeight,
+                              type: .emote,
+                            ),
                           ),
                           if (videoItem.duration > 0)
                             PBadge(
