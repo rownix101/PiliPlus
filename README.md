@@ -2,6 +2,17 @@
     <img width="200" height="200" src="assets/images/logo/logo.png">
 </div>
 
+> **📢 重要公告**
+> 
+> 本项目自即日起调整维护策略：
+> - **移动优先**：专注于 Android 和 iOS 移动端的开发与优化
+> - **停止桌面端维护**：Windows、Linux、macOS 桌面版本不再提供更新和支持
+> - **iOS 版本要求**：最低支持 iOS 17.0 及以上版本
+> 
+> 现有桌面端版本仍可继续使用，但不再发布新版本。建议桌面端用户考虑其他替代方案。感谢理解！
+
+---
+
 
 
 <div align="center">
@@ -27,13 +38,13 @@
 
 ## 适配平台
 
-- [x] Android
-- [x] iOS
-- [x] Pad
-- [x] Windows
-- [x] Linux
+- [x] Android (Android 10+)
+- [x] iOS (iOS 17+)
+- [x] iPad
 
-[![Packaging status](https://repology.org/badge/vertical-allrepos/piliplus.svg)](https://repology.org/project/piliplus/versions)
+~~Windows~~ (已停止维护)
+~~Linux~~ (已停止维护)
+~~macOS~~ (已停止维护)
 
 ## refactor
 

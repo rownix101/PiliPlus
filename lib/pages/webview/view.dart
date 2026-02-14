@@ -64,18 +64,6 @@ class _WebviewPageState extends State<WebviewPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (Platform.isLinux) {
-      return Scaffold(
-        appBar: AppBar(),
-        resizeToAvoidBottomInset: false,
-        body: Center(
-          child: TextButton(
-            onPressed: () => PageUtils.launchURL(_url),
-            child: const Text('unsupported'),
-          ),
-        ),
-      );
-    }
     return Scaffold(
       appBar: widget.url != null
           ? null

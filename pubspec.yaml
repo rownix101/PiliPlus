@@ -40,7 +40,6 @@ dependencies:
   # 动态取色
   dynamic_color: ^1.8.1
 
-  # get: ^4.7.2
   get:
     git:
       url: https://github.com/bggRGjQaUbCoE/getx.git
@@ -54,11 +53,9 @@ dependencies:
 
   # 图片
   cached_network_image: ^3.4.1
-  # extended_image: ^9.0.7
   saver_gallery: ^4.1.0
 
   # QRCode
-  # qr_flutter: ^4.1.0
   pretty_qr_code: ^3.3.0
 
   # 存储
@@ -69,39 +66,25 @@ dependencies:
   # 设备信息
   device_info_plus: ^12.1.0
   # 权限
-  # permission_handler: ^12.0.0+1
-  permission_handler_apple: ^9.4.7
-  permission_handler_android: ^13.0.1
+  permission_handler: ^11.4.0
   permission_handler_platform_interface: ^4.3.0
   # 分享
   share_plus: ^12.0.0
-  # cookie 管理
-  # webview_cookie_manager: ^2.0.6
   # 浏览器
-  # webview_flutter: ^4.10.0
   flutter_inappwebview: ^6.1.5
   # 解决sliver滑动不同步
-  # extended_nested_scroll_view: ^6.2.1
   extended_nested_scroll_view:
     git:
       url: https://github.com/bggRGjQaUbCoE/extended_nested_scroll_view.git
       ref: mod
-  # 上拉加载
-  # loading_more_list: ^7.1.0
-  # 下拉刷新
-  # pull_to_refresh_notification: ^3.1.0
   # 图标
   font_awesome_flutter: 10.9.0
-  # material_design_icons_flutter: ^7.0.7296
   material_design_icons_flutter:
     git:
       url: https://github.com/bggRGjQaUbCoE/material_design_icons_flutter.git
       ref: const
   # toast
   flutter_smart_dialog: ^4.9.8+5
-  # 下滑关闭
-  # dismissible_page: ^1.0.2
-  # custom_sliding_segmented_control: ^1.8.4
   # 加密
   crypto: ^3.0.6
   encrypt: ^5.0.3
@@ -123,13 +106,11 @@ dependencies:
   # 音量、亮度、屏幕控制
   flutter_volume_controller: ^1.3.3
   wakelock_plus: ^1.2.8
-  # universal_platform: ^1.1.0
   auto_orientation:
     git:
       url: https://github.com/bggRGjQaUbCoE/auto_orientation.git
       ref: master
   protobuf: ^6.0.0
-  # animations: ^2.0.11
 
   # 获取appx信息
   package_info_plus: ^9.0.0
@@ -141,20 +122,11 @@ dependencies:
   # scheme跳转
   app_links: ^7.0.0
   # 弹幕
-  # ns_danmaku:
-  #   git:
-  #     url: https://github.com/bggRGjQaUbCoE/flutter_ns_danmaku.git
-  #     ref: master
   canvas_danmaku:
     git:
       url: https://github.com/bggRGjQaUbCoE/canvas_danmaku.git
       ref: main
-  # 状态栏图标控制
-  # status_bar_control: ^3.2.1
-  # 代理
-  # system_proxy: ^0.1.0
   # pip
-  # floating: ^3.0.0
   floating:
     git:
       url: https://github.com/bggRGjQaUbCoE/floating.git
@@ -166,17 +138,11 @@ dependencies:
   # 极验
   gt3_flutter_plugin: ^0.1.0
   uuid: ^4.5.1
-  # scrollable_positioned_list: ^0.3.8
-  # nil: ^1.1.1
   catcher_2: ^2.1.0
   logger: ^2.5.0
   #瀑布流
   waterfall_flow: ^3.1.0
-  #跑马灯
-  # marquee: ^2.3.0
   #富文本
-  # extended_text: ^14.1.0
-  # chat_bottom_container: ^0.2.0
   chat_bottom_container:
     git:
       url: https://github.com/bggRGjQaUbCoE/flutter_chat_packages.git
@@ -194,8 +160,6 @@ dependencies:
   live_photo_maker: ^0.0.6
   fl_chart: ^1.0.0
   synchronized: ^3.3.0
-  # document_file_save_plus: ^2.0.0
-  # webdav_client: ^1.2.2
   webdav_client:
     git:
       url: https://github.com/wgh136/webdav_client.git
@@ -206,15 +170,12 @@ dependencies:
       url: https://github.com/bggRGjQaUbCoE/flutter_sortable_wrap.git
       ref: master
   web_socket_channel: ^3.0.3
-  # image: ^4.7.1
-  # window_manager: ^0.5.1
   window_manager:
     git:
       url: https://github.com/bggRGjQaUbCoE/window_manager.git
       path: packages/window_manager
       ref: main
   tray_manager: ^0.5.1
-  # file_picker: ^10.3.3
   file_picker:
     git:
       url: https://github.com/bggRGjQaUbCoE/flutter_file_picker.git
@@ -225,6 +186,7 @@ dependencies:
       ref: mod
   dlna_dart: ^0.1.0
   battery_plus: ^7.0.0
+  screen_brightness: ^2.0.1
 
   vector_math: any
   fixnum: any
@@ -242,8 +204,8 @@ dependencies:
 
 dependency_overrides:
   # screen_brightness: ^2.1.
-  screen_brightness_ios: ^2.1.2
-  screen_brightness_android: ^2.1.3
+  # screen_brightness_ios: ^2.1.2
+  # screen_brightness_android: ^2.1.3
   screen_brightness_platform_interface: ^2.1.0
   path: ^1.9.1
   mime: ^2.0.0

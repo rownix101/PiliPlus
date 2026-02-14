@@ -2,10 +2,8 @@ import 'dart:io';
 
 import 'package:PiliPlus/build_config.dart';
 import 'package:PiliPlus/common/constants.dart';
-import 'package:PiliPlus/common/widgets/back_detector.dart';
 import 'package:PiliPlus/common/widgets/custom_toast.dart';
 import 'package:PiliPlus/common/widgets/scale_app.dart';
-import 'package:PiliPlus/common/widgets/scroll_behavior.dart';
 import 'package:PiliPlus/http/init.dart';
 import 'package:PiliPlus/models/common/theme/theme_color_type.dart';
 import 'package:PiliPlus/router/app_pages.dart';
@@ -14,7 +12,6 @@ import 'package:PiliPlus/services/download/download_service.dart';
 import 'package:PiliPlus/services/service_locator.dart';
 import 'package:PiliPlus/utils/app_scheme.dart';
 import 'package:PiliPlus/utils/cache_manager.dart';
-import 'package:PiliPlus/utils/calc_window_position.dart';
 import 'package:PiliPlus/utils/date_utils.dart';
 import 'package:PiliPlus/utils/extension/iterable_ext.dart';
 import 'package:PiliPlus/utils/extension/theme_ext.dart';
@@ -41,31 +38,11 @@ import 'package:get/get.dart';
 import 'package:media_kit/media_kit.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
-import 'package:window_manager/window_manager.dart' hide calcWindowPosition;
 
 WebViewEnvironment? webViewEnvironment;
 
 Future<void> _initDownPath() async {
-  if (PlatformUtils.isDesktop) {
-    final customDownPath = Pref.downloadPath;
-    if (customDownPath != null && customDownPath.isNotEmpty) {
-      try {
-        final dir = Directory(customDownPath);
-        if (!dir.existsSync()) {
-          await dir.create(recursive: true);
-        }
-        downloadPath = customDownPath;
-      } catch (e) {
-        downloadPath = defDownloadPath;
-        await GStorage.setting.delete(SettingBoxKey.downloadPath);
-        if (kDebugMode) {
-          debugPrint('download path error: $e');
-        }
-      }
-    } else {
-      downloadPath = defDownloadPath;
-    }
-  } else if (Platform.isAndroid) {
+  if (Platform.isAndroid) {
     final externalStorageDirPath = (await getExternalStorageDirectory())?.path;
     downloadPath = externalStorageDirPath != null
         ? path.join(externalStorageDirPath, PathUtils.downloadDir)
@@ -116,14 +93,6 @@ void main() async {
       ),
       setupServiceLocator(),
     ]);
-  } else if (Platform.isWindows) {
-    if (await WebViewEnvironment.getAvailableVersion() != null) {
-      webViewEnvironment = await WebViewEnvironment.create(
-        settings: WebViewEnvironmentSettings(
-          userDataFolder: path.join(appSupportDirPath, 'flutter_inappwebview'),
-        ),
-      );
-    }
   }
 
   Request();
@@ -159,26 +128,6 @@ void main() async {
         FlutterDisplayMode.setPreferredMode(displayMode ?? DisplayMode.auto);
       });
     }
-  } else if (PlatformUtils.isDesktop) {
-    await windowManager.ensureInitialized();
-
-    final windowOptions = WindowOptions(
-      minimumSize: const Size(400, 720),
-      skipTaskbar: false,
-      titleBarStyle: Pref.showWindowTitleBar
-          ? TitleBarStyle.normal
-          : TitleBarStyle.hidden,
-      title: Constants.appName,
-    );
-    windowManager.waitUntilReadyToShow(windowOptions, () async {
-      final windowSize = Pref.windowSize;
-      await windowManager.setBounds(
-        await calcWindowPosition(windowSize) & windowSize,
-      );
-      if (Pref.isWindowMaximized) await windowManager.maximize();
-      await windowManager.show();
-      await windowManager.focus();
-    });
   }
 
   if (Pref.dynamicColor) {
@@ -231,24 +180,6 @@ class MyApp extends StatelessWidget {
   static ColorScheme? _light, _dark;
 
   static ThemeData? darkThemeData;
-
-  static void _onBack() {
-    if (SmartDialog.checkExist()) {
-      SmartDialog.dismiss();
-      return;
-    }
-
-    final route = Get.routing.route;
-    if (route is GetPageRoute) {
-      if (route.popDisposition == .doNotPop) {
-        route.onPopInvokedWithResult(false, null);
-        return;
-      }
-    }
-
-    final navigator = Get.key.currentState;
-    if (navigator?.canPop() ?? false) {
-      navigator!.pop();
     }
   }
 
@@ -293,9 +224,7 @@ class MyApp extends StatelessWidget {
         PageUtils.routeObserver,
         FlutterSmartDialog.observer,
       ],
-      scrollBehavior: PlatformUtils.isDesktop
-          ? const CustomScrollBehavior(desktopDragDevices)
-          : null,
+      scrollBehavior: null,
     );
   }
 
@@ -319,12 +248,6 @@ class MyApp extends StatelessWidget {
       child = MediaQuery(
         data: mediaQuery.copyWith(textScaler: textScaler),
         child: child!,
-      );
-    }
-    if (PlatformUtils.isDesktop) {
-      return BackDetector(
-        onBack: _onBack,
-        child: child,
       );
     }
     return child;
