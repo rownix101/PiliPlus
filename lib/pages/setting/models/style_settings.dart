@@ -19,6 +19,7 @@ import 'package:PiliPro/pages/main/controller.dart';
 import 'package:PiliPro/pages/mine/controller.dart';
 import 'package:PiliPro/pages/setting/models/model.dart';
 import 'package:PiliPro/pages/setting/slide_color_picker.dart';
+import 'package:PiliPro/services/battery_service.dart';
 import 'package:PiliPro/pages/setting/widgets/dual_slide_dialog.dart';
 import 'package:PiliPro/pages/setting/widgets/multi_select_dialog.dart';
 import 'package:PiliPro/pages/setting/widgets/select_dialog.dart';
@@ -272,6 +273,19 @@ List<SettingsModel> get styleSettings => [
     onChanged: (value) {
       if (Get.isDarkMode || Pref.darkVideoPage) {
         Get.forceAppUpdate();
+      }
+    },
+  ),
+  SwitchModel(
+    leading: const Icon(Icons.battery_saver_outlined),
+    title: '省电模式自动开启纯黑主题',
+    subtitle: '电量≤20%或系统省电模式时自动开启',
+    setKey: SettingBoxKey.autoPureBlackOnPowerSave,
+    defaultVal: false,
+    onChanged: (value) {
+      if (value) {
+        // 开启时立即检查当前是否处于省电模式
+        BatteryService.to.checkPowerSaveMode();
       }
     },
   ),

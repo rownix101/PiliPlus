@@ -141,27 +141,33 @@ class Request {
               ..autoUncompress = false, // Http2Adapter没有自动解压, 统一行为
     );
 
+    // HTTP/2 连接池配置
+    // 使用 ConnectionManager 管理连接生命周期
+    final connectionManager = ConnectionManager(
+      // 连接空闲超时时间
+      idleTimeout: const Duration(seconds: 30),
+      // 客户端创建回调，用于配置 TLS 和代理
+      onClientCreate: enableSystemProxy
+          ? (_, config) {
+              config
+                ..proxy = Uri(
+                  scheme: 'http',
+                  host: systemProxyHost,
+                  port: systemProxyPort,
+                )
+                ..onBadCertificate = (_) => true;
+            }
+          : Pref.badCertificateCallback
+          ? (_, config) {
+              config.onBadCertificate = (_) => true;
+            }
+          : null,
+    );
+
     dio = Dio(options)
       ..httpClientAdapter = enableHttp2
           ? Http2Adapter(
-              ConnectionManager(
-                idleTimeout: const Duration(seconds: 15),
-                onClientCreate: enableSystemProxy
-                    ? (_, config) {
-                        config
-                          ..proxy = Uri(
-                            scheme: 'http',
-                            host: systemProxyHost,
-                            port: systemProxyPort,
-                          )
-                          ..onBadCertificate = (_) => true;
-                      }
-                    : Pref.badCertificateCallback
-                    ? (_, config) {
-                        config.onBadCertificate = (_) => true;
-                      }
-                    : null,
-              ),
+              connectionManager,
               fallbackAdapter: http11Adapter,
             )
           : http11Adapter;

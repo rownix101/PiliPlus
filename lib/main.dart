@@ -8,6 +8,8 @@ import 'package:PiliPro/http/init.dart';
 import 'package:PiliPro/models/common/theme/theme_color_type.dart';
 import 'package:PiliPro/router/app_pages.dart';
 import 'package:PiliPro/services/account_service.dart';
+import 'package:PiliPro/services/battery_service.dart';
+import 'package:PiliPro/services/connection_warmup_service.dart';
 import 'package:PiliPro/services/download/download_service.dart';
 import 'package:PiliPro/services/service_locator.dart';
 import 'package:PiliPro/utils/app_scheme.dart';
@@ -75,7 +77,9 @@ void main() async {
   await Future.wait([_initDownPath(), _initTmpPath()]);
   Get
     ..lazyPut(AccountService.new)
-    ..lazyPut(DownloadService.new);
+    ..lazyPut(DownloadService.new)
+    ..lazyPut(BatteryService.new)
+    ..lazyPut(PureBlackThemeController.new);
   HttpOverrides.global = _CustomHttpOverrides();
 
   CacheManager.autoClearCache();
@@ -98,6 +102,14 @@ void main() async {
   Request();
   Request.setCookie();
   RequestUtils.syncHistoryStatus();
+  
+  // 应用启动时进行 DNS 预解析和连接预热（不阻塞启动流程）
+  if (Pref.enableHttp2) {
+    Future.microtask(() async {
+      await ConnectionWarmupService().preResolveDns();
+      await ConnectionWarmupService().warmupConnections();
+    });
+  }
 
   SmartDialog.config.toast = SmartConfigToast(
     displayType: SmartToastType.onlyRefresh,
@@ -187,43 +199,50 @@ class MyApp extends StatelessWidget {
     final dynamicColor = Pref.dynamicColor && _light != null && _dark != null;
     late final brandColor = colorThemeTypes[Pref.customColor].color;
     late final variant = Pref.schemeVariant;
-    return GetMaterialApp(
-      title: Constants.appName,
-      theme: ThemeUtils.getThemeData(
-        colorScheme: dynamicColor
-            ? _light!
-            : brandColor.asColorSchemeSeed(variant, .light),
-        isDynamic: dynamicColor,
-      ),
-      darkTheme: ThemeUtils.getThemeData(
-        isDark: true,
-        colorScheme: dynamicColor
-            ? _dark!
-            : brandColor.asColorSchemeSeed(variant, .dark),
-        isDynamic: dynamicColor,
-      ),
-      themeMode: Pref.themeMode,
-      localizationsDelegates: const [
-        GlobalCupertinoLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      locale: const Locale("zh", "CN"),
-      fallbackLocale: const Locale("zh", "CN"),
-      supportedLocales: const [Locale("zh", "CN"), Locale("en", "US")],
-      initialRoute: '/',
-      getPages: Routes.getPages,
-      defaultTransition: Transition.native,
-      builder: FlutterSmartDialog.init(
-        toastBuilder: (msg) => CustomToast(msg: msg),
-        loadingBuilder: (msg) => LoadingWidget(msg: msg),
-        builder: _builder,
-      ),
-      navigatorObservers: [
-        PageUtils.routeObserver,
-        FlutterSmartDialog.observer,
-      ],
-      scrollBehavior: null,
+
+    // 监听纯黑主题控制器，支持省电模式自动切换
+    return GetBuilder<PureBlackThemeController>(
+      builder: (pureBlackController) {
+        return GetMaterialApp(
+          title: Constants.appName,
+          theme: ThemeUtils.getThemeData(
+            colorScheme: dynamicColor
+                ? _light!
+                : brandColor.asColorSchemeSeed(variant, .light),
+            isDynamic: dynamicColor,
+          ),
+          darkTheme: ThemeUtils.getThemeData(
+            isDark: true,
+            colorScheme: dynamicColor
+                ? _dark!
+                : brandColor.asColorSchemeSeed(variant, .dark),
+            isDynamic: dynamicColor,
+            usePureBlack: pureBlackController.effectivePureBlack,
+          ),
+          themeMode: Pref.themeMode,
+          localizationsDelegates: const [
+            GlobalCupertinoLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+          ],
+          locale: const Locale("zh", "CN"),
+          fallbackLocale: const Locale("zh", "CN"),
+          supportedLocales: const [Locale("zh", "CN"), Locale("en", "US")],
+          initialRoute: '/',
+          getPages: Routes.getPages,
+          defaultTransition: Transition.native,
+          builder: FlutterSmartDialog.init(
+            toastBuilder: (msg) => CustomToast(msg: msg),
+            loadingBuilder: (msg) => LoadingWidget(msg: msg),
+            builder: _builder,
+          ),
+          navigatorObservers: [
+            PageUtils.routeObserver,
+            FlutterSmartDialog.observer,
+          ],
+          scrollBehavior: null,
+        );
+      },
     );
   }
 
@@ -301,10 +320,12 @@ class MyApp extends StatelessWidget {
 class _CustomHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
-    final client = super.createHttpClient(context);
-    // ..maxConnectionsPerHost = 32
-    /// The default value is 15 seconds.
-    //   ..idleTimeout = const Duration(seconds: 15);
+    final client = super.createHttpClient(context)
+      // 每个主机最大连接数，提高并发性能
+      ..maxConnectionsPerHost = 32
+      // 连接空闲超时时间
+      ..idleTimeout = const Duration(seconds: 30);
+    
     if (kDebugMode || Pref.badCertificateCallback) {
       client.badCertificateCallback = (cert, host, port) => true;
     }

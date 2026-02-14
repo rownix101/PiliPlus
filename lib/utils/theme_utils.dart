@@ -10,6 +10,7 @@ abstract final class ThemeUtils {
     required ColorScheme colorScheme,
     required bool isDynamic,
     bool isDark = false,
+    bool usePureBlack = false,
   }) {
     final appFontWeight = Pref.appFontWeight.clamp(
       -1,
@@ -131,7 +132,7 @@ abstract final class ThemeUtils {
       ),
     );
     if (isDark) {
-      if (Pref.isPureBlackTheme) {
+      if (usePureBlack || Pref.isPureBlackTheme) {
         themeData = darkenTheme(themeData);
       }
       if (Pref.darkVideoPage) {

@@ -19,6 +19,7 @@ import 'package:PiliPro/pages/dynamics_repost/view.dart';
 import 'package:PiliPro/pages/video/pay_coins/view.dart';
 import 'package:PiliPro/pages/video/reply/controller.dart';
 import 'package:PiliPro/plugin/pl_player/models/play_repeat.dart';
+import 'package:PiliPro/services/haptic_service.dart';
 import 'package:PiliPro/services/service_locator.dart';
 import 'package:PiliPro/utils/extension/iterable_ext.dart';
 import 'package:PiliPro/utils/feed_back.dart';
@@ -31,6 +32,17 @@ import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
+
+/// 视频点赞状态快照，用于乐观更新失败时回滚
+class _LikeSnapshot {
+  final bool hasLike;
+  final int likeCount;
+  
+  _LikeSnapshot({
+    required this.hasLike,
+    required this.likeCount,
+  });
+}
 
 class PgcIntroController extends CommonIntroController {
   int? seasonId;
@@ -95,22 +107,67 @@ class PgcIntroController extends CommonIntroController {
     }
   }
 
-  // （取消）点赞
+  // 乐观点赞状态快照
+  _LikeSnapshot? _lastLikeSnapshot;
+  
+  // （取消）点赞 - 乐观 UI 实现
   @override
   Future<void> actionLikeVideo() async {
     if (!isLogin) {
       SmartDialog.showToast('账号未登录');
       return;
     }
+    if (isProcessing) return;
+    isProcessing = true;
+    
+    // 保存当前状态用于回滚
+    _lastLikeSnapshot = _LikeSnapshot(
+      hasLike: hasLike.value,
+      likeCount: pgcItem.stat?.like ?? 0,
+    );
+    
     final newVal = !hasLike.value;
+    
+    // 乐观更新 UI
+    _applyOptimisticLikeState(newVal);
+    
+    // 触觉反馈
+    HapticService.to.feedback(HapticType.mediumImpact);
+    
+    // 发送请求
     final result = await VideoHttp.likeVideo(bvid: bvid, type: newVal);
+    
     if (result case Success(:final response)) {
+      // 请求成功，显示提示
       SmartDialog.showToast(newVal ? response : '取消赞');
-      pgcItem.stat?.like += newVal ? 1 : -1;
-      hasLike.value = newVal;
     } else {
+      // 请求失败，回滚状态
+      _rollbackLikeState();
       result.toast();
     }
+    
+    isProcessing = false;
+  }
+  
+  /// 应用乐观点赞状态
+  void _applyOptimisticLikeState(bool newLikeState) {
+    hasLike.value = newLikeState;
+    if (newLikeState) {
+      pgcItem.stat?.like++;
+    } else {
+      pgcItem.stat?.like--;
+    }
+    update();
+  }
+  
+  /// 回滚点赞状态
+  void _rollbackLikeState() {
+    if (_lastLikeSnapshot == null) return;
+    
+    hasLike.value = _lastLikeSnapshot!.hasLike;
+    pgcItem.stat?.like = _lastLikeSnapshot!.likeCount;
+    update();
+    _lastLikeSnapshot = null;
   }
 
   // 投币

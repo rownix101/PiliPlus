@@ -715,7 +715,7 @@ abstract final class Pref {
       _setting.get(SettingBoxKey.enableSystemProxy, defaultValue: false);
 
   static bool get enableHttp2 =>
-      _setting.get(SettingBoxKey.enableHttp2, defaultValue: false);
+      _setting.get(SettingBoxKey.enableHttp2, defaultValue: true);
 
   static ReplySortType get replySortType =>
       ReplySortType.values[_setting.get(
@@ -943,6 +943,11 @@ abstract final class Pref {
   static bool get showBatteryLevel => _setting.get(
     SettingBoxKey.showBatteryLevel,
     defaultValue: PlatformUtils.isMobile,
+  );
+
+  static bool get autoPureBlackOnPowerSave => _setting.get(
+    SettingBoxKey.autoPureBlackOnPowerSave,
+    defaultValue: false,
   );
 
   static FollowOrderType get followOrderType =>

@@ -26,6 +26,7 @@ import 'package:PiliPro/pages/video/related/controller.dart';
 import 'package:PiliPro/pages/video/reply/controller.dart';
 import 'package:PiliPro/plugin/pl_player/models/play_repeat.dart';
 import 'package:PiliPro/services/service_locator.dart';
+import 'package:PiliPro/services/haptic_service.dart';
 import 'package:PiliPro/utils/accounts.dart';
 import 'package:PiliPro/utils/extension/context_ext.dart';
 import 'package:PiliPro/utils/extension/string_ext.dart';
@@ -42,6 +43,32 @@ import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
+
+/// 视频点赞状态快照，用于乐观更新失败时回滚
+class _LikeSnapshot {
+  final bool hasLike;
+  final bool hasDislike;
+  final int likeCount;
+  
+  _LikeSnapshot({
+    required this.hasLike,
+    required this.hasDislike,
+    required this.likeCount,
+  });
+}
+
+/// 视频点踩状态快照，用于乐观更新失败时回滚
+class _DislikeSnapshot {
+  final bool hasLike;
+  final bool hasDislike;
+  final int likeCount;
+  
+  _DislikeSnapshot({
+    required this.hasLike,
+    required this.hasDislike,
+    required this.likeCount,
+  });
+}
 
 class UgcIntroController extends CommonIntroController with ReloadMixin {
   late ExpandableController expandableCtr;
@@ -213,7 +240,10 @@ class UgcIntroController extends CommonIntroController with ReloadMixin {
     }
   }
 
-  // （取消）点赞
+  // 乐观点赞状态快照
+  _LikeSnapshot? _lastLikeSnapshot;
+  
+  /// （取消）点赞 - 乐观 UI 实现
   @override
   Future<void> actionLikeVideo() async {
     if (!isLogin) {
@@ -223,44 +253,128 @@ class UgcIntroController extends CommonIntroController with ReloadMixin {
     if (videoDetail.value.stat == null) {
       return;
     }
+    if (isProcessing) return;
+    isProcessing = true;
+    
+    // 保存当前状态用于回滚
+    _lastLikeSnapshot = _LikeSnapshot(
+      hasLike: hasLike.value,
+      hasDislike: hasDislike.value,
+      likeCount: videoDetail.value.stat?.like ?? 0,
+    );
+    
     final newVal = !hasLike.value;
+    
+    // 乐观更新 UI
+    _applyOptimisticLikeState(newVal);
+    
+    // 触觉反馈
+    HapticService.to.feedback(HapticType.mediumImpact);
+    
+    // 发送请求
     final result = await VideoHttp.likeVideo(bvid: bvid, type: newVal);
+    
     if (result case Success(:final response)) {
+      // 请求成功，显示提示
       SmartDialog.showToast(newVal ? response : '取消赞');
-      videoDetail.value.stat?.like += newVal ? 1 : -1;
-      hasLike.value = newVal;
-      if (newVal) {
-        hasDislike.value = false;
-      }
     } else {
+      // 请求失败，回滚状态
+      _rollbackLikeState();
       result.toast();
     }
+    
+    isProcessing = false;
+  }
+  
+  /// 应用乐观点赞状态
+  void _applyOptimisticLikeState(bool newLikeState) {
+    hasLike.value = newLikeState;
+    if (newLikeState) {
+      hasDislike.value = false;
+      videoDetail.value.stat?.like++;
+    } else {
+      videoDetail.value.stat?.like--;
+    }
+    videoDetail.refresh();
+  }
+  
+  /// 回滚点赞状态
+  void _rollbackLikeState() {
+    if (_lastLikeSnapshot == null) return;
+    
+    hasLike.value = _lastLikeSnapshot!.hasLike;
+    hasDislike.value = _lastLikeSnapshot!.hasDislike;
+    videoDetail.value.stat?.like = _lastLikeSnapshot!.likeCount;
+    videoDetail.refresh();
+    _lastLikeSnapshot = null;
   }
 
+  // 乐观点踩状态快照
+  _DislikeSnapshot? _lastDislikeSnapshot;
+  
   Future<void> actionDislikeVideo() async {
     if (!isLogin) {
       SmartDialog.showToast('账号未登录');
       return;
     }
+    if (isProcessing) return;
+    isProcessing = true;
+    
+    // 保存当前状态用于回滚
+    _lastDislikeSnapshot = _DislikeSnapshot(
+      hasLike: hasLike.value,
+      hasDislike: hasDislike.value,
+      likeCount: videoDetail.value.stat?.like ?? 0,
+    );
+    
+    final newDislikeState = !hasDislike.value;
+    
+    // 乐观更新 UI
+    _applyOptimisticDislikeState(newDislikeState);
+    
+    // 触觉反馈
+    if (newDislikeState) {
+      HapticService.to.feedback(HapticType.heavyImpact);
+    }
+    
+    // 发送请求
     final res = await VideoHttp.dislikeVideo(
       bvid: bvid,
-      type: !hasDislike.value,
+      type: newDislikeState,
     );
+    
     if (res.isSuccess) {
-      if (!hasDislike.value) {
-        SmartDialog.showToast('点踩成功');
-        hasDislike.value = true;
-        if (hasLike.value) {
-          videoDetail.value.stat?.like--;
-          hasLike.value = false;
-        }
-      } else {
-        SmartDialog.showToast('取消踩');
-        hasDislike.value = false;
-      }
+      // 请求成功，显示提示
+      SmartDialog.showToast(newDislikeState ? '点踩成功' : '取消踩');
     } else {
+      // 请求失败，回滚状态
+      _rollbackDislikeState();
       res.toast();
     }
+    
+    isProcessing = false;
+  }
+  
+  /// 应用乐观点踩状态
+  void _applyOptimisticDislikeState(bool newDislikeState) {
+    hasDislike.value = newDislikeState;
+    if (newDislikeState && hasLike.value) {
+      // 从点赞切换到点踩
+      hasLike.value = false;
+      videoDetail.value.stat?.like--;
+    }
+    videoDetail.refresh();
+  }
+  
+  /// 回滚点踩状态
+  void _rollbackDislikeState() {
+    if (_lastDislikeSnapshot == null) return;
+    
+    hasLike.value = _lastDislikeSnapshot!.hasLike;
+    hasDislike.value = _lastDislikeSnapshot!.hasDislike;
+    videoDetail.value.stat?.like = _lastDislikeSnapshot!.likeCount;
+    videoDetail.refresh();
+    _lastDislikeSnapshot = null;
   }
 
   // 投币

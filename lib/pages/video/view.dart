@@ -37,6 +37,7 @@ import 'package:PiliPro/pages/video/member/view.dart';
 import 'package:PiliPro/pages/video/related/view.dart';
 import 'package:PiliPro/pages/video/reply/controller.dart';
 import 'package:PiliPro/pages/video/reply/view.dart';
+import 'package:PiliPro/services/connection_warmup_service.dart';
 import 'package:PiliPro/pages/video/view_point/view.dart';
 import 'package:PiliPro/pages/video/widgets/header_control.dart';
 import 'package:PiliPro/pages/video/widgets/player_focus.dart';
@@ -146,6 +147,8 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
         ),
         tag: heroTag,
       );
+      // 预加载评论数据
+      _videoReplyController.queryData();
     }
 
     if (videoDetailController.isFileSource) {
@@ -164,6 +167,9 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
 
   // 获取视频资源，初始化播放器
   Future<void> videoSourceInit() async {
+    // 视频页面连接预热（不等待，异步执行）
+    ConnectionWarmupService().warmupForVideoPage();
+    
     videoDetailController.queryVideoUrl();
     if (videoDetailController.autoPlay) {
       plPlayerController = videoDetailController.plPlayerController;
