@@ -8,8 +8,7 @@ import 'package:PiliPro/models/common/video/video_quality.dart';
 import 'package:PiliPro/pages/setting/models/model.dart';
 import 'package:PiliPro/pages/setting/widgets/ordered_multi_select_dialog.dart';
 import 'package:PiliPro/pages/setting/widgets/select_dialog.dart';
-import 'package:PiliPro/plugin/pl_player/models/audio_output_type.dart';
-import 'package:PiliPro/plugin/pl_player/models/hwdec_type.dart';
+import 'package:PiliPro/pages/setting/widgets/select_dialog.dart';
 import 'package:PiliPro/utils/storage.dart';
 import 'package:PiliPro/utils/storage_key.dart';
 import 'package:PiliPro/utils/storage_pref.dart';
@@ -22,13 +21,6 @@ import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 List<SettingsModel> get videoSettings => [
-  const SwitchModel(
-    title: '开启硬解',
-    subtitle: '以较低功耗播放视频，若异常卡死请关闭',
-    leading: Icon(Icons.flash_on_outlined),
-    setKey: SettingBoxKey.enableHA,
-    defaultVal: true,
-  ),
   const SwitchModel(
     title: '免登录1080P',
     subtitle: '免登录查看1080P视频',
@@ -136,38 +128,6 @@ List<SettingsModel> get videoSettings => [
         '非杜比视频次选：${VideoDecodeFormatType.fromCode(Pref.secondDecode).description}，仍无则选择首个提供的解码格式',
     leading: const Icon(Icons.swap_horizontal_circle_outlined),
     onTap: _showSecondDecodeDialog,
-  ),
-  if (kDebugMode || Platform.isAndroid)
-    NormalModel(
-      title: '音频输出设备',
-      leading: const Icon(Icons.speaker_outlined),
-      getSubtitle: () => '当前：${Pref.audioOutput}',
-      onTap: _showAudioOutputDialog,
-    ),
-  const SwitchModel(
-    title: '扩大缓冲区',
-    leading: Icon(Icons.storage_outlined),
-    subtitle: '默认缓冲区为视频4MB/直播16MB，开启后为32MB/64MB，加载时间变长',
-    setKey: SettingBoxKey.expandBuffer,
-    defaultVal: false,
-  ),
-  NormalModel(
-    title: '自动同步',
-    leading: const Icon(Icons.sync_rounded),
-    getSubtitle: () => '当前：${Pref.autosync}（此项即mpv的--autosync）',
-    onTap: _showAutoSyncDialog,
-  ),
-  NormalModel(
-    title: '视频同步',
-    leading: const Icon(Icons.view_timeline_outlined),
-    getSubtitle: () => '当前：${Pref.videoSync}（此项即mpv的--video-sync）',
-    onTap: _showVideoSyncDialog,
-  ),
-  NormalModel(
-    title: '硬解模式',
-    leading: const Icon(Icons.memory_outlined),
-    getSubtitle: () => '当前：${Pref.hardwareDecoding}（此项即mpv的--hwdec）',
-    onTap: _showHwDecDialog,
   ),
 ];
 
@@ -381,116 +341,4 @@ Future<void> _showSecondDecodeDialog(
   }
 }
 
-Future<void> _showAudioOutputDialog(
-  BuildContext context,
-  VoidCallback setState,
-) async {
-  final res = await showDialog<List<String>>(
-    context: context,
-    builder: (context) => OrderedMultiSelectDialog<String>(
-      title: '音频输出设备',
-      initValues: Pref.audioOutput.split(','),
-      values: {
-        for (final e in AudioOutput.values) e.name: e.label,
-      },
-    ),
-  );
-  if (res != null && res.isNotEmpty) {
-    await GStorage.setting.put(
-      SettingBoxKey.audioOutput,
-      res.join(','),
-    );
-    setState();
-  }
-}
 
-Future<void> _showVideoSyncDialog(
-  BuildContext context,
-  VoidCallback setState,
-) async {
-  final res = await showDialog<String>(
-    context: context,
-    builder: (context) => SelectDialog<String>(
-      title: '视频同步',
-      value: Pref.videoSync,
-      values: const [
-        'audio',
-        'display-resample',
-        'display-resample-vdrop',
-        'display-resample-desync',
-        'display-tempo',
-        'display-vdrop',
-        'display-adrop',
-        'display-desync',
-        'desync',
-      ].map((e) => (e, e)).toList(),
-    ),
-  );
-  if (res != null) {
-    await GStorage.setting.put(SettingBoxKey.videoSync, res);
-    setState();
-  }
-}
-
-Future<void> _showHwDecDialog(
-  BuildContext context,
-  VoidCallback setState,
-) async {
-  final res = await showDialog<List<String>>(
-    context: context,
-    builder: (context) => OrderedMultiSelectDialog<String>(
-      title: '硬解模式',
-      initValues: Pref.hardwareDecoding.split(','),
-      values: {
-        for (final e in HwDecType.values) e.hwdec: '${e.hwdec}\n${e.desc}',
-      },
-    ),
-  );
-  if (res != null && res.isNotEmpty) {
-    await GStorage.setting.put(
-      SettingBoxKey.hardwareDecoding,
-      res.join(','),
-    );
-    setState();
-  }
-}
-
-void _showAutoSyncDialog(BuildContext context, VoidCallback setState) {
-  String autosync = Pref.autosync.toString();
-  showDialog(
-    context: context,
-    builder: (context) => AlertDialog(
-      title: const Text('自动同步'),
-      content: TextFormField(
-        autofocus: true,
-        initialValue: autosync,
-        keyboardType: TextInputType.number,
-        onChanged: (value) => autosync = value,
-        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-      ),
-      actions: [
-        TextButton(
-          onPressed: Get.back,
-          child: Text(
-            '取消',
-            style: TextStyle(color: ColorScheme.of(context).outline),
-          ),
-        ),
-        TextButton(
-          onPressed: () async {
-            try {
-              // validate
-              int.parse(autosync);
-              Get.back();
-              await GStorage.setting.put(SettingBoxKey.autosync, autosync);
-              setState();
-            } catch (e) {
-              SmartDialog.showToast(e.toString());
-            }
-          },
-          child: const Text('确定'),
-        ),
-      ],
-    ),
-  );
-}

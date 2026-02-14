@@ -56,7 +56,7 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:flutter_volume_controller/flutter_volume_controller.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:PiliPro/models/common/super_resolution_type.dart';
+
 import 'package:PiliPro/plugin/native_player/native_player.dart';
 export 'package:PiliPro/plugin/native_player/native_player.dart' show SubtitleTrack;
 import 'package:path/path.dart' as path;
@@ -195,8 +195,8 @@ class PlPlayerController with BlockConfigMixin {
   int? _pgcType;
   VideoType _videoType = VideoType.ugc;
   int _heartDuration = 0;
-  int? width;
-  int? height;
+  final Rxn<int> width = Rxn<int>();
+  final Rxn<int> height = Rxn<int>();
 
   late final tryLook = !Accounts.get(AccountType.video).isLogin && Pref.p1080;
 
@@ -229,14 +229,7 @@ class PlPlayerController with BlockConfigMixin {
   /// 兼容旧代码：videoController 返回 textureId
   int? get videoController => _textureId;
 
-  /// 超分辨率类型
-  final Rx<SuperResolutionType> superResolutionType = SuperResolutionType.disable.obs;
 
-  /// 设置超分辨率着色器
-  void setShader(SuperResolutionType type) {
-    superResolutionType.value = type;
-    // TODO: 实现原生播放器端的超分辨率设置
-  }
 
   bool isMuted = false;
 
@@ -297,8 +290,8 @@ class PlPlayerController with BlockConfigMixin {
     }
 
     late final Size size;
-    final w = width ?? 16;
-    final h = height ?? 9;
+    final w = width.value ?? 16;
+    final h = height.value ?? 9;
     if (h > w) {
       size = Size(280.0, 280.0 * h / w);
     } else {
@@ -343,8 +336,8 @@ class PlPlayerController with BlockConfigMixin {
       controls = false;
       PageUtils.enterPip(
         isAuto: isAuto,
-        width: width,
-        height: height,
+        width: width.value,
+        height: height.value,
       );
     }
   }
@@ -641,8 +634,8 @@ class PlPlayerController with BlockConfigMixin {
       _processing = true;
       this.isLive = isLive;
       _videoType = videoType ?? VideoType.ugc;
-      this.width = width;
-      this.height = height;
+      this.width.value = width;
+      this.height.value = height;
       this.dataSource = dataSource;
       _autoPlay = autoplay;
       _looping = looping;
@@ -979,8 +972,8 @@ class PlPlayerController with BlockConfigMixin {
             break;
           case 'videoSize':
             if (event.videoWidth != null && event.videoHeight != null) {
-              width = event.videoWidth;
-              height = event.videoHeight;
+              width.value = event.videoWidth;
+              height.value = event.videoHeight;
             }
             break;
         }

@@ -1,4 +1,4 @@
-package com.example.pilipro
+package com.video.pilipro
 
 import android.app.PictureInPictureParams
 import android.app.SearchManager

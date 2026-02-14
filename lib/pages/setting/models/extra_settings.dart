@@ -16,7 +16,7 @@ import 'package:PiliPro/models/common/dynamic/dynamics_type.dart';
 import 'package:PiliPro/models/common/member/tab_type.dart';
 import 'package:PiliPro/models/common/reply/reply_sort_type.dart';
 import 'package:PiliPro/models/common/sponsor_block/skip_type.dart';
-import 'package:PiliPro/models/common/super_resolution_type.dart';
+
 import 'package:PiliPro/models/dynamics/result.dart'
     show DynamicsDataModel, ItemModulesModel;
 import 'package:PiliPro/pages/common/slide/common_slide_page.dart';
@@ -293,13 +293,7 @@ List<SettingsModel> get extraSettings => [
       },
       onTap: audioNormalization,
     ),
-  NormalModel(
-    title: '超分辨率',
-    leading: const Icon(Icons.stay_current_landscape_outlined),
-    getSubtitle: () =>
-        '当前:「${Pref.superResolutionType.label}」\n默认设置对番剧生效, 其他视频默认关闭\n超分辨率需要启用硬件解码, 若启用硬件解码后仍然不生效, 尝试切换硬件解码器为 auto-copy',
-    onTap: _showSuperResolutionDialog,
-  ),
+
   const SwitchModel(
     title: '提前初始化播放器',
     subtitle: '相对减少手动播放加载时间',
@@ -990,26 +984,7 @@ Future<void> _showRefreshDialog(
   }
 }
 
-Future<void> _showSuperResolutionDialog(
-  BuildContext context,
-  VoidCallback setState,
-) async {
-  final res = await showDialog<SuperResolutionType>(
-    context: context,
-    builder: (context) => SelectDialog<SuperResolutionType>(
-      title: '超分辨率',
-      value: Pref.superResolutionType,
-      values: SuperResolutionType.values.map((e) => (e, e.label)).toList(),
-    ),
-  );
-  if (res != null) {
-    await GStorage.setting.put(
-      SettingBoxKey.superResolutionType,
-      res.index,
-    );
-    setState();
-  }
-}
+
 
 Future<void> _showFavDialog(BuildContext context) async {
   if (Accounts.main.isLogin) {

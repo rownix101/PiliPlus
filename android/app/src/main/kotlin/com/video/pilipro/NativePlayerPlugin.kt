@@ -1,4 +1,4 @@
-package com.example.pilipro
+package com.video.pilipro
 
 import android.content.Context
 import android.net.Uri
@@ -12,7 +12,11 @@ import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
 import androidx.media3.common.TrackSelectionOverride
 import androidx.media3.common.util.UnstableApi
+import androidx.media3.database.StandaloneDatabaseProvider
 import androidx.media3.datasource.DefaultHttpDataSource
+import androidx.media3.datasource.cache.CacheDataSource
+import androidx.media3.datasource.cache.LeastRecentlyUsedCacheEvictor
+import androidx.media3.datasource.cache.SimpleCache
 import androidx.media3.exoplayer.DefaultLoadControl
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.source.MediaSource
@@ -24,6 +28,7 @@ import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.view.TextureRegistry
+import java.io.File
 
 @OptIn(UnstableApi::class)
 class NativePlayerPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
@@ -35,9 +40,34 @@ class NativePlayerPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
 
     private var player: ExoPlayer? = null
     private var textureEntry: TextureRegistry.SurfaceTextureEntry? = null
+    private var surfaceTexture: android.graphics.SurfaceTexture? = null
     private var surface: Surface? = null
     private var eventSink: EventChannel.EventSink? = null
     private val mainHandler = Handler(Looper.getMainLooper())
+
+    // SimpleCache singleton
+    companion object {
+        private var simpleCache: SimpleCache? = null
+        private const val CACHE_SIZE_BYTES: Long = 512 * 1024 * 1024 // 512MB cache
+        private const val CACHE_DIR_NAME = "exoplayer_cache"
+
+        @Synchronized
+        fun getSimpleCache(context: Context): SimpleCache {
+            if (simpleCache == null) {
+                val cacheDir = File(context.cacheDir, CACHE_DIR_NAME)
+                val evictor = LeastRecentlyUsedCacheEvictor(CACHE_SIZE_BYTES)
+                val databaseProvider = StandaloneDatabaseProvider(context)
+                simpleCache = SimpleCache(cacheDir, evictor, databaseProvider)
+            }
+            return simpleCache!!
+        }
+
+        @Synchronized
+        fun releaseSimpleCache() {
+            simpleCache?.release()
+            simpleCache = null
+        }
+    }
 
     // Periodic position update
     private val positionUpdateRunnable = object : Runnable {
@@ -141,7 +171,9 @@ class NativePlayerPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
 
         // Create texture
         textureEntry = textureRegistry.createSurfaceTexture()
-        val surfaceTexture = textureEntry!!.surfaceTexture()
+        surfaceTexture = textureEntry!!.surfaceTexture()
+        // 先设置默认缓冲区大小，避免初始为 0x0 导致灰块
+        surfaceTexture?.setDefaultBufferSize(1920, 1080)
         surface = Surface(surfaceTexture)
 
         // HTTP data source factory with custom headers
@@ -149,6 +181,12 @@ class NativePlayerPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
         if (!headers.isNullOrEmpty()) {
             httpDataSourceFactory.setDefaultRequestProperties(headers)
         }
+
+        // Cache data source factory with SimpleCache
+        val cacheDataSourceFactory = CacheDataSource.Factory()
+            .setCache(getSimpleCache(context))
+            .setUpstreamDataSourceFactory(httpDataSourceFactory)
+            .setFlags(CacheDataSource.FLAG_IGNORE_CACHE_ON_ERROR)
 
         // Load control: min buffer 5s, max buffer 50s
         val loadControl = DefaultLoadControl.Builder()
@@ -179,13 +217,13 @@ class NativePlayerPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
 
         exoPlayer.setVideoSurface(surface)
 
-        // Build media source(s)
-        val videoSource: MediaSource = ProgressiveMediaSource.Factory(httpDataSourceFactory)
+        // Build media source(s) using cache
+        val videoSource: MediaSource = ProgressiveMediaSource.Factory(cacheDataSourceFactory)
             .createMediaSource(MediaItem.fromUri(Uri.parse(videoUrl)))
 
         if (!audioUrl.isNullOrEmpty()) {
             val audioSource: MediaSource =
-                ProgressiveMediaSource.Factory(httpDataSourceFactory)
+                ProgressiveMediaSource.Factory(cacheDataSourceFactory)
                     .createMediaSource(MediaItem.fromUri(Uri.parse(audioUrl)))
             exoPlayer.setMediaSource(MergingMediaSource(videoSource, audioSource))
         } else {
@@ -208,6 +246,21 @@ class NativePlayerPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
                         "state" to state
                     )
                 )
+
+                // 当视频准备好时，主动获取并发送视频尺寸
+                if (playbackState == Player.STATE_READY) {
+                    val videoSize = exoPlayer.videoSize
+                    if (videoSize.width > 0 && videoSize.height > 0) {
+                        surfaceTexture?.setDefaultBufferSize(videoSize.width, videoSize.height)
+                        sendEvent(
+                            mapOf(
+                                "type" to "videoSize",
+                                "width" to videoSize.width,
+                                "height" to videoSize.height
+                            )
+                        )
+                    }
+                }
             }
 
             override fun onIsPlayingChanged(isPlaying: Boolean) {
@@ -251,6 +304,8 @@ class NativePlayerPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
             }
 
             override fun onVideoSizeChanged(videoSize: androidx.media3.common.VideoSize) {
+                // 设置 SurfaceTexture 的缓冲区大小，否则视频会显示为小灰块
+                surfaceTexture?.setDefaultBufferSize(videoSize.width, videoSize.height)
                 sendEvent(
                     mapOf(
                         "type" to "videoSize",
@@ -306,6 +361,7 @@ class NativePlayerPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
         player = null
         surface?.release()
         surface = null
+        surfaceTexture = null
         textureEntry?.release()
         textureEntry = null
     }

@@ -14,7 +14,6 @@ import 'package:PiliPro/models/common/reply/reply_sort_type.dart';
 import 'package:PiliPro/models/common/sponsor_block/segment_type.dart';
 import 'package:PiliPro/models/common/sponsor_block/skip_type.dart';
 import 'package:PiliPro/models/common/super_chat_type.dart';
-import 'package:PiliPro/models/common/super_resolution_type.dart';
 import 'package:PiliPro/models/common/theme/theme_type.dart';
 import 'package:PiliPro/models/common/video/audio_quality.dart';
 import 'package:PiliPro/models/common/video/cdn_type.dart';
@@ -24,10 +23,8 @@ import 'package:PiliPro/models/common/video/video_decode_type.dart';
 import 'package:PiliPro/models/common/video/video_quality.dart';
 import 'package:PiliPro/models/user/danmaku_rule.dart';
 import 'package:PiliPro/models/user/info.dart';
-import 'package:PiliPro/plugin/pl_player/models/audio_output_type.dart';
 import 'package:PiliPro/plugin/pl_player/models/bottom_progress_behavior.dart';
 import 'package:PiliPro/plugin/pl_player/models/fullscreen_mode.dart';
-import 'package:PiliPro/plugin/pl_player/models/hwdec_type.dart';
 import 'package:PiliPro/plugin/pl_player/models/play_repeat.dart';
 import 'package:PiliPro/utils/extension/context_ext.dart';
 import 'package:PiliPro/utils/extension/iterable_ext.dart';
@@ -243,21 +240,6 @@ abstract final class Pref {
     defaultValue: VideoDecodeFormatType.AV1.codes.first,
   );
 
-  static String get hardwareDecoding => _setting.get(
-    SettingBoxKey.hardwareDecoding,
-    defaultValue: Platform.isAndroid
-        ? HwDecType.autoSafe.hwdec
-        : HwDecType.auto.hwdec,
-  );
-
-  static String get videoSync =>
-      _setting.get(SettingBoxKey.videoSync, defaultValue: 'display-resample');
-
-  static String get autosync => _setting.get(
-    SettingBoxKey.autosync,
-    defaultValue: Platform.isAndroid ? '30' : '0',
-  );
-
   static CDNService get defaultCDNService {
     if (_setting.get(SettingBoxKey.CDNService) case final String cdnName) {
       return CDNService.values.byName(cdnName);
@@ -457,15 +439,6 @@ abstract final class Pref {
 
   static String get fallbackNormalization =>
       _setting.get(SettingBoxKey.fallbackNormalization, defaultValue: '0');
-
-  static SuperResolutionType get superResolutionType {
-    SuperResolutionType? superResolutionType;
-    final index = _setting.get(SettingBoxKey.superResolutionType);
-    if (index != null) {
-      superResolutionType = SuperResolutionType.values.elementAtOrNull(index);
-    }
-    return superResolutionType ?? SuperResolutionType.disable;
-  }
 
   static bool get preInitPlayer =>
       _setting.get(SettingBoxKey.preInitPlayer, defaultValue: false);
@@ -750,9 +723,6 @@ abstract final class Pref {
   static bool get enableSponsorBlock =>
       _setting.get(SettingBoxKey.enableSponsorBlock, defaultValue: false);
 
-  static bool get enableHA =>
-      _setting.get(SettingBoxKey.enableHA, defaultValue: true);
-
   static Set<int> get danmakuBlockType => Set<int>.from(
     _setting.get(SettingBoxKey.danmakuBlockType, defaultValue: const <int>{}),
   );
@@ -789,14 +759,6 @@ abstract final class Pref {
 
   static bool get enableLongShowControl =>
       _setting.get(SettingBoxKey.enableLongShowControl, defaultValue: false);
-
-  static bool get expandBuffer =>
-      _setting.get(SettingBoxKey.expandBuffer, defaultValue: false);
-
-  static String get audioOutput => _setting.get(
-    SettingBoxKey.audioOutput,
-    defaultValue: AudioOutput.defaultValue,
-  );
 
   static bool get enableAi =>
       _setting.get(SettingBoxKey.enableAi, defaultValue: false);

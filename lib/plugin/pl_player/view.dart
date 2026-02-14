@@ -17,7 +17,7 @@ import 'package:PiliPro/common/widgets/view_safe_area.dart';
 import 'package:PiliPro/models/common/sponsor_block/action_type.dart';
 import 'package:PiliPro/models/common/sponsor_block/post_segment_model.dart';
 import 'package:PiliPro/models/common/sponsor_block/segment_type.dart';
-import 'package:PiliPro/models/common/super_resolution_type.dart';
+
 import 'package:PiliPro/models/common/video/video_quality.dart';
 import 'package:PiliPro/models/video/play/url.dart';
 import 'package:PiliPro/models_new/video/video_detail/episode.dart' as ugc;
@@ -437,44 +437,7 @@ class _PLVideoPlayerState extends State<PLVideoPlayer>
         },
       ),
 
-      /// 超分辨率
-      BottomControlType.superResolution => Obx(
-        () {
-          final type = plPlayerController.superResolutionType.value;
-          return PopupMenuButton<SuperResolutionType>(
-            tooltip: '超分辨率',
-            requestFocus: false,
-            initialValue: type,
-            color: Colors.black.withValues(alpha: 0.8),
-            itemBuilder: (context) {
-              return SuperResolutionType.values
-                  .map(
-                    (type) => PopupMenuItem<SuperResolutionType>(
-                      height: 35,
-                      padding: const EdgeInsets.only(left: 30),
-                      value: type,
-                      onTap: () => plPlayerController.setShader(type),
-                      child: Text(
-                        type.label,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 13,
-                        ),
-                      ),
-                    ),
-                  )
-                  .toList();
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Text(
-                type.label,
-                style: const TextStyle(color: Colors.white, fontSize: 13),
-              ),
-            ),
-          );
-        },
-      ),
+
 
       /// 分段信息
       BottomControlType.viewPoints => Obx(
@@ -884,7 +847,7 @@ class _PLVideoPlayerState extends State<PLVideoPlayer>
     List<BottomControlType> userSpecifyItemRight = [
       if (isNotFileSource && plPlayerController.showDmChart)
         BottomControlType.dmChart,
-      if (plPlayerController.isAnim) BottomControlType.superResolution,
+
       if (isNotFileSource && plPlayerController.showViewPoints)
         BottomControlType.viewPoints,
       if (isNotFileSource && anySeason) BottomControlType.episode,
@@ -2053,9 +2016,19 @@ class _PLVideoPlayerState extends State<PLVideoPlayer>
                       if (textureId == null) {
                         return const SizedBox.shrink();
                       }
+                      // 如果视频尺寸尚未获取到，使用容器尺寸的 2 倍作为默认值
+                      // 这样 FittedBox 可以正确缩放，避免显示为小灰块
+                      final videoWidth = plPlayerController.width.value;
+                      final videoHeight = plPlayerController.height.value;
+                      final boxWidth = videoWidth != null && videoWidth > 0
+                          ? videoWidth.toDouble()
+                          : widget.maxWidth * 2;
+                      final boxHeight = videoHeight != null && videoHeight > 0
+                          ? videoHeight.toDouble()
+                          : widget.maxHeight * 2;
                       return SizedBox(
-                        width: (plPlayerController.width ?? 16).toDouble(),
-                        height: (plPlayerController.height ?? 9).toDouble(),
+                        width: boxWidth,
+                        height: boxHeight,
                         child: Texture(textureId: textureId),
                       );
                     }),
