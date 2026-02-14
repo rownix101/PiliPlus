@@ -1,3 +1,4 @@
+import 'package:PiliPro/common/widgets/animation/staggered_animation.dart';
 import 'package:PiliPro/common/widgets/flutter/refresh_indicator.dart';
 import 'package:PiliPro/common/widgets/loading_widget/http_error.dart';
 import 'package:PiliPro/http/loading_state.dart';
@@ -59,24 +60,30 @@ class _FavVideoPageState extends State<FavVideoPage>
                   }
                   final item = response[index];
                   String heroTag = Utils.makeHeroTag(item.fid);
-                  return FavVideoItem(
-                    heroTag: heroTag,
-                    item: item,
-                    onTap: () async {
-                      final res = await Get.toNamed(
-                        '/favDetail',
-                        arguments: item,
-                        parameters: {
-                          'heroTag': heroTag,
-                          'mediaId': item.id.toString(),
-                        },
-                      );
-                      if (res == true) {
-                        _favController.loadingState
-                          ..value.data!.removeAt(index)
-                          ..refresh();
-                      }
-                    },
+                  // 交错入场动画：前10个元素依次延迟，后续元素快速出现
+                  return StaggeredFadeIn(
+                    delay: Duration(milliseconds: (index % 10) * 35),
+                    duration: const Duration(milliseconds: 400),
+                    animationType: StaggeredAnimationType.slideUpFade,
+                    child: FavVideoItem(
+                      heroTag: heroTag,
+                      item: item,
+                      onTap: () async {
+                        final res = await Get.toNamed(
+                          '/favDetail',
+                          arguments: item,
+                          parameters: {
+                            'heroTag': heroTag,
+                            'mediaId': item.id.toString(),
+                          },
+                        );
+                        if (res == true) {
+                          _favController.loadingState
+                            ..value.data!.removeAt(index)
+                            ..refresh();
+                        }
+                      },
+                    ),
                   );
                 },
                 itemCount: response.length,

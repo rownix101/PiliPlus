@@ -1,6 +1,7 @@
 import 'package:PiliPro/common/constants.dart';
 import 'package:PiliPro/common/widgets/image/image_save.dart';
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
+import 'package:PiliPro/common/widgets/interactions/pressable_card.dart';
 import 'package:PiliPro/models_new/fav/fav_folder/list.dart';
 import 'package:PiliPro/utils/fav_utils.dart';
 import 'package:flutter/material.dart';
@@ -21,42 +22,46 @@ class FavVideoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      type: MaterialType.transparency,
-      child: InkWell(
-        onTap: onTap,
-        onLongPress:
-            onLongPress ??
-            (onTap == null
-                ? null
-                : () => imageSaveDialog(
-                    title: item.title,
-                    cover: item.cover,
-                  )),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AspectRatio(
-                aspectRatio: StyleString.aspectRatio,
-                child: LayoutBuilder(
-                  builder: (context, boxConstraints) {
-                    return Hero(
-                      tag: heroTag,
+    return PressableCard(
+      onTap: onTap,
+      onLongPress:
+          onLongPress ??
+          (onTap == null
+              ? null
+              : () => imageSaveDialog(
+                  title: item.title,
+                  cover: item.cover,
+                )),
+      pressScale: 0.96,
+      borderRadius: BorderRadius.circular(12),
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+      child: Padding(
+        padding: EdgeInsets.zero,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            AspectRatio(
+              aspectRatio: StyleString.aspectRatio,
+              child: LayoutBuilder(
+                builder: (context, boxConstraints) {
+                  return Hero(
+                    tag: heroTag,
+                    transitionOnUserGestures: true,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
                       child: NetworkImgLayer(
                         src: item.cover,
                         width: boxConstraints.maxWidth,
                         height: boxConstraints.maxHeight,
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
-              const SizedBox(width: 10),
-              content(context),
-            ],
-          ),
+            ),
+            const SizedBox(width: 10),
+            Expanded(child: content(context)),
+          ],
         ),
       ),
     );
