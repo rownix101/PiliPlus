@@ -38,8 +38,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart' hide Image, PageView;
 import 'package:flutter/services.dart' show HapticFeedback;
 import 'package:get/get.dart';
-import 'package:media_kit/media_kit.dart';
-import 'package:media_kit_video/media_kit_video.dart';
+import 'package:PiliPro/plugin/native_player/native_player.dart';
 
 ///
 /// created by dom on 2026/02/14
@@ -72,11 +71,9 @@ class _GalleryViewerState extends State<GalleryViewer>
   late final RxInt _currIndex;
   late final List<GlobalKey> _keys;
 
-  Player? _player;
-  Player get _effectivePlayer => _player ??= Player();
-  VideoController? _videoController;
-  VideoController get _effectiveVideoController =>
-      _videoController ??= VideoController(_effectivePlayer);
+  NativePlayer? _player;
+  NativePlayer get _effectivePlayer => _player ??= NativePlayer();
+  int? _livePhotoTextureId;
 
   late final PageController _pageController;
 
@@ -218,7 +215,6 @@ class _GalleryViewerState extends State<GalleryViewer>
   void dispose() {
     _player?.dispose();
     _player = null;
-    _videoController = null;
     _pageController.dispose();
     _animateController
       ..removeListener(_updateTransformation)
@@ -314,7 +310,9 @@ class _GalleryViewerState extends State<GalleryViewer>
   void _playIfNeeded(int index) {
     final item = widget.sources[index];
     if (item.sourceType == .livePhoto) {
-      _effectivePlayer.open(Media(item.liveUrl!));
+      _effectivePlayer.create(videoUrl: item.liveUrl!).then((id) {
+        if (mounted) setState(() => _livePhotoTextureId = id);
+      });
     }
   }
 
@@ -430,10 +428,9 @@ class _GalleryViewerState extends State<GalleryViewer>
                       _horizontalDragGestureRecognizer,
                   onChangePage: _onChangePage,
                   child: AbsorbPointer(
-                    child: Video(
-                      controller: _effectiveVideoController,
-                      fill: Colors.transparent,
-                    ),
+                    child: _livePhotoTextureId != null
+                        ? Texture(textureId: _livePhotoTextureId!)
+                        : const SizedBox.shrink(),
                   ),
                 )
               : const SizedBox.shrink(),

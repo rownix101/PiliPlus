@@ -48,7 +48,7 @@ import 'package:PiliPro/pages/video/note/view.dart';
 import 'package:PiliPro/pages/video/post_panel/view.dart';
 import 'package:PiliPro/pages/video/send_danmaku/view.dart';
 import 'package:PiliPro/pages/video/widgets/header_control.dart';
-import 'package:PiliPro/plugin/pl_player/controller.dart';
+import 'package:PiliPro/plugin/pl_player/controller.dart' show PlPlayerController, SubtitleTrack;
 import 'package:PiliPro/plugin/pl_player/models/data_source.dart';
 import 'package:PiliPro/plugin/pl_player/models/heart_beat_type.dart';
 import 'package:PiliPro/plugin/pl_player/models/play_status.dart';
@@ -71,7 +71,7 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:flutter_volume_controller/flutter_volume_controller.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:media_kit/media_kit.dart';
+
 
 class VideoDetailController extends GetxController
     with GetTickerProviderStateMixin, BlockMixin {
@@ -489,7 +489,7 @@ class VideoDetailController extends GetxController
   @override
   BlockConfigMixin get blockConfig => plPlayerController;
   @override
-  Player? get player => plPlayerController.videoPlayerController;
+  PlPlayerController? get plPlayer => plPlayerController;
   @override
   bool get isFullScreen => plPlayerController.isFullScreen.value;
   @override

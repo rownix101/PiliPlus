@@ -464,17 +464,18 @@ class _PostPanelState extends State<PostPanel>
             tooltip: '预览',
             icon: const Icon(Icons.preview_outlined),
             onPressed: () async {
-              final videoCtr = widget.plPlayerController.videoPlayerController;
-              if (videoCtr != null) {
+              final plCtr = widget.plPlayerController;
+              if (plCtr.nativePlayer != null) {
                 final start = (item.segment.first * 1000).round();
                 final seek = max(0, start - 2000);
-                await videoCtr.seek(Duration(milliseconds: seek));
-                if (!videoCtr.state.playing) {
-                  await videoCtr.play();
+                await plCtr.seekTo(Duration(milliseconds: seek), isSeek: false);
+                if (plCtr.playerStatus.value.isPaused) {
+                  await plCtr.play();
                 }
                 final delay = start - seek;
-                Future<void> seekTo() => videoCtr.seek(
+                Future<void> seekTo() => plCtr.seekTo(
                   Duration(milliseconds: (item.segment.second * 1000).round()),
+                  isSeek: false,
                 );
                 if (delay > 0) {
                   Timer(Duration(milliseconds: delay), seekTo);

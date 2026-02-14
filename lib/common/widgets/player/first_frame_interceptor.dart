@@ -105,6 +105,7 @@ class FirstFrameInterceptorState extends State<FirstFrameInterceptor>
       return widget.placeholderBuilder!(context);
     }
 
+    // 优先尝试加载封面图
     if (widget.coverUrl?.isNotEmpty == true) {
       return Container(
         color: Colors.black,
@@ -113,14 +114,84 @@ class FirstFrameInterceptorState extends State<FirstFrameInterceptor>
           fit: BoxFit.cover,
           width: double.infinity,
           height: double.infinity,
+          loadingBuilder: (context, child, loadingProgress) {
+            if (loadingProgress == null) return child;
+            return _buildLoadingWidget();
+          },
+          errorBuilder: (context, error, stackTrace) {
+            // 封面图加载失败时，显示应用图标
+            return _buildFallbackWidget();
+          },
         ),
       );
     }
 
+    // 没有封面图时显示 fallback
+    return _buildFallbackWidget();
+  }
+
+  Widget _buildLoadingWidget() {
     return Container(
       color: Colors.black,
       child: const Center(
-        child: CircularProgressIndicator(),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              width: 48,
+              height: 48,
+              child: CircularProgressIndicator(
+                strokeWidth: 3,
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.white70),
+              ),
+            ),
+            SizedBox(height: 16),
+            Text(
+              '加载中...',
+              style: TextStyle(
+                color: Colors.white70,
+                fontSize: 14,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildFallbackWidget() {
+    return Container(
+      color: Colors.black,
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // 使用应用图标代替灰色方块
+            Image.asset(
+              'assets/images/play.png',
+              width: 80,
+              height: 80,
+              color: Colors.white.withValues(alpha: 0.6),
+            ),
+            const SizedBox(height: 20),
+            const Text(
+              'PiliPro',
+              style: TextStyle(
+                color: Colors.white70,
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            const SizedBox(height: 8),
+            const Text(
+              '视频加载中',
+              style: TextStyle(
+                color: Colors.white54,
+                fontSize: 14,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -293,7 +364,7 @@ class FirstFramePlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Widget child;
-    
+
     if (coverUrl?.isNotEmpty == true) {
       child = Image.network(
         coverUrl!,
@@ -323,19 +394,31 @@ class FirstFramePlaceholder extends StatelessWidget {
     return const Center(
       child: CircularProgressIndicator(
         strokeWidth: 2,
+        valueColor: AlwaysStoppedAnimation<Color>(Colors.white70),
       ),
     );
   }
 
   Widget _buildFallback() {
-    return Container(
-      color: Colors.black,
-      child: const Center(
-        child: Icon(
-          Icons.play_circle_outline,
-          color: Colors.white54,
-          size: 64,
-        ),
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Image.asset(
+            'assets/images/play.png',
+            width: 64,
+            height: 64,
+            color: Colors.white.withValues(alpha: 0.6),
+          ),
+          const SizedBox(height: 12),
+          const Text(
+            '视频加载中',
+            style: TextStyle(
+              color: Colors.white54,
+              fontSize: 14,
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -47,7 +47,7 @@ import 'package:PiliPro/plugin/pl_player/widgets/backward_seek.dart';
 import 'package:PiliPro/plugin/pl_player/widgets/bottom_control.dart';
 import 'package:PiliPro/plugin/pl_player/widgets/common_btn.dart';
 import 'package:PiliPro/plugin/pl_player/widgets/forward_seek.dart';
-import 'package:PiliPro/plugin/pl_player/widgets/mpv_convert_webp.dart';
+
 import 'package:PiliPro/plugin/pl_player/widgets/play_pause_btn.dart';
 import 'package:PiliPro/utils/duration_utils.dart';
 import 'package:PiliPro/utils/extension/num_ext.dart';
@@ -74,7 +74,7 @@ import 'package:flutter_volume_controller/flutter_volume_controller.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:media_kit_video/media_kit_video.dart';
+
 import 'package:screen_brightness_platform_interface/screen_brightness_platform_interface.dart';
 import 'package:window_manager/window_manager.dart';
 
@@ -123,7 +123,7 @@ class PLVideoPlayer extends StatefulWidget {
 class _PLVideoPlayerState extends State<PLVideoPlayer>
     with WidgetsBindingObserver, TickerProviderStateMixin {
   late AnimationController animationController;
-  late VideoController videoController;
+
   late final CommonIntroController introController = widget.introController!;
   late final VideoDetailController videoDetailController =
       widget.videoDetailController!;
@@ -189,7 +189,7 @@ class _PLVideoPlayerState extends State<PLVideoPlayer>
       vsync: this,
       duration: const Duration(milliseconds: 100),
     );
-    videoController = plPlayerController.videoController!;
+
 
     if (PlatformUtils.isMobile) {
       Future.microtask(() async {
@@ -264,19 +264,18 @@ class _PLVideoPlayerState extends State<PLVideoPlayer>
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (!plPlayerController.continuePlayInBackground.value) {
-      late final player = plPlayerController.videoController?.player;
       if (const [
         AppLifecycleState.paused,
         AppLifecycleState.detached,
       ].contains(state)) {
-        if (player != null && player.state.playing) {
+        if (plPlayerController.playerStatus.isPlaying) {
           _pauseDueToPauseUponEnteringBackgroundMode = true;
-          player.pause();
+          plPlayerController.pause();
         }
       } else {
         if (_pauseDueToPauseUponEnteringBackgroundMode) {
           _pauseDueToPauseUponEnteringBackgroundMode = false;
-          player?.play();
+          plPlayerController.play();
         }
       }
     }
@@ -1383,20 +1382,7 @@ class _PLVideoPlayerState extends State<PLVideoPlayer>
         if (widget.danmuWidget case final danmaku?)
           Positioned.fill(top: 4, child: danmaku),
 
-        if (!isLive)
-          Positioned.fill(
-            child: IgnorePointer(
-              ignoring: !plPlayerController.enableDragSubtitle,
-              child: Obx(
-                () => SubtitleView(
-                  controller: videoController,
-                  configuration: plPlayerController.subtitleConfig.value,
-                  enableDragSubtitle: plPlayerController.enableDragSubtitle,
-                  onUpdatePadding: plPlayerController.onUpdatePadding,
-                ),
-              ),
-            ),
-          ),
+        // Subtitle view removed - native player handles subtitles natively
 
         if (plPlayerController.enableTapDm)
           Obx(
@@ -2062,11 +2048,17 @@ class _PLVideoPlayerState extends State<PLVideoPlayer>
                   child: FittedBox(
                     fit: videoFit.boxFit,
                     alignment: widget.alignment,
-                    child: SimpleVideo(
-                      controller: plPlayerController.videoController!,
-                      fill: widget.fill,
-                      aspectRatio: videoFit.aspectRatio,
-                    ),
+                    child: Obx(() {
+                      final textureId = plPlayerController.textureId;
+                      if (textureId == null) {
+                        return const SizedBox.shrink();
+                      }
+                      return SizedBox(
+                        width: (plPlayerController.width ?? 16).toDouble(),
+                        height: (plPlayerController.height ?? 9).toDouble(),
+                        child: Texture(textureId: textureId),
+                      );
+                    }),
                   ),
                 );
               },
@@ -2083,142 +2075,9 @@ class _PLVideoPlayerState extends State<PLVideoPlayer>
   );
 
   Future<void> screenshotWebp() async {
-    final videoInfo = videoDetailController.data;
-    final ids = videoInfo.dash!.video!.map((i) => i.id!).toSet();
-    final video = videoDetailController.findVideoByQa(ids.min);
-
-    VideoQuality qa = video.quality;
-    String? url = video.baseUrl;
-    if (url == null) return;
-
-    final ctr = plPlayerController;
-    final theme = Theme.of(context);
-    final currentPos = ctr.position.inMilliseconds / 1000.0;
-    final duration = ctr.duration.value.inMilliseconds / 1000.0;
-    final model = PostSegmentModel(
-      segment: segment,
-      category: SegmentType.sponsor,
-      actionType: ActionType.skip,
-    );
-    final isPlay = ctr.playerStatus.isPlaying;
-    if (isPlay) ctr.pause();
-
-    WebpPreset preset = WebpPreset.def;
-
-    final success =
-        await showDialog<bool>(
-          context: Get.context!,
-          builder: (context) => AlertDialog(
-            title: const Text('动态截图'),
-            content: Column(
-              spacing: 12,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                PostPanel.segmentWidget(
-                  theme,
-                  item: model,
-                  currentPos: () => currentPos,
-                  videoDuration: duration,
-                ),
-                PopupMenuText(
-                  title: '选择画质',
-                  value: () => qa.code,
-                  onSelected: (value) {
-                    final video = videoDetailController.findVideoByQa(value);
-                    url = video.baseUrl;
-                    qa = video.quality;
-                    return false;
-                  },
-                  itemBuilder: (context) => videoInfo.supportFormats!
-                      .map(
-                        (i) => PopupMenuItem(
-                          enabled: ids.contains(i.quality),
-                          value: i.quality,
-                          child: Text(i.newDesc ?? ''),
-                        ),
-                      )
-                      .toList(),
-                  getSelectTitle: (_) => qa.shortDesc,
-                ),
-                PopupMenuText(
-                  title: 'webp预设',
-                  value: () => preset,
-                  onSelected: (value) {
-                    preset = value;
-                    return false;
-                  },
-                  itemBuilder: (context) => WebpPreset.values
-                      .map((i) => PopupMenuItem(value: i, child: Text(i.name)))
-                      .toList(),
-                  getSelectTitle: (i) => '${i.name}(${i.desc})',
-                ),
-                Text(
-                  '*转码使用CPU，速度可能慢于播放，请不要选择过长的时间段或过高画质',
-                  style: theme.textTheme.bodySmall,
-                ),
-              ],
-            ),
-            actions: [
-              TextButton(
-                onPressed: Get.back,
-                child: Text(
-                  '取消',
-                  style: TextStyle(
-                    color: theme.colorScheme.outline,
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  if (segment.first < segment.second) {
-                    Get.back(result: true);
-                  }
-                },
-                child: const Text('确定'),
-              ),
-            ],
-          ),
-        ) ??
-        false;
-    if (!success) return;
-
-    final progress = 0.0.obs;
-    final name =
-        '${ctr.cid}-${segment.first.toStringAsFixed(3)}_${segment.second.toStringAsFixed(3)}.webp';
-    final file = '$tmpDirPath/$name';
-
-    final mpv = MpvConvertWebp(
-      url!,
-      file,
-      segment.first,
-      segment.second,
-      progress: progress,
-      preset: preset,
-    );
-    final future = mpv.convert().whenComplete(
-      () => SmartDialog.dismiss(status: SmartStatus.loading),
-    );
-
-    SmartDialog.showLoading(
-      backType: SmartBackType.normal,
-      builder: (_) => LoadingWidget(progress: progress, msg: '正在保存，可能需要较长时间'),
-      onDismiss: () async {
-        if (progress.value < 1.0) {
-          mpv.dispose();
-        }
-        if (await future) {
-          await ImageUtils.saveFileImg(
-            filePath: file,
-            fileName: name,
-            needToast: true,
-          );
-        } else {
-          SmartDialog.showToast('转码出现错误或已取消');
-        }
-        if (isPlay) ctr.play();
-      },
-    );
+    SmartDialog.showToast('该功能在当前播放器中不可用');
   }
+
 
   static const _overlaySpacing = 5.0;
   static const _actionItemWidth = 40.0;

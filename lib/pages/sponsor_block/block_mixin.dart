@@ -16,7 +16,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:media_kit/media_kit.dart';
+import 'package:PiliPro/plugin/pl_player/controller.dart';
+import 'package:PiliPro/plugin/pl_player/models/play_status.dart';
 
 mixin BlockConfigMixin {
   late final pgcSkipType = Pref.pgcSkipType;
@@ -47,7 +48,7 @@ mixin BlockMixin on GetxController {
   late final List<Object> listData = [];
 
   RxString? get videoLabel => null;
-  Player? get player;
+  PlPlayerController? get plPlayer;
   bool get autoPlay;
   int? get timeLength;
   bool get preInitPlayer;
@@ -79,16 +80,12 @@ mixin BlockMixin on GetxController {
     if (isClosed) return;
     if (_segmentList.isNotEmpty) {
       _blockListener?.cancel();
-      _blockListener = player?.stream.position.listen((position) {
+      void posListener(Duration position) {
         int currentPos = position.inSeconds;
         if (currentPos != _lastBlockPos) {
           _lastBlockPos = currentPos;
           final msPos = currentPos * 1000;
           for (SegmentModel item in _segmentList) {
-            // if (kDebugMode) {
-            //   debugPrint(
-            //       '${position.inSeconds},,${item.segment.first},,${item.segment.second},,${item.skipType.name},,${item.hasSkipped}');
-            // }
             if (msPos <= item.segment.$1 && item.segment.$1 <= msPos + 1000) {
               switch (item.skipType) {
                 case SkipType.alwaysSkip:
@@ -110,7 +107,10 @@ mixin BlockMixin on GetxController {
             }
           }
         }
-      });
+      }
+      plPlayer?.addPositionListener(posListener);
+      // Store a dummy subscription to track listener registration
+      _blockListener = Stream<Duration>.empty().listen((_) {});
     }
   }
 
@@ -138,7 +138,7 @@ mixin BlockMixin on GetxController {
                         '${videoLabel!.value.isNotEmpty ? '/' : ''}${segmentModel.segmentType.title}';
                   }
 
-                  if (_blockListener == null && autoPlay && player != null) {
+                  if (_blockListener == null && autoPlay && plPlayer != null) {
                     final currPos = currPosInMilliseconds;
 
                     if (segmentModel.segment.contains(currPos)) {
@@ -148,18 +148,20 @@ mixin BlockMixin on GetxController {
                         case SkipType.alwaysSkip:
                         case SkipType.skipOnce:
                           segmentModel.hasSkipped = true;
-                          if (player!.state.playing) {
+                          if (plPlayer!.playerStatus.isPlaying) {
                             future = onSkip(
                               segmentModel,
                             );
                           } else {
-                            player!.stream.playing.firstWhere((e) {
-                              if (e) {
+                            // Wait for playing to start then skip
+                            late final Function(PlayerStatus) listener;
+                            listener = (PlayerStatus status) {
+                              if (status == PlayerStatus.playing) {
                                 future = onSkip(segmentModel);
-                                return true;
+                                plPlayer!.removeStatusLister(listener);
                               }
-                              return false;
-                            }, orElse: () => false);
+                            };
+                            plPlayer!.addStatusLister(listener);
                           }
                           break;
                         case SkipType.skipManually:

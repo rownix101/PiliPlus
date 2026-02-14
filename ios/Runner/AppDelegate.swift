@@ -13,5 +13,6 @@ import UIKit
 
   func didInitializeImplicitFlutterEngine(_ engineBridge: FlutterImplicitEngineBridge) {
     GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
+    NativePlayerPlugin.register(with: engineBridge.pluginRegistry.registrar(forPlugin: "NativePlayerPlugin")!)
   }
 }

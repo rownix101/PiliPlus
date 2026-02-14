@@ -2,6 +2,7 @@ import 'package:PiliPro/common/skeleton/video_reply.dart';
 import 'package:PiliPro/common/widgets/custom_sliver_persistent_header_delegate.dart';
 import 'package:PiliPro/common/widgets/flutter/refresh_indicator.dart';
 import 'package:PiliPro/common/widgets/loading_widget/http_error.dart';
+import 'package:PiliPro/common/widgets/scroll_physics.dart';
 import 'package:PiliPro/common/widgets/view_safe_area.dart';
 import 'package:PiliPro/grpc/bilibili/main/community/reply/v1.pb.dart'
     show ReplyInfo;
@@ -75,9 +76,8 @@ class _MainReplyPageState extends State<MainReplyPage> {
               left: padding.left,
               right: padding.right,
             ),
-            child: CustomScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              slivers: [
+                  child: CustomScrollView(
+                    physics: const CommentScrollPhysics(),              slivers: [
                 buildReplyHeader(colorScheme),
                 Obx(
                   () => _buildBody(colorScheme, _controller.loadingState.value),

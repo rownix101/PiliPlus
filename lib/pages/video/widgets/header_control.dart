@@ -825,20 +825,20 @@ class HeaderControlState extends State<HeaderControl>
                       dense: true,
                       title: const Text("AudioTrack"),
                       subtitle: Text(
-                        state.track.audio.toString(),
+                        state.track?.audio.toString() ?? 'unknown',
                       ),
                       onTap: () => Utils.copyText(
-                        'AudioTrack\n${state.track.audio}',
+                        'AudioTrack\n${state.track?.audio ?? 'unknown'}',
                       ),
                     ),
                     ListTile(
                       dense: true,
                       title: const Text("VideoTrack"),
                       subtitle: Text(
-                        state.track.video.toString(),
+                        state.track?.video.toString() ?? 'unknown',
                       ),
                       onTap: () => Utils.copyText(
-                        'VideoTrack\n${state.track.audio}',
+                        'VideoTrack\n${state.track?.video ?? 'unknown'}',
                       ),
                     ),
                     ListTile(
@@ -878,8 +878,8 @@ class HeaderControlState extends State<HeaderControl>
                     ListTile(
                       dense: true,
                       title: const Text('hwdec'),
-                      subtitle: Text(hwdec),
-                      onTap: () => Utils.copyText('hwdec\n$hwdec'),
+                      subtitle: Text(hwdec ?? 'unknown'),
+                      onTap: () => Utils.copyText('hwdec\n${hwdec ?? 'unknown'}'),
                     ),
                   ],
                 ),

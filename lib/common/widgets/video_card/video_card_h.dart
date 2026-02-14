@@ -15,6 +15,7 @@ import 'package:PiliPro/utils/date_utils.dart';
 import 'package:PiliPro/utils/duration_utils.dart';
 import 'package:PiliPro/utils/page_utils.dart';
 import 'package:PiliPro/utils/platform_utils.dart';
+import 'package:PiliPro/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 
@@ -63,6 +64,8 @@ class VideoCardH extends StatelessWidget {
       title: videoItem.title,
       cover: videoItem.cover,
     );
+    // 生成唯一的 heroTag 用于共享元素动画
+    final String heroTag = Utils.makeHeroTag(videoItem.aid);
     final colorScheme = ColorScheme.of(context);
     return Material(
       type: MaterialType.transparency,
@@ -111,6 +114,7 @@ class VideoCardH extends StatelessWidget {
                         cid: cid,
                         cover: videoItem.cover,
                         title: videoItem.title,
+                        extraArguments: {'heroTag': heroTag},
                       );
                     }
                   } catch (err) {
@@ -139,10 +143,15 @@ class VideoCardH extends StatelessWidget {
                         return Stack(
                           clipBehavior: Clip.none,
                           children: [
-                            NetworkImgLayer(
-                              src: videoItem.cover,
-                              width: maxWidth,
-                              height: maxHeight,
+                            // 使用 Hero 动画包装封面图
+                            Hero(
+                              tag: heroTag,
+                              transitionOnUserGestures: true,
+                              child: NetworkImgLayer(
+                                src: videoItem.cover,
+                                width: maxWidth,
+                                height: maxHeight,
+                              ),
                             ),
                             if (badge != null)
                               PBadge(

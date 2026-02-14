@@ -43,6 +43,7 @@ class ConnectionWarmupService {
     'api.vc.bilibili.com',
     'api.live.bilibili.com',
     'passport.bilibili.com',
+    'message.bilibili.com',
   ];
 
   // 视频 CDN 域名列表（用于视频播放预热）
@@ -51,7 +52,7 @@ class ConnectionWarmupService {
     'upos-sz-mirrorcos.bilivideo.com',
     'upos-sz-mirrorhw.bilivideo.com',
     'upos-hz-mirrorakam.akamaized.net',
-    'cn-hk-eq-bcache-01.bilivideo.com',
+    // 'cn-hk-eq-bcache-01.bilivideo.com', // 已不可用
   ];
 
   // DNS 缓存 TTL
@@ -253,15 +254,17 @@ class ConnectionWarmupService {
   /// 预热单个端点
   Future<void> _warmupEndpoint(String baseUrl) async {
     try {
-      // 发送 HEAD 请求来建立连接，不获取实际数据
-      final response = await Request.dio.head(
+      // 发送 GET 请求来建立连接（某些端点不支持 HEAD）
+      // 使用 connection_warmup 标记，响应解码器会返回空内容
+      final response = await Request.dio.get(
         '$baseUrl/x/frontend/finger/spi',
         options: Options(
           extra: {'connection_warmup': true},
+          validateStatus: (status) => status != null && status < 500,
         ),
       );
-      
-      if (response.statusCode == 200) {
+
+      if (response.statusCode != null && response.statusCode! < 500) {
         _warmedUpHosts.add(baseUrl);
         if (kDebugMode) {
           debugPrint('连接预热成功: $baseUrl');
@@ -369,6 +372,41 @@ class ConnectionWarmupService {
     ]).timeout(
       _videoPageWarmupTimeout,
       onTimeout: () => [],
+    );
+  }
+
+  /// 消息系统连接预热
+  /// 预热私信和系统消息相关 API，异步执行不阻塞主流程
+  Future<void> warmupForMessage() async {
+    final messageEndpoints = [
+      HttpString.tUrl,           // api.vc.bilibili.com - 私信相关
+      HttpString.messageBaseUrl, // message.bilibili.com - 系统消息
+    ];
+
+    final warmupFutures = <Future<void>>[];
+
+    for (final endpoint in messageEndpoints) {
+      warmupFutures.add(
+        _warmupEndpoint(endpoint).timeout(
+          _singleEndpointTimeout,
+          onTimeout: () {
+            if (kDebugMode) {
+              debugPrint('消息系统预热超时: $endpoint');
+            }
+          },
+        ),
+      );
+    }
+
+    // 使用较短的总体超时，避免影响其他操作
+    await Future.wait(warmupFutures).timeout(
+      const Duration(seconds: 2),
+      onTimeout: () {
+        if (kDebugMode) {
+          debugPrint('消息系统预热整体超时');
+        }
+        return [];
+      },
     );
   }
 

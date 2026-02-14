@@ -6,6 +6,7 @@ import 'package:PiliPro/utils/storage_pref.dart';
 import 'package:PiliPro/utils/utils.dart';
 import 'package:auto_orientation/auto_orientation.dart';
 import 'package:flutter/services.dart';
+import 'package:window_manager/window_manager.dart';
 
 bool _isDesktopFullScreen = false;
 
@@ -14,9 +15,7 @@ Future<void> enterDesktopFullscreen({bool inAppFullScreen = false}) async {
   if (!inAppFullScreen && !_isDesktopFullScreen) {
     _isDesktopFullScreen = true;
     try {
-      await const MethodChannel(
-        'com.alexmercerind/media_kit_video',
-      ).invokeMethod('Utils.EnterNativeFullscreen');
+      await windowManager.setFullScreen(true);
     } catch (_) {}
   }
 }
@@ -26,9 +25,7 @@ Future<void> exitDesktopFullscreen() async {
   if (_isDesktopFullScreen) {
     _isDesktopFullScreen = false;
     try {
-      await const MethodChannel(
-        'com.alexmercerind/media_kit_video',
-      ).invokeMethod('Utils.ExitNativeFullscreen');
+      await windowManager.setFullScreen(false);
     } catch (_) {}
   }
 }

@@ -23,6 +23,7 @@ import 'package:PiliPro/pages/sponsor_block/block_mixin.dart';
 import 'package:PiliPro/pages/video/controller.dart';
 import 'package:PiliPro/pages/video/introduction/ugc/widgets/triple_mixin.dart';
 import 'package:PiliPro/pages/video/pay_coins/view.dart';
+import 'package:PiliPro/plugin/pl_player/controller.dart';
 import 'package:PiliPro/plugin/pl_player/models/play_repeat.dart';
 import 'package:PiliPro/plugin/pl_player/models/play_status.dart';
 import 'package:PiliPro/services/service_locator.dart';
@@ -41,7 +42,7 @@ import 'package:fixnum/fixnum.dart' show Int64;
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
-import 'package:media_kit/media_kit.dart';
+import 'package:PiliPro/plugin/native_player/native_player.dart';
 
 class AudioController extends GetxController
     with
@@ -62,7 +63,12 @@ class AudioController extends GetxController
   final Rx<DetailItem?> audioItem = Rx<DetailItem?>(null);
 
   @override
-  Player? player;
+  NativePlayer? player;
+
+  /// 兼容 BlockMixin 的 plPlayer getter
+  PlPlayerController? get plPlayer => null;
+
+  bool _isPlaying = false;
   late int cacheAudioQa;
 
   late bool isDragging = false;
@@ -148,7 +154,7 @@ class AudioController extends GetxController
   }
 
   bool isPlaying() {
-    return player?.state.playing ?? false;
+    return _isPlaying;
   }
 
   Future<void>? onPlay() {
@@ -160,7 +166,7 @@ class AudioController extends GetxController
   }
 
   Future<void>? onSeek(Duration duration) {
-    return player?.seek(duration);
+    return player?.seekTo(duration);
   }
 
   void _updateCurrItem(DetailItem item) {
@@ -283,84 +289,96 @@ class AudioController extends GetxController
     String ua = Constants.userAgentApp,
   }) {
     _initPlayerIfNeeded();
-    player!.open(
-      Media(
-        url,
-        start: _start,
-        httpHeaders: {
-          'user-agent': ua,
-          'referer': ?referer,
-        },
-      ),
-    );
-    _start = null;
+    player!.create(
+      videoUrl: url,
+      headers: {
+        'user-agent': ua,
+        if (referer != null) 'referer': referer,
+      },
+    ).then((_) {
+      if (_start != null) {
+        player!.seekTo(_start!);
+        _start = null;
+      }
+    });
   }
 
   void _initPlayerIfNeeded() {
-    player ??= Player();
-    _subscriptions ??= {
-      player!.stream.position.listen((position) {
-        if (isDragging) return;
-        if (position.inSeconds != this.position.value.inSeconds) {
-          this.position.value = position;
-          _videoDetailController?.playedTime = position;
-          videoPlayerServiceHandler?.onPositionChange(position);
-        }
-      }),
-      player!.stream.duration.listen((duration) {
-        this.duration.value = duration;
-      }),
-      player!.stream.playing.listen((playing) {
-        PlayerStatus playerStatus;
-        if (playing) {
-          animController.forward();
-          playerStatus = PlayerStatus.playing;
-        } else {
-          animController.reverse();
-          playerStatus = PlayerStatus.paused;
-        }
-        videoPlayerServiceHandler?.onStatusChange(playerStatus, false, false);
-      }),
-      player!.stream.completed.listen((completed) {
-        _videoDetailController?.playedTime = duration.value;
-        videoPlayerServiceHandler?.onStatusChange(
-          PlayerStatus.completed,
-          false,
-          false,
-        );
-        if (completed) {
-          if (shutdownTimerService.isWaiting) {
-            shutdownTimerService.handleWaiting();
-          } else {
-            switch (playMode.value) {
-              case PlayRepeat.pause:
-                break;
-              case PlayRepeat.listOrder:
-                playNext(nextPart: true);
-                break;
-              case PlayRepeat.singleCycle:
-                _replay();
-                break;
-              case PlayRepeat.listCycle:
-                if (!playNext(nextPart: true)) {
-                  if (index != null && index != 0 && playlist != null) {
-                    playIndex(0);
-                  } else {
-                    _replay();
+    player ??= NativePlayer();
+    if (_subscriptions == null) {
+      _subscriptions = {
+        player!.events.listen((event) {
+          switch (event.type) {
+            case 'position':
+              if (isDragging) break;
+              if (event.position != null &&
+                  event.position!.inSeconds != position.value.inSeconds) {
+                position.value = event.position!;
+                _videoDetailController?.playedTime = event.position!;
+                videoPlayerServiceHandler?.onPositionChange(event.position!);
+              }
+              if (event.duration != null) {
+                duration.value = event.duration!;
+              }
+              break;
+            case 'isPlaying':
+              final playing = event.isPlaying ?? false;
+              _isPlaying = playing;
+              PlayerStatus playerStatus;
+              if (playing) {
+                animController.forward();
+                playerStatus = PlayerStatus.playing;
+              } else {
+                animController.reverse();
+                playerStatus = PlayerStatus.paused;
+              }
+              videoPlayerServiceHandler?.onStatusChange(playerStatus, false, false);
+              break;
+            case 'playbackState':
+              if (event.state == 'ended') {
+                _videoDetailController?.playedTime = duration.value;
+                videoPlayerServiceHandler?.onStatusChange(
+                  PlayerStatus.completed,
+                  false,
+                  false,
+                );
+                if (shutdownTimerService.isWaiting) {
+                  shutdownTimerService.handleWaiting();
+                } else {
+                  switch (playMode.value) {
+                    case PlayRepeat.pause:
+                      break;
+                    case PlayRepeat.listOrder:
+                      playNext(nextPart: true);
+                      break;
+                    case PlayRepeat.singleCycle:
+                      _replay();
+                      break;
+                    case PlayRepeat.listCycle:
+                      if (!playNext(nextPart: true)) {
+                        if (index != null && index != 0 && playlist != null) {
+                          playIndex(0);
+                        } else {
+                          _replay();
+                        }
+                      }
+                      break;
+                    case PlayRepeat.autoPlayRelated:
+                      break;
                   }
                 }
-                break;
-              case PlayRepeat.autoPlayRelated:
-                break;
-            }
+              }
+              break;
+            default:
+              break;
           }
-        }
-      }),
-    };
+        }),
+      };
+    }
   }
 
   void _replay() {
-    player?.seek(Duration.zero).whenComplete(player!.play);
+    player?.seekTo(Duration.zero).whenComplete(() => player!.play());
   }
 
   @override
@@ -633,9 +651,13 @@ class AudioController extends GetxController
   void playOrPause() {
     if (player case final player?) {
       if ((duration.value - position.value).inMilliseconds < 50) {
-        player.seek(Duration.zero).whenComplete(player.play);
+        player.seekTo(Duration.zero).whenComplete(() => player.play());
       } else {
-        player.playOrPause();
+        if (_isPlaying) {
+          player.pause();
+        } else {
+          player.play();
+        }
       }
     }
   }
@@ -705,7 +727,7 @@ class AudioController extends GetxController
   void setSpeed(double speed) {
     if (player case final player?) {
       this.speed = speed;
-      player.setRate(speed);
+      player.setSpeed(speed);
     }
   }
 

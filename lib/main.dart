@@ -37,7 +37,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:get/get.dart';
-import 'package:media_kit/media_kit.dart';
+
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 
@@ -64,7 +64,7 @@ Future<void> _initAppPath() async {
 
 void main() async {
   ScaledWidgetsFlutterBinding.ensureInitialized();
-  MediaKit.ensureInitialized();
+  // Native player initialized via NativePlayerPlugin (no media_kit needed)
   await _initAppPath();
   try {
     await GStorage.init();
@@ -108,6 +108,11 @@ void main() async {
     Future.microtask(() async {
       await ConnectionWarmupService().preResolveDns();
       await ConnectionWarmupService().warmupConnections();
+    });
+    
+    // 延迟预热消息系统连接，避免与核心 API 预热竞争资源
+    Future.delayed(const Duration(seconds: 3), () async {
+      await ConnectionWarmupService().warmupForMessage();
     });
   }
 

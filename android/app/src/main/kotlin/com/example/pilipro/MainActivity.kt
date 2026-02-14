@@ -14,6 +14,7 @@ import android.view.WindowManager.LayoutParams
 import androidx.core.net.toUri
 import com.ryanheise.audioservice.AudioServiceActivity
 import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.MethodChannel
 import kotlin.system.exitProcess
 
@@ -22,6 +23,9 @@ class MainActivity : AudioServiceActivity() {
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+
+        // Register native player plugin
+        flutterEngine.plugins.add(NativePlayerPlugin())
 
         methodChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "PiliPro")
         methodChannel.setMethodCallHandler { call, result ->

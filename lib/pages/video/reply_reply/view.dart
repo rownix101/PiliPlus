@@ -2,6 +2,7 @@ import 'package:PiliPro/common/skeleton/video_reply.dart';
 import 'package:PiliPro/common/widgets/custom_sliver_persistent_header_delegate.dart';
 import 'package:PiliPro/common/widgets/flutter/refresh_indicator.dart';
 import 'package:PiliPro/common/widgets/loading_widget/http_error.dart';
+import 'package:PiliPro/common/widgets/scroll_physics.dart';
 import 'package:PiliPro/common/widgets/view_safe_area.dart';
 import 'package:PiliPro/grpc/bilibili/main/community/reply/v1.pb.dart'
     show ReplyInfo, Mode;
@@ -184,10 +185,10 @@ class _VideoReplyReplyPanelState extends State<VideoReplyReplyPanel>
         key: ValueKey(scrollController.hashCode),
         controller: scrollController,
         physics: widget.isNested
-            ? const AlwaysScrollableScrollPhysics(
+            ? const CommentScrollPhysics(
                 parent: ClampingScrollPhysics(),
               )
-            : const AlwaysScrollableScrollPhysics(),
+            : const CommentScrollPhysics(),
         slivers: [
           if (!isDialogue) ...[
             if ((widget.firstFloor ?? _controller.firstFloor.value)

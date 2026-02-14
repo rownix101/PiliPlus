@@ -841,19 +841,15 @@ class _VideoDetailPageVState extends State<VideoDetailPageV>
                                         handlePlay();
                                       } else {
                                         if (plPlayerController!
-                                            .videoPlayerController!
-                                            .state
-                                            .completed) {
+                                            .playerStatus
+                                            .isCompleted) {
                                           await plPlayerController!
-                                              .videoPlayerController!
-                                              .seek(Duration.zero);
+                                              .seekTo(Duration.zero, isSeek: false);
                                           plPlayerController!
-                                              .videoPlayerController!
                                               .play();
                                         } else {
                                           plPlayerController!
-                                              .videoPlayerController!
-                                              .playOrPause();
+                                              .onDoubleTapCenter();
                                         }
                                       }
                                     },
