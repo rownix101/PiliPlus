@@ -13,17 +13,15 @@ import 'package:PiliPro/http/danmaku_block.dart';
 import 'package:PiliPro/http/init.dart';
 import 'package:PiliPro/http/live.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/http/video.dart';
-
 import 'package:PiliPro/models/common/video/audio_quality.dart';
 import 'package:PiliPro/models/common/video/cdn_type.dart';
+import 'package:PiliPro/models/common/video/subtitle_cue.dart';
 import 'package:PiliPro/models/common/video/video_decode_type.dart';
 import 'package:PiliPro/models/common/video/video_quality.dart';
 import 'package:PiliPro/models/video/play/url.dart';
 import 'package:PiliPro/models_new/video/video_play_info/subtitle.dart';
 import 'package:PiliPro/pages/common/common_intro_controller.dart';
 import 'package:PiliPro/pages/danmaku/danmaku_model.dart';
-import 'package:PiliPro/pages/setting/widgets/popup_item.dart';
 import 'package:PiliPro/pages/setting/widgets/select_dialog.dart';
 import 'package:PiliPro/pages/video/controller.dart';
 import 'package:PiliPro/pages/video/introduction/local/controller.dart';
@@ -659,21 +657,22 @@ class HeaderControlState extends State<HeaderControl>
                               buffer.write(chunk);
                             }
                             if (!mounted) return;
-                            String sub = buffer.toString();
-                            sub = await compute<List, String>(
-                              VideoHttp.processList,
-                              jsonDecode(sub)['body'],
-                            );
-                            if (!mounted) return;
-                            videoDetailCtr.vttSubtitles[length] = (
-                              isData: true,
-                              id: sub,
-                            );
+                            final List body = jsonDecode(
+                              buffer.toString(),
+                            )['body'];
+                            videoDetailCtr.vttSubtitles[length] = body
+                                .map(
+                                  (item) => SubtitleCue.fromJson(
+                                    item as Map<String, dynamic>,
+                                  ),
+                                )
+                                .toList();
                           } else {
-                            videoDetailCtr.vttSubtitles[length] = (
-                              isData: false,
-                              id: path,
-                            );
+                            // For .srt/.vtt files, read content as single full-duration cue
+                            final content = await File(path).readAsString();
+                            videoDetailCtr.vttSubtitles[length] = [
+                              SubtitleCue(from: 0, to: 99999, content: content),
+                            ];
                           }
                           videoDetailCtr.subtitles.add(
                             Subtitle(
@@ -860,7 +859,8 @@ class HeaderControlState extends State<HeaderControl>
                       dense: true,
                       title: const Text('hwdec'),
                       subtitle: Text(hwdec ?? 'unknown'),
-                      onTap: () => Utils.copyText('hwdec\n${hwdec ?? 'unknown'}'),
+                      onTap: () =>
+                          Utils.copyText('hwdec\n${hwdec ?? 'unknown'}'),
                     ),
                   ],
                 ),

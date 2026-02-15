@@ -8,6 +8,7 @@ import android.view.Surface
 import androidx.annotation.OptIn
 import androidx.media3.common.C
 import androidx.media3.common.MediaItem
+import androidx.media3.common.MimeTypes
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
 import androidx.media3.common.TrackSelectionOverride
@@ -22,6 +23,7 @@ import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.source.MediaSource
 import androidx.media3.exoplayer.source.MergingMediaSource
 import androidx.media3.exoplayer.source.ProgressiveMediaSource
+import androidx.media3.exoplayer.source.SingleSampleMediaSource
 import androidx.media3.exoplayer.trackselection.DefaultTrackSelector
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.EventChannel
@@ -44,6 +46,9 @@ class NativePlayerPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
     private var surface: Surface? = null
     private var eventSink: EventChannel.EventSink? = null
     private val mainHandler = Handler(Looper.getMainLooper())
+
+    // Subtitle tracking
+    private var currentHeaders: Map<String, String>? = null
 
     // SimpleCache singleton
     companion object {
@@ -107,8 +112,19 @@ class NativePlayerPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
                 val videoUrl = call.argument<String>("videoUrl")
                 val audioUrl = call.argument<String?>("audioUrl")
                 val headers = call.argument<Map<String, String>?>("headers")
+                currentHeaders = headers
                 val textureId = createPlayer(videoUrl!!, audioUrl, headers)
                 result.success(textureId)
+            }
+
+            "setSubtitleTrack" -> {
+                val id = call.argument<String>("id")
+                val title = call.argument<String>("title")
+                val language = call.argument<String>("language")
+                val uri = call.argument<Boolean>("uri") ?: false
+                val data = call.argument<Boolean>("data") ?: false
+                setSubtitleTrack(id, title, language, uri, data)
+                result.success(null)
             }
 
             "play" -> {
@@ -355,6 +371,16 @@ class NativePlayerPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
         p.trackSelectionParameters = params.build()
     }
 
+    private fun setSubtitleTrack(
+        id: String?,
+        title: String?,
+        language: String?,
+        uri: Boolean,
+        data: Boolean
+    ) {
+        // Subtitles are now rendered by the Flutter overlay.
+        // This method is intentionally a no-op.
+    }
     private fun disposePlayer() {
         mainHandler.removeCallbacks(positionUpdateRunnable)
         player?.release()

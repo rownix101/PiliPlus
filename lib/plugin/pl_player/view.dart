@@ -190,7 +190,6 @@ class _PLVideoPlayerState extends State<PLVideoPlayer>
       duration: const Duration(milliseconds: 100),
     );
 
-
     if (PlatformUtils.isMobile) {
       Future.microtask(() async {
         try {
@@ -436,8 +435,6 @@ class _PLVideoPlayerState extends State<PLVideoPlayer>
           return const SizedBox.shrink();
         },
       ),
-
-
 
       /// 分段信息
       BottomControlType.viewPoints => Obx(
@@ -1345,7 +1342,42 @@ class _PLVideoPlayerState extends State<PLVideoPlayer>
         if (widget.danmuWidget case final danmaku?)
           Positioned.fill(top: 4, child: danmaku),
 
-        // Subtitle view removed - native player handles subtitles natively
+        // Flutter-rendered subtitle overlay
+        Obx(() {
+          final cues = videoDetailController.subtitleCues;
+          if (cues.isEmpty) return const SizedBox.shrink();
+          // Use millisecond-level position for sub-second accuracy
+          final posMs = plPlayerController.position.inMilliseconds;
+          final posSeconds = posMs / 1000.0;
+          String? text;
+          for (final cue in cues) {
+            if (posSeconds >= cue.from && posSeconds <= cue.to) {
+              text = cue.content;
+              break;
+            }
+          }
+          // Force rebuild every second
+          plPlayerController.positionSeconds.value;
+          if (text == null) return const SizedBox.shrink();
+          final config = plPlayerController.subtitleConfig.value;
+          return Positioned(
+            left: 0,
+            right: 0,
+            bottom: config.padding.bottom,
+            child: IgnorePointer(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: config.padding.left,
+                ),
+                child: Text(
+                  text,
+                  textAlign: TextAlign.center,
+                  style: config.style,
+                ),
+              ),
+            ),
+          );
+        }),
 
         if (plPlayerController.enableTapDm)
           Obx(
@@ -2050,7 +2082,6 @@ class _PLVideoPlayerState extends State<PLVideoPlayer>
   Future<void> screenshotWebp() async {
     SmartDialog.showToast('该功能在当前播放器中不可用');
   }
-
 
   static const _overlaySpacing = 5.0;
   static const _actionItemWidth = 40.0;

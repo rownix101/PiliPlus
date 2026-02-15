@@ -167,9 +167,15 @@ class NativePlayer {
     // 需要通过外部状态管理实现
   }
 
-  /// 设置字幕轨道 (兼容接口，原生播放器暂未实现)
+  /// 设置字幕轨道
   Future<void> setSubtitleTrack(SubtitleTrack track) async {
-    // TODO: 实现原生播放器字幕设置
+    await _methodChannel.invokeMethod('setSubtitleTrack', {
+      'id': track.id,
+      'title': track.title,
+      'language': track.language,
+      'uri': track.uri,
+      'data': track.data,
+    });
   }
 
   /// 截图 (兼容接口，原生播放器暂未实现)

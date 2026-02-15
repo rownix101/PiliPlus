@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:PiliPro/models/common/video/subtitle_cue.dart';
+
 import 'package:PiliPro/common/constants.dart';
 import 'package:PiliPro/http/api.dart';
 import 'package:PiliPro/http/init.dart';
@@ -34,7 +36,6 @@ import 'package:PiliPro/utils/recommend_filter.dart';
 import 'package:PiliPro/utils/storage_pref.dart';
 import 'package:PiliPro/utils/wbi_sign.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart' show compute;
 
 /// view层根据 status 判断渲染逻辑
 abstract final class VideoHttp {
@@ -841,33 +842,12 @@ abstract final class VideoHttp {
     }
   }
 
-  static String _subtitleTimecode(num seconds) {
-    int h = seconds ~/ 3600;
-    seconds %= 3600;
-    int m = seconds ~/ 60;
-    seconds %= 60;
-    String sms = seconds.toStringAsFixed(3).padLeft(6, '0');
-    return h == 0
-        ? "${m.toString().padLeft(2, '0')}:$sms"
-        : "${h.toString().padLeft(2, '0')}:${m.toString().padLeft(2, '0')}:$sms";
-  }
-
-  static String processList(List list) {
-    final sb = StringBuffer('WEBVTT\n\n')
-      ..writeAll(
-        list.map(
-          (item) =>
-              '${item?['sid'] ?? 0}\n${_subtitleTimecode(item['from'])} --> ${_subtitleTimecode(item['to'])}\n${item['content'].trim()}',
-        ),
-        '\n\n',
-      );
-    return sb.toString();
-  }
-
-  static Future<String?> vttSubtitles(String subtitleUrl) async {
+  static Future<List<SubtitleCue>?> vttSubtitles(String subtitleUrl) async {
     final res = await Request().get("https:$subtitleUrl");
     if (res.data?['body'] case List list) {
-      return compute<List, String>(processList, list);
+      return list
+          .map((item) => SubtitleCue.fromJson(item as Map<String, dynamic>))
+          .toList();
     }
     return null;
   }

@@ -22,6 +22,7 @@ import 'package:PiliPro/models/common/sponsor_block/segment_model.dart';
 import 'package:PiliPro/models/common/sponsor_block/segment_type.dart';
 import 'package:PiliPro/models/common/video/audio_quality.dart';
 import 'package:PiliPro/models/common/video/source_type.dart';
+import 'package:PiliPro/models/common/video/subtitle_cue.dart';
 import 'package:PiliPro/models/common/video/subtitle_pref_type.dart';
 import 'package:PiliPro/models/common/video/video_decode_type.dart';
 import 'package:PiliPro/models/common/video/video_quality.dart';
@@ -48,7 +49,8 @@ import 'package:PiliPro/pages/video/note/view.dart';
 import 'package:PiliPro/pages/video/post_panel/view.dart';
 import 'package:PiliPro/pages/video/send_danmaku/view.dart';
 import 'package:PiliPro/pages/video/widgets/header_control.dart';
-import 'package:PiliPro/plugin/pl_player/controller.dart' show PlPlayerController, SubtitleTrack;
+import 'package:PiliPro/plugin/pl_player/controller.dart'
+    show PlPlayerController;
 import 'package:PiliPro/plugin/pl_player/models/data_source.dart';
 import 'package:PiliPro/plugin/pl_player/models/heart_beat_type.dart';
 import 'package:PiliPro/plugin/pl_player/models/play_status.dart';
@@ -71,7 +73,6 @@ import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:flutter_volume_controller/flutter_volume_controller.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-
 
 class VideoDetailController extends GetxController
     with GetTickerProviderStateMixin, BlockMixin {
@@ -715,7 +716,11 @@ class VideoDetailController extends GetxController
         if (videoState.value is! Success) {
           videoState.value = const Success(null);
         }
-        setSubtitle(vttSubtitlesIndex.value);
+        // Only restore subtitle track during quality/source change (index > 0).
+        // On first load (index <= 0), _queryPlayInfo will handle subtitle setup.
+        if (vttSubtitlesIndex.value > 0) {
+          setSubtitle(vttSubtitlesIndex.value);
+        }
       },
       width: firstVideo.width,
       height: firstVideo.height,
@@ -996,48 +1001,34 @@ class VideoDetailController extends GetxController
   }
 
   RxList<Subtitle> subtitles = RxList<Subtitle>();
-  final Map<int, ({bool isData, String id})> vttSubtitles = {};
+  final Map<int, List<SubtitleCue>> vttSubtitles = {};
   late final RxInt vttSubtitlesIndex = (-1).obs;
   late final RxBool showVP = true.obs;
   late final RxList<ViewPointSegment> viewPointList = <ViewPointSegment>[].obs;
 
-  // 设定字幕轨道
+  /// Active subtitle cues for Flutter overlay rendering
+  final RxList<SubtitleCue> subtitleCues = <SubtitleCue>[].obs;
+
+  // 设定字幕轨道 (Flutter overlay, no native player rebuild)
   Future<void> setSubtitle(int index) async {
     if (index <= 0) {
-      await plPlayerController.videoPlayerController?.setSubtitleTrack(
-        SubtitleTrack.no(),
-      );
+      subtitleCues.clear();
       vttSubtitlesIndex.value = index;
       return;
     }
 
-    Future<void> setSub(({bool isData, String id}) subtitle) async {
-      final sub = subtitles[index - 1];
-      await plPlayerController.videoPlayerController?.setSubtitleTrack(
-        SubtitleTrack(
-          subtitle.id,
-          sub.lanDoc,
-          sub.lan,
-          uri: !subtitle.isData,
-          data: subtitle.isData,
-        ),
-      );
-      vttSubtitlesIndex.value = index;
-    }
-
-    ({bool isData, String id})? subtitle = vttSubtitles[index - 1];
-    if (subtitle != null) {
-      await setSub(subtitle);
-    } else {
+    List<SubtitleCue>? cues = vttSubtitles[index - 1];
+    if (cues == null) {
       final result = await VideoHttp.vttSubtitles(
         subtitles[index - 1].subtitleUrl!,
       );
-      if (!isClosed && result != null) {
-        final subtitle = (isData: true, id: result);
-        vttSubtitles[index - 1] = subtitle;
-        await setSub(subtitle);
-      }
+      if (isClosed || result == null) return;
+      cues = result;
+      vttSubtitles[index - 1] = cues;
     }
+
+    subtitleCues.value = cues;
+    vttSubtitlesIndex.value = index;
   }
 
   // interactive video
