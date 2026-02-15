@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/common/badge_type.dart';
+import 'package:PiliPro/models_new/common/badge_type.dart';
 import 'package:PiliPro/utils/extension/string_ext.dart';
 import 'package:PiliPro/utils/extension/theme_ext.dart';
 import 'package:flutter/material.dart';

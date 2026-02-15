@@ -1,7 +1,7 @@
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/search.dart';
-import 'package:PiliPro/models/common/search/search_type.dart';
-import 'package:PiliPro/models/search/result.dart';
+import 'package:PiliPro/models_new/common/search/search_type.dart';
+import 'package:PiliPro/models_new/search/result.dart';
 import 'package:PiliPro/pages/search_panel/controller.dart';
 import 'package:PiliPro/utils/app_scheme.dart';
 import 'package:PiliPro/utils/id_utils.dart';

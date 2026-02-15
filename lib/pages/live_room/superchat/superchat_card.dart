@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:PiliPro/common/widgets/flutter/selectable_text/selection_area.dart';
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
-import 'package:PiliPro/models/common/image_type.dart';
+import 'package:PiliPro/models_new/common/image_type.dart';
 import 'package:PiliPro/models_new/live/live_superchat/item.dart';
 import 'package:PiliPro/utils/page_utils.dart';
 import 'package:PiliPro/utils/platform_utils.dart';

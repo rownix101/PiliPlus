@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/model_owner.dart';
+import 'package:PiliPro/models_new/model_owner.dart';
 import 'package:PiliPro/models_new/fav/fav_detail/cnt_info.dart';
 import 'package:PiliPro/models_new/media_list/coin.dart';
 import 'package:PiliPro/models_new/media_list/ogv_info.dart';

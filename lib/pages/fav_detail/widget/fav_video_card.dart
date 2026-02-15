@@ -7,8 +7,8 @@ import 'package:PiliPro/common/widgets/select_mask.dart';
 import 'package:PiliPro/common/widgets/stat/stat.dart';
 import 'package:PiliPro/grpc/bilibili/app/listener/v1.pbenum.dart'
     show PlaylistSource;
-import 'package:PiliPro/models/common/badge_type.dart';
-import 'package:PiliPro/models/common/stat_type.dart';
+import 'package:PiliPro/models_new/common/badge_type.dart';
+import 'package:PiliPro/models_new/common/stat_type.dart';
 import 'package:PiliPro/models_new/fav/fav_detail/media.dart';
 import 'package:PiliPro/pages/audio/view.dart';
 import 'package:PiliPro/pages/fav_detail/controller.dart';

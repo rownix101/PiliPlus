@@ -8,7 +8,7 @@ import 'package:PiliPro/common/widgets/pair.dart';
 import 'package:PiliPro/grpc/bilibili/app/im/v1.pbenum.dart'
     show IMSettingType;
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/image_type.dart';
+import 'package:PiliPro/models_new/common/image_type.dart';
 import 'package:PiliPro/models_new/msg/msg_like/item.dart';
 import 'package:PiliPro/pages/msg_feed_top/like_me/controller.dart';
 import 'package:PiliPro/pages/whisper_settings/view.dart';

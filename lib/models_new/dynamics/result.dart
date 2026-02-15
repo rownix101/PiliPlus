@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:PiliPro/common/widgets/pendant_avatar.dart';
-import 'package:PiliPro/models/common/dynamic/dynamics_type.dart';
-import 'package:PiliPro/models/dynamics/article_content_model.dart';
-import 'package:PiliPro/models/model_avatar.dart';
-import 'package:PiliPro/models/model_owner.dart';
+import 'package:PiliPro/models_new/common/dynamic/dynamics_type.dart';
+import 'package:PiliPro/models_new/dynamics/article_content_model.dart';
+import 'package:PiliPro/models_new/model_avatar.dart';
+import 'package:PiliPro/models_new/model_owner.dart';
 import 'package:PiliPro/models_new/live/live_feed_index/watched_show.dart';
 import 'package:PiliPro/utils/extension/iterable_ext.dart';
 import 'package:PiliPro/utils/storage_pref.dart';

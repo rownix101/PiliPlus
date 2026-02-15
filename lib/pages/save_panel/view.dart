@@ -6,8 +6,8 @@ import 'package:PiliPro/common/widgets/button/icon_button.dart';
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPro/grpc/bilibili/main/community/reply/v1.pb.dart'
     show ReplyInfo;
-import 'package:PiliPro/models/common/video/video_type.dart';
-import 'package:PiliPro/models/dynamics/result.dart';
+import 'package:PiliPro/models_new/common/video/video_type.dart';
+import 'package:PiliPro/models_new/dynamics/result.dart';
 import 'package:PiliPro/pages/common/publish/publish_route.dart';
 import 'package:PiliPro/pages/dynamics/widgets/dynamic_panel.dart';
 import 'package:PiliPro/pages/music/controller.dart';

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:PiliPro/common/widgets/dialog/dialog.dart';
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/search.dart';
-import 'package:PiliPro/models/search/suggest.dart';
+import 'package:PiliPro/models_new/search/suggest.dart';
 import 'package:PiliPro/models_new/search/search_rcmd/data.dart';
 import 'package:PiliPro/models_new/search/search_trending/data.dart';
 import 'package:PiliPro/utils/extension/get_ext.dart';

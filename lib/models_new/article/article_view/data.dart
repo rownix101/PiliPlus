@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/model_avatar.dart';
+import 'package:PiliPro/models_new/model_avatar.dart';
 import 'package:PiliPro/models_new/article/article_view/category.dart';
 import 'package:PiliPro/models_new/article/article_view/media.dart';
 import 'package:PiliPro/models_new/article/article_view/ops.dart';

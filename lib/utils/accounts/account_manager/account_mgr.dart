@@ -4,7 +4,7 @@ import 'dart:io';
 
 import 'package:PiliPro/http/api.dart';
 import 'package:PiliPro/http/constants.dart';
-import 'package:PiliPro/models/common/account_type.dart';
+import 'package:PiliPro/models_new/common/account_type.dart';
 import 'package:PiliPro/utils/accounts.dart';
 import 'package:PiliPro/utils/accounts/account.dart';
 import 'package:PiliPro/utils/accounts/api_type.dart';

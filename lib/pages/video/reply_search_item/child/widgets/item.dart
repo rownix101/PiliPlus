@@ -4,8 +4,8 @@ import 'package:PiliPro/common/widgets/image/image_save.dart';
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPro/grpc/bilibili/main/community/reply/v1.pb.dart'
     show SearchItem, SearchItemVideoSubType;
-import 'package:PiliPro/models/common/badge_type.dart';
-import 'package:PiliPro/models/common/reply/reply_search_type.dart';
+import 'package:PiliPro/models_new/common/badge_type.dart';
+import 'package:PiliPro/models_new/common/reply/reply_search_type.dart';
 import 'package:PiliPro/utils/duration_utils.dart';
 import 'package:PiliPro/utils/platform_utils.dart';
 import 'package:flutter/material.dart';

@@ -1,10 +1,12 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:PiliPro/services/logger.dart';
 import 'package:PiliPro/utils/platform_utils.dart';
 import 'package:PiliPro/utils/storage_pref.dart';
 import 'package:PiliPro/utils/utils.dart';
 import 'package:auto_orientation/auto_orientation.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:window_manager/window_manager.dart';
 
@@ -16,7 +18,11 @@ Future<void> enterDesktopFullscreen({bool inAppFullScreen = false}) async {
     _isDesktopFullScreen = true;
     try {
       await windowManager.setFullScreen(true);
-    } catch (_) {}
+    } catch (e) {
+      if (kDebugMode) {
+        logger.w('Enter desktop fullscreen error', error: e);
+      }
+    }
   }
 }
 
@@ -26,7 +32,11 @@ Future<void> exitDesktopFullscreen() async {
     _isDesktopFullScreen = false;
     try {
       await windowManager.setFullScreen(false);
-    } catch (_) {}
+    } catch (e) {
+      if (kDebugMode) {
+        logger.w('Exit desktop fullscreen error', error: e);
+      }
+    }
   }
 }
 
@@ -35,7 +45,11 @@ Future<void> exitDesktopFullscreen() async {
 Future<void> landscape() async {
   try {
     await AutoOrientation.landscapeAutoMode(forceSensor: true);
-  } catch (_) {}
+  } catch (e) {
+    if (kDebugMode) {
+      logger.w('Landscape orientation error', error: e);
+    }
+  }
 }
 
 //竖屏

@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:PiliPro/http/ua_type.dart';
 import 'package:PiliPro/main.dart';
-import 'package:PiliPro/models/common/webview_menu_type.dart';
+import 'package:PiliPro/models_new/common/webview_menu_type.dart';
 import 'package:PiliPro/utils/app_scheme.dart';
 import 'package:PiliPro/utils/cache_manager.dart';
 import 'package:PiliPro/utils/login_utils.dart';

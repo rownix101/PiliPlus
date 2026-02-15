@@ -4,7 +4,7 @@ import 'package:PiliPro/http/fav.dart';
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/user.dart';
 import 'package:PiliPro/http/video.dart';
-import 'package:PiliPro/models/common/video/source_type.dart';
+import 'package:PiliPro/models_new/common/video/source_type.dart';
 import 'package:PiliPro/models_new/fav/fav_folder/data.dart';
 import 'package:PiliPro/models_new/video/video_detail/data.dart';
 import 'package:PiliPro/models_new/video/video_detail/stat_detail.dart';

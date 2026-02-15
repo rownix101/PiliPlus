@@ -1,7 +1,7 @@
 import 'dart:math' show max, min;
 
-import 'package:PiliPro/models/common/video/audio_quality.dart';
-import 'package:PiliPro/models/common/video/video_quality.dart';
+import 'package:PiliPro/models_new/common/video/audio_quality.dart';
+import 'package:PiliPro/models_new/common/video/video_quality.dart';
 import 'package:PiliPro/models_new/sponsor_block/segment_item.dart';
 import 'package:PiliPro/utils/extension/iterable_ext.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;

@@ -1,7 +1,7 @@
 import 'package:PiliPro/http/fav.dart';
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/pgc.dart';
-import 'package:PiliPro/models/common/home_tab_type.dart';
+import 'package:PiliPro/models_new/common/home_tab_type.dart';
 import 'package:PiliPro/models_new/fav/fav_pgc/list.dart';
 import 'package:PiliPro/models_new/pgc/pgc_index_result/list.dart';
 import 'package:PiliPro/models_new/pgc/pgc_timeline/result.dart';

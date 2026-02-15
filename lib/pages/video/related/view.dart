@@ -1,7 +1,7 @@
 import 'package:PiliPro/common/widgets/loading_widget/http_error.dart';
 import 'package:PiliPro/common/widgets/video_card/video_card_h.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/model_hot_video_item.dart';
+import 'package:PiliPro/models_new/model_hot_video_item.dart';
 import 'package:PiliPro/pages/video/related/controller.dart';
 import 'package:PiliPro/utils/extension/get_ext.dart';
 import 'package:PiliPro/utils/grid.dart';

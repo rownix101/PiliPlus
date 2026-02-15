@@ -1,5 +1,5 @@
 import 'package:PiliPro/common/widgets/flutter/dyn/text_button.dart';
-import 'package:PiliPro/models/dynamics/result.dart';
+import 'package:PiliPro/models_new/dynamics/result.dart';
 import 'package:PiliPro/pages/dynamics_repost/view.dart';
 import 'package:PiliPro/utils/num_utils.dart';
 import 'package:PiliPro/utils/page_utils.dart';

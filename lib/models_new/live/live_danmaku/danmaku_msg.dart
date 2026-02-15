@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/model_owner.dart';
+import 'package:PiliPro/models_new/model_owner.dart';
 import 'package:PiliPro/models_new/live/live_danmaku/live_emote.dart';
 import 'package:PiliPro/pages/danmaku/danmaku_model.dart';
 

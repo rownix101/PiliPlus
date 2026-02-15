@@ -3,10 +3,11 @@ import 'dart:convert' show jsonDecode, jsonEncode;
 import 'dart:io' show Directory, File;
 
 import 'package:PiliPro/grpc/dm.dart';
+import 'package:PiliPro/services/logger.dart';
 import 'package:PiliPro/http/download.dart';
 import 'package:PiliPro/http/init.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/video/video_quality.dart';
+import 'package:PiliPro/models_new/common/video/video_quality.dart';
 import 'package:PiliPro/models_new/download/bili_download_entry_info.dart';
 import 'package:PiliPro/models_new/download/bili_download_media_file_info.dart';
 import 'package:PiliPro/models_new/pgc/pgc_info_model/episode.dart' as pgc;
@@ -100,7 +101,11 @@ class DownloadService extends GetxService {
             } else {
               waitDownloadQueue.add(entry..status = DownloadStatus.wait);
             }
-          } catch (_) {}
+          } catch (e) {
+            if (kDebugMode) {
+              logger.w('Failed to load download entry: ${entryFile.path}', error: e);
+            }
+          }
         }
       }
     }

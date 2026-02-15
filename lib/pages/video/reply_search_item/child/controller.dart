@@ -2,7 +2,7 @@ import 'package:PiliPro/grpc/bilibili/main/community/reply/v1.pb.dart'
     show SearchItemReply, SearchItem, SearchItemType;
 import 'package:PiliPro/grpc/reply.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/reply/reply_search_type.dart';
+import 'package:PiliPro/models_new/common/reply/reply_search_type.dart';
 import 'package:PiliPro/pages/common/common_list_controller.dart';
 import 'package:PiliPro/pages/video/reply_search_item/controller.dart';
 

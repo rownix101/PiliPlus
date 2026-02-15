@@ -1,7 +1,7 @@
 import 'package:PiliPro/common/widgets/flutter/list_tile.dart';
 import 'package:PiliPro/common/widgets/view_safe_area.dart';
 import 'package:PiliPro/http/login.dart';
-import 'package:PiliPro/models/common/setting_type.dart';
+import 'package:PiliPro/models_new/common/setting_type.dart';
 import 'package:PiliPro/pages/about/view.dart';
 import 'package:PiliPro/pages/login/controller.dart';
 import 'package:PiliPro/pages/setting/extra_setting.dart';

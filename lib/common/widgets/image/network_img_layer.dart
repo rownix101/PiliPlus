@@ -1,5 +1,5 @@
 import 'package:PiliPro/common/constants.dart';
-import 'package:PiliPro/models/common/image_type.dart';
+import 'package:PiliPro/models_new/common/image_type.dart';
 import 'package:PiliPro/utils/extension/num_ext.dart';
 import 'package:PiliPro/utils/image_utils.dart';
 import 'package:PiliPro/utils/storage_pref.dart';

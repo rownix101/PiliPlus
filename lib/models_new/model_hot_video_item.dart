@@ -1,6 +1,6 @@
-import 'package:PiliPro/models/model_owner.dart';
-import 'package:PiliPro/models/model_rec_video_item.dart';
-import 'package:PiliPro/models/model_video.dart';
+import 'package:PiliPro/models_new/model_owner.dart';
+import 'package:PiliPro/models_new/model_rec_video_item.dart';
+import 'package:PiliPro/models_new/model_video.dart';
 import 'package:PiliPro/models_new/video/video_detail/dimension.dart';
 import 'package:PiliPro/pages/common/multi_select/base.dart';
 

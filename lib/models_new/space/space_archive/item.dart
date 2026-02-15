@@ -1,5 +1,5 @@
-import 'package:PiliPro/models/model_owner.dart';
-import 'package:PiliPro/models/model_video.dart';
+import 'package:PiliPro/models_new/model_owner.dart';
+import 'package:PiliPro/models_new/model_video.dart';
 import 'package:PiliPro/models_new/space/space_archive/badge.dart';
 import 'package:PiliPro/models_new/space/space_archive/cursor_attr.dart';
 import 'package:PiliPro/models_new/space/space_archive/history.dart';

@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:PiliPro/common/widgets/custom_icon.dart';
-import 'package:PiliPro/models/common/super_chat_type.dart';
-import 'package:PiliPro/models/common/video/subtitle_pref_type.dart';
+import 'package:PiliPro/models_new/common/super_chat_type.dart';
+import 'package:PiliPro/models_new/common/video/subtitle_pref_type.dart';
 import 'package:PiliPro/pages/main/controller.dart';
 import 'package:PiliPro/pages/setting/models/model.dart';
 import 'package:PiliPro/pages/setting/widgets/select_dialog.dart';

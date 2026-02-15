@@ -1,6 +1,6 @@
 import 'package:PiliPro/http/dynamics.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/model_owner.dart';
+import 'package:PiliPro/models_new/model_owner.dart';
 import 'package:PiliPro/models_new/article/article_list/article.dart';
 import 'package:PiliPro/models_new/article/article_list/data.dart';
 import 'package:PiliPro/models_new/article/article_list/list.dart';

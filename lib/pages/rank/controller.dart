@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:PiliPro/models/common/rank_type.dart';
+import 'package:PiliPro/models_new/common/rank_type.dart';
 import 'package:PiliPro/pages/common/common_controller.dart';
 import 'package:PiliPro/pages/rank/zone/controller.dart';
 import 'package:flutter/material.dart';

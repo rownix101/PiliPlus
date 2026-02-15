@@ -1,7 +1,7 @@
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/member.dart';
-import 'package:PiliPro/models/common/member/search_type.dart';
-import 'package:PiliPro/models/dynamics/result.dart';
+import 'package:PiliPro/models_new/common/member/search_type.dart';
+import 'package:PiliPro/models_new/dynamics/result.dart';
 import 'package:PiliPro/models_new/member/search_archive/data.dart';
 import 'package:PiliPro/pages/common/common_list_controller.dart';
 import 'package:PiliPro/pages/member_search/controller.dart';

@@ -2,7 +2,7 @@ import 'package:PiliPro/http/follow.dart';
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/member.dart';
 import 'package:PiliPro/http/user.dart';
-import 'package:PiliPro/models/common/follow_order_type.dart';
+import 'package:PiliPro/models_new/common/follow_order_type.dart';
 import 'package:PiliPro/models_new/follow/data.dart';
 import 'package:PiliPro/models_new/follow/list.dart';
 import 'package:PiliPro/pages/common/common_list_controller.dart';

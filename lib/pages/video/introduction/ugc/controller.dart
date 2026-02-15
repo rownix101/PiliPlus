@@ -10,7 +10,7 @@ import 'package:PiliPro/http/member.dart';
 import 'package:PiliPro/http/search.dart';
 import 'package:PiliPro/http/user.dart';
 import 'package:PiliPro/http/video.dart';
-import 'package:PiliPro/models/common/video/source_type.dart';
+import 'package:PiliPro/models_new/common/video/source_type.dart';
 import 'package:PiliPro/models_new/member_card_info/data.dart';
 import 'package:PiliPro/models_new/video/video_ai_conclusion/model_result.dart';
 import 'package:PiliPro/models_new/video/video_detail/episode.dart';

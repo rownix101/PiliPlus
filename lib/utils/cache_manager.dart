@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:PiliPro/services/logger.dart';
 import 'package:PiliPro/utils/platform_utils.dart';
 import 'package:PiliPro/utils/storage_pref.dart';
+import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
 
 abstract final class CacheManager {
@@ -24,7 +26,11 @@ abstract final class CacheManager {
       if (tempDirectory.existsSync()) {
         return await getTotalSizeOfFilesInDir(tempDirectory, maxSize);
       }
-    } catch (_) {}
+    } catch (e) {
+      if (kDebugMode) {
+        logger.w('Failed to load application cache', error: e);
+      }
+    }
     return 0;
   }
 
@@ -74,7 +80,11 @@ abstract final class CacheManager {
           await file.delete(recursive: true);
         }
       }
-    } catch (_) {}
+    } catch (e) {
+      if (kDebugMode) {
+        logger.w('Failed to clear library cache', error: e);
+      }
+    }
   }
 
   static Future<void> autoClearCache() async {

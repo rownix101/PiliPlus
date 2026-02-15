@@ -3,6 +3,7 @@ import 'dart:math' show min;
 import 'dart:ui';
 
 import 'package:PiliPro/common/constants.dart';
+import 'package:PiliPro/services/logger.dart';
 import 'package:PiliPro/common/widgets/pair.dart';
 import 'package:PiliPro/common/widgets/progress_bar/segment_progress_bar.dart';
 import 'package:PiliPro/grpc/bilibili/app/listener/v1.pbenum.dart'
@@ -15,19 +16,19 @@ import 'package:PiliPro/http/ua_type.dart';
 import 'package:PiliPro/http/user.dart';
 import 'package:PiliPro/http/video.dart';
 import 'package:PiliPro/main.dart';
-import 'package:PiliPro/models/common/account_type.dart';
-import 'package:PiliPro/models/common/sponsor_block/action_type.dart';
-import 'package:PiliPro/models/common/sponsor_block/post_segment_model.dart';
-import 'package:PiliPro/models/common/sponsor_block/segment_model.dart';
-import 'package:PiliPro/models/common/sponsor_block/segment_type.dart';
-import 'package:PiliPro/models/common/video/audio_quality.dart';
-import 'package:PiliPro/models/common/video/source_type.dart';
-import 'package:PiliPro/models/common/video/subtitle_cue.dart';
-import 'package:PiliPro/models/common/video/subtitle_pref_type.dart';
-import 'package:PiliPro/models/common/video/video_decode_type.dart';
-import 'package:PiliPro/models/common/video/video_quality.dart';
-import 'package:PiliPro/models/common/video/video_type.dart';
-import 'package:PiliPro/models/video/play/url.dart';
+import 'package:PiliPro/models_new/common/account_type.dart';
+import 'package:PiliPro/models_new/common/sponsor_block/action_type.dart';
+import 'package:PiliPro/models_new/common/sponsor_block/post_segment_model.dart';
+import 'package:PiliPro/models_new/common/sponsor_block/segment_model.dart';
+import 'package:PiliPro/models_new/common/sponsor_block/segment_type.dart';
+import 'package:PiliPro/models_new/common/video/audio_quality.dart';
+import 'package:PiliPro/models_new/common/video/source_type.dart';
+import 'package:PiliPro/models_new/common/video/subtitle_cue.dart';
+import 'package:PiliPro/models_new/common/video/subtitle_pref_type.dart';
+import 'package:PiliPro/models_new/common/video/video_decode_type.dart';
+import 'package:PiliPro/models_new/common/video/video_quality.dart';
+import 'package:PiliPro/models_new/common/video/video_type.dart';
+import 'package:PiliPro/models_new/video/play/url.dart';
 import 'package:PiliPro/models_new/download/bili_download_entry_info.dart';
 import 'package:PiliPro/models_new/media_list/media_list.dart';
 import 'package:PiliPro/models_new/pgc/pgc_info_model/result.dart';
@@ -245,7 +246,11 @@ class VideoDetailController extends GetxController
           animationController.forward(from: 1 - scrollCtr.offset / videoHeight);
         }
       }
-    } catch (_) {}
+    } catch (e) {
+      if (kDebugMode) {
+        logger.w('setVideoHeight error', error: e);
+      }
+    }
   }
 
   void scrollListener() {
@@ -390,7 +395,11 @@ class VideoDetailController extends GetxController
                 Get.find<UgcIntroController>(
                   tag: heroTag,
                 ).onChangeEpisode(item);
-              } catch (_) {}
+              } catch (e) {
+                if (kDebugMode) {
+                  logger.w('onChangeEpisode error in queryMediaList', error: e);
+                }
+              }
               break;
             }
           }
@@ -413,7 +422,11 @@ class VideoDetailController extends GetxController
         onChangeEpisode: (episode) {
           try {
             Get.find<UgcIntroController>(tag: heroTag).onChangeEpisode(episode);
-          } catch (_) {}
+          } catch (e) {
+            if (kDebugMode) {
+              logger.w('onChangeEpisode error in media list panel', error: e);
+            }
+          }
         },
         panelTitle: watchLaterTitle,
         bvid: bvid,
@@ -1104,7 +1117,11 @@ class VideoDetailController extends GetxController
               }
             }
           }
-        } catch (_) {}
+        } catch (e) {
+          if (kDebugMode) {
+            logger.w('continuePlayingPart error', error: e);
+          }
+        }
       }
 
       if (plPlayerController.showViewPoints &&
@@ -1120,7 +1137,11 @@ class VideoDetailController extends GetxController
               to: item.to,
             );
           }).toList();
-        } catch (_) {}
+        } catch (e) {
+          if (kDebugMode) {
+            logger.w('viewPointList processing error', error: e);
+          }
+        }
       }
 
       if (response.subtitle?.subtitles?.isNotEmpty == true) {
@@ -1175,7 +1196,11 @@ class VideoDetailController extends GetxController
           pgcType: isUgc ? null : pgcType,
           videoType: videoType,
         );
-      } catch (_) {}
+      } catch (e) {
+        if (kDebugMode) {
+          logger.w('makeHeartBeat error', error: e);
+        }
+      }
     }
   }
 
@@ -1281,7 +1306,11 @@ class VideoDetailController extends GetxController
       title = Get.find<UgcIntroController>(
         tag: heroTag,
       ).videoDetail.value.title;
-    } catch (_) {}
+    } catch (e) {
+      if (kDebugMode) {
+        logger.w('showNoteList error getting title', error: e);
+      }
+    }
     if (plPlayerController.isFullScreen.value || showVideoSheet) {
       PageUtils.showVideoBottomSheet(
         context,
@@ -1351,7 +1380,11 @@ class VideoDetailController extends GetxController
           extraId = 8;
           from = PlaylistSource.MEDIA_LIST;
         }
-      } catch (_) {}
+      } catch (e) {
+        if (kDebugMode) {
+          logger.w('toAudioPage error getting UgcIntroController', error: e);
+        }
+      }
     }
     AudioPage.toAudioPage(
       itemType: 1,

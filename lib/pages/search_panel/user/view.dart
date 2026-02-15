@@ -1,6 +1,6 @@
 import 'package:PiliPro/common/skeleton/msg_feed_top.dart';
 import 'package:PiliPro/common/widgets/custom_sliver_persistent_header_delegate.dart';
-import 'package:PiliPro/models/search/result.dart';
+import 'package:PiliPro/models_new/search/result.dart';
 import 'package:PiliPro/pages/search_panel/user/controller.dart';
 import 'package:PiliPro/pages/search_panel/user/widgets/item.dart';
 import 'package:PiliPro/pages/search_panel/view.dart';

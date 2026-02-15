@@ -1,6 +1,6 @@
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/member.dart';
-import 'package:PiliPro/models/member/tags.dart';
+import 'package:PiliPro/models_new/member/tags.dart';
 import 'package:PiliPro/utils/accounts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';

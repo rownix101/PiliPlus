@@ -1,7 +1,7 @@
 import 'package:PiliPro/common/widgets/custom_sliver_persistent_header_delegate.dart';
 import 'package:PiliPro/common/widgets/video_card/video_card_h.dart';
-import 'package:PiliPro/models/common/search/video_search_type.dart';
-import 'package:PiliPro/models/search/result.dart';
+import 'package:PiliPro/models_new/common/search/video_search_type.dart';
+import 'package:PiliPro/models_new/search/result.dart';
 import 'package:PiliPro/pages/search/widgets/search_text.dart';
 import 'package:PiliPro/pages/search_panel/video/controller.dart';
 import 'package:PiliPro/pages/search_panel/view.dart';

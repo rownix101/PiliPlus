@@ -3,7 +3,7 @@ import 'package:PiliPro/common/widgets/flutter/refresh_indicator.dart';
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPro/common/widgets/loading_widget/http_error.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/image_type.dart';
+import 'package:PiliPro/models_new/common/image_type.dart';
 import 'package:PiliPro/models_new/video/video_note_list/list.dart';
 import 'package:PiliPro/pages/common/slide/common_slide_page.dart';
 import 'package:PiliPro/pages/video/note/controller.dart';

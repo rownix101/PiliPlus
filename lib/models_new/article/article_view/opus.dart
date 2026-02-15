@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/dynamics/article_content_model.dart';
+import 'package:PiliPro/models_new/dynamics/article_content_model.dart';
 
 class ArticleOpus {
   int? opusid;

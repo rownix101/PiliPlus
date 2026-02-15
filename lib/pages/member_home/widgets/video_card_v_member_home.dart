@@ -3,7 +3,7 @@ import 'package:PiliPro/common/widgets/badge.dart';
 import 'package:PiliPro/common/widgets/image/image_save.dart';
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPro/http/search.dart';
-import 'package:PiliPro/models/common/badge_type.dart';
+import 'package:PiliPro/models_new/common/badge_type.dart';
 import 'package:PiliPro/models_new/space/space_archive/item.dart';
 import 'package:PiliPro/utils/app_scheme.dart';
 import 'package:PiliPro/utils/duration_utils.dart';

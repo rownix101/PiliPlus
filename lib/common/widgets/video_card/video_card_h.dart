@@ -6,11 +6,11 @@ import 'package:PiliPro/common/widgets/progress_bar/video_progress_indicator.dar
 import 'package:PiliPro/common/widgets/stat/stat.dart';
 import 'package:PiliPro/common/widgets/video_popup_menu.dart';
 import 'package:PiliPro/http/search.dart';
-import 'package:PiliPro/models/common/badge_type.dart';
-import 'package:PiliPro/models/common/stat_type.dart';
-import 'package:PiliPro/models/model_hot_video_item.dart';
-import 'package:PiliPro/models/model_video.dart';
-import 'package:PiliPro/models/search/result.dart';
+import 'package:PiliPro/models_new/common/badge_type.dart';
+import 'package:PiliPro/models_new/common/stat_type.dart';
+import 'package:PiliPro/models_new/model_hot_video_item.dart';
+import 'package:PiliPro/models_new/model_video.dart';
+import 'package:PiliPro/models_new/search/result.dart';
 import 'package:PiliPro/utils/date_utils.dart';
 import 'package:PiliPro/utils/duration_utils.dart';
 import 'package:PiliPro/utils/page_utils.dart';

@@ -12,7 +12,7 @@ import 'package:PiliPro/common/widgets/player/first_frame_interceptor.dart';
 import 'package:PiliPro/common/widgets/scroll_physics.dart';
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/main.dart';
-import 'package:PiliPro/models/common/episode_panel_type.dart';
+import 'package:PiliPro/models_new/common/episode_panel_type.dart';
 import 'package:PiliPro/models_new/pgc/pgc_info_model/result.dart';
 import 'package:PiliPro/models_new/video/video_detail/episode.dart' as ugc;
 import 'package:PiliPro/models_new/video/video_detail/page.dart';

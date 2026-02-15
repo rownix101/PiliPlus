@@ -25,7 +25,7 @@ import 'package:PiliPro/common/widgets/image_viewer/image.dart';
 import 'package:PiliPro/common/widgets/image_viewer/loading_indicator.dart';
 import 'package:PiliPro/common/widgets/image_viewer/viewer.dart';
 import 'package:PiliPro/common/widgets/scroll_physics.dart';
-import 'package:PiliPro/models/common/image_preview_type.dart';
+import 'package:PiliPro/models_new/common/image_preview_type.dart';
 import 'package:PiliPro/utils/extension/string_ext.dart';
 import 'package:PiliPro/utils/image_utils.dart';
 import 'package:PiliPro/utils/page_utils.dart';

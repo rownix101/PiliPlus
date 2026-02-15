@@ -1,6 +1,6 @@
 import 'package:PiliPro/common/constants.dart';
 import 'package:PiliPro/common/skeleton/media_bangumi.dart';
-import 'package:PiliPro/models/search/result.dart';
+import 'package:PiliPro/models_new/search/result.dart';
 import 'package:PiliPro/pages/search_panel/controller.dart';
 import 'package:PiliPro/pages/search_panel/pgc/widgets/item.dart';
 import 'package:PiliPro/pages/search_panel/view.dart';

@@ -5,7 +5,7 @@ import 'package:PiliPro/common/constants.dart';
 import 'package:PiliPro/common/widgets/custom_toast.dart';
 import 'package:PiliPro/common/widgets/scale_app.dart';
 import 'package:PiliPro/http/init.dart';
-import 'package:PiliPro/models/common/theme/theme_color_type.dart';
+import 'package:PiliPro/models_new/common/theme/theme_color_type.dart';
 import 'package:PiliPro/router/app_pages.dart';
 import 'package:PiliPro/services/account_service.dart';
 import 'package:PiliPro/services/battery_service.dart';

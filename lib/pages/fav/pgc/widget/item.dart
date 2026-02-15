@@ -3,7 +3,7 @@ import 'package:PiliPro/common/widgets/badge.dart';
 import 'package:PiliPro/common/widgets/button/icon_button.dart';
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPro/common/widgets/select_mask.dart';
-import 'package:PiliPro/models/common/badge_type.dart';
+import 'package:PiliPro/models_new/common/badge_type.dart';
 import 'package:PiliPro/models_new/fav/fav_pgc/list.dart';
 import 'package:PiliPro/pages/common/multi_select/base.dart';
 import 'package:PiliPro/utils/page_utils.dart';

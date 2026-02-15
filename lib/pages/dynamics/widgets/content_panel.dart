@@ -2,7 +2,7 @@
 import 'package:PiliPro/common/widgets/custom_icon.dart';
 import 'package:PiliPro/common/widgets/flutter/text/text.dart' as custom_text;
 import 'package:PiliPro/common/widgets/image/custom_grid_view.dart';
-import 'package:PiliPro/models/dynamics/result.dart';
+import 'package:PiliPro/models_new/dynamics/result.dart';
 import 'package:PiliPro/pages/dynamics/widgets/rich_node_panel.dart';
 import 'package:PiliPro/utils/page_utils.dart';
 import 'package:flutter/material.dart';

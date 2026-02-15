@@ -1,8 +1,8 @@
 import 'package:PiliPro/common/widgets/flutter/dyn/ink_well.dart';
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
-import 'package:PiliPro/models/common/dynamic/up_panel_position.dart';
-import 'package:PiliPro/models/common/image_type.dart';
-import 'package:PiliPro/models/dynamics/up.dart';
+import 'package:PiliPro/models_new/common/dynamic/up_panel_position.dart';
+import 'package:PiliPro/models_new/common/image_type.dart';
+import 'package:PiliPro/models_new/dynamics/up.dart';
 import 'package:PiliPro/pages/dynamics/controller.dart';
 import 'package:PiliPro/pages/live_follow/view.dart';
 import 'package:PiliPro/utils/accounts.dart';

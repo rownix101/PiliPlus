@@ -1,8 +1,8 @@
 import 'package:PiliPro/common/widgets/dialog/dialog.dart';
 import 'package:PiliPro/http/fav.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/fav_order_type.dart';
-import 'package:PiliPro/models/common/video/source_type.dart';
+import 'package:PiliPro/models_new/common/fav_order_type.dart';
+import 'package:PiliPro/models_new/common/video/source_type.dart';
 import 'package:PiliPro/models_new/fav/fav_detail/data.dart';
 import 'package:PiliPro/models_new/fav/fav_detail/media.dart';
 import 'package:PiliPro/models_new/fav/fav_folder/list.dart';

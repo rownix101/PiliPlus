@@ -2,7 +2,7 @@ import 'package:PiliPro/common/constants.dart';
 import 'package:PiliPro/common/widgets/badge.dart';
 import 'package:PiliPro/common/widgets/image/image_save.dart';
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
-import 'package:PiliPro/models/common/badge_type.dart';
+import 'package:PiliPro/models_new/common/badge_type.dart';
 import 'package:PiliPro/models_new/pgc/pgc_timeline/episode.dart';
 import 'package:PiliPro/utils/page_utils.dart';
 import 'package:PiliPro/utils/platform_utils.dart';

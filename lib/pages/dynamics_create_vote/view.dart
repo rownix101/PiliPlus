@@ -3,7 +3,7 @@ import 'dart:io' show File;
 import 'package:PiliPro/common/widgets/button/icon_button.dart';
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPro/common/widgets/time_picker.dart';
-import 'package:PiliPro/models/dynamics/vote_model.dart';
+import 'package:PiliPro/models_new/dynamics/vote_model.dart';
 import 'package:PiliPro/pages/dynamics_create_vote/controller.dart';
 import 'package:PiliPro/utils/date_utils.dart';
 import 'package:PiliPro/utils/extension/file_ext.dart';

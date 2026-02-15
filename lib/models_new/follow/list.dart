@@ -1,5 +1,5 @@
-import 'package:PiliPro/models/dynamics/up.dart';
-import 'package:PiliPro/models/model_avatar.dart';
+import 'package:PiliPro/models_new/dynamics/up.dart'; // TODO: 迁移到 models_new/
+import 'package:PiliPro/models_new/model_avatar.dart';
 
 class FollowItemModel extends UpItem {
   int? attribute;

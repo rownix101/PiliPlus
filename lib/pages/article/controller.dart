@@ -2,10 +2,10 @@ import 'package:PiliPro/http/dynamics.dart';
 import 'package:PiliPro/http/fav.dart';
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/video.dart';
-import 'package:PiliPro/models/dynamics/article_content_model.dart'
+import 'package:PiliPro/models_new/dynamics/article_content_model.dart'
     show ArticleContentModel;
-import 'package:PiliPro/models/dynamics/result.dart';
-import 'package:PiliPro/models/model_avatar.dart';
+import 'package:PiliPro/models_new/dynamics/result.dart';
+import 'package:PiliPro/models_new/model_avatar.dart';
 import 'package:PiliPro/models_new/article/article_view/data.dart';
 import 'package:PiliPro/pages/common/dyn/common_dyn_controller.dart';
 import 'package:PiliPro/utils/accounts.dart';

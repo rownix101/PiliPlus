@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:PiliPro/models/user/info.dart';
+import 'package:PiliPro/models_new/user/info.dart';
 import 'package:PiliPro/utils/storage_pref.dart';
 import 'package:get/get.dart';
 

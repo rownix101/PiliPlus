@@ -3,7 +3,7 @@ import 'package:PiliPro/common/widgets/flutter/refresh_indicator.dart';
 import 'package:PiliPro/common/widgets/loading_widget/http_error.dart';
 import 'package:PiliPro/common/widgets/scroll_physics.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/member/contribute_type.dart';
+import 'package:PiliPro/models_new/common/member/contribute_type.dart';
 import 'package:PiliPro/models_new/space/space_archive/item.dart';
 import 'package:PiliPro/pages/member/controller.dart';
 import 'package:PiliPro/pages/member_video/controller.dart';

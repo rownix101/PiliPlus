@@ -1,6 +1,6 @@
 import 'package:PiliPro/common/widgets/scroll_physics.dart';
 import 'package:PiliPro/common/widgets/view_safe_area.dart';
-import 'package:PiliPro/models/common/member/search_type.dart';
+import 'package:PiliPro/models_new/common/member/search_type.dart';
 import 'package:PiliPro/pages/member_search/child/view.dart';
 import 'package:PiliPro/pages/member_search/controller.dart';
 import 'package:PiliPro/utils/utils.dart';

@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:PiliPro/http/danmaku_block.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/dm_block_type.dart';
-import 'package:PiliPro/models/user/danmaku_block.dart';
+import 'package:PiliPro/models_new/common/dm_block_type.dart';
+import 'package:PiliPro/models_new/user/danmaku_block.dart';
 import 'package:archive/archive.dart' show getCrc32;
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';

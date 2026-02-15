@@ -1,7 +1,7 @@
 import 'package:PiliPro/common/widgets/scroll_physics.dart';
 import 'package:PiliPro/common/widgets/view_safe_area.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/fav_type.dart';
+import 'package:PiliPro/models_new/common/fav_type.dart';
 import 'package:PiliPro/pages/fav/article/controller.dart';
 import 'package:PiliPro/pages/fav/cheese/controller.dart';
 import 'package:PiliPro/pages/fav/topic/controller.dart';

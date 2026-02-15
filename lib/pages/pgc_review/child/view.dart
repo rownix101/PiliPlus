@@ -7,8 +7,8 @@ import 'package:PiliPro/common/widgets/flutter/selectable_text/selectable_text.d
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPro/common/widgets/loading_widget/http_error.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/image_type.dart';
-import 'package:PiliPro/models/common/pgc_review_type.dart';
+import 'package:PiliPro/models_new/common/image_type.dart';
+import 'package:PiliPro/models_new/common/pgc_review_type.dart';
 import 'package:PiliPro/models_new/pgc/pgc_review/list.dart';
 import 'package:PiliPro/pages/pgc_review/child/controller.dart';
 import 'package:PiliPro/pages/pgc_review/post/view.dart';

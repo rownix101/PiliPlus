@@ -2,7 +2,7 @@ import 'package:PiliPro/grpc/bilibili/main/community/reply/v1.pb.dart'
     show MainListReply, ReplyInfo;
 import 'package:PiliPro/grpc/reply.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/video/video_type.dart';
+import 'package:PiliPro/models_new/common/video/video_type.dart';
 import 'package:PiliPro/pages/common/reply_controller.dart';
 import 'package:PiliPro/pages/video/controller.dart';
 import 'package:PiliPro/utils/id_utils.dart';

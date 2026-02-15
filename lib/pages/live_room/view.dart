@@ -11,8 +11,8 @@ import 'package:PiliPro/common/widgets/gesture/horizontal_drag_gesture_recognize
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPro/common/widgets/keep_alive_wrapper.dart';
 import 'package:PiliPro/common/widgets/scroll_physics.dart';
-import 'package:PiliPro/models/common/image_type.dart';
-import 'package:PiliPro/models/common/live/live_contribution_rank_type.dart';
+import 'package:PiliPro/models_new/common/image_type.dart';
+import 'package:PiliPro/models_new/common/live/live_contribution_rank_type.dart';
 import 'package:PiliPro/models_new/live/live_room_info_h5/data.dart';
 import 'package:PiliPro/models_new/live/live_superchat/item.dart';
 import 'package:PiliPro/pages/danmaku/danmaku_model.dart';

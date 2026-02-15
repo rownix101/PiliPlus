@@ -5,7 +5,7 @@ import 'package:PiliPro/common/widgets/view_safe_area.dart';
 import 'package:PiliPro/http/danmaku.dart';
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/main.dart';
-import 'package:PiliPro/models/common/publish_panel_type.dart';
+import 'package:PiliPro/models_new/common/publish_panel_type.dart';
 import 'package:PiliPro/pages/common/publish/common_text_pub_page.dart';
 import 'package:PiliPro/pages/danmaku/danmaku_model.dart';
 import 'package:PiliPro/pages/setting/slide_color_picker.dart';

@@ -5,7 +5,7 @@ import 'package:PiliPro/common/widgets/progress_bar/video_progress_indicator.dar
 import 'package:PiliPro/common/widgets/select_mask.dart';
 import 'package:PiliPro/http/search.dart';
 import 'package:PiliPro/http/user.dart';
-import 'package:PiliPro/models/common/badge_type.dart';
+import 'package:PiliPro/models_new/common/badge_type.dart';
 import 'package:PiliPro/models_new/history/list.dart';
 import 'package:PiliPro/pages/common/multi_select/base.dart';
 import 'package:PiliPro/utils/date_utils.dart';

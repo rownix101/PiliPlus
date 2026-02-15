@@ -1,5 +1,5 @@
-import 'package:PiliPro/models/model_rec_video_item.dart';
-import 'package:PiliPro/models/model_video.dart';
+import 'package:PiliPro/models_new/model_rec_video_item.dart';
+import 'package:PiliPro/models_new/model_video.dart';
 import 'package:PiliPro/utils/id_utils.dart';
 import 'package:PiliPro/utils/num_utils.dart';
 

@@ -2,7 +2,7 @@ import 'package:PiliPro/common/widgets/flutter/refresh_indicator.dart';
 import 'package:PiliPro/common/widgets/loading_widget/http_error.dart';
 import 'package:PiliPro/common/widgets/video_card/video_card_h.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/model_hot_video_item.dart';
+import 'package:PiliPro/models_new/model_hot_video_item.dart';
 import 'package:PiliPro/pages/common/common_page.dart';
 import 'package:PiliPro/pages/rank/zone/controller.dart';
 import 'package:PiliPro/pages/rank/zone/widget/pgc_rank_item.dart';

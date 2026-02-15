@@ -1,5 +1,5 @@
 import 'package:PiliPro/common/widgets/flutter/vertical_tabs.dart';
-import 'package:PiliPro/models/common/rank_type.dart';
+import 'package:PiliPro/models_new/common/rank_type.dart';
 import 'package:PiliPro/pages/rank/controller.dart';
 import 'package:PiliPro/pages/rank/zone/view.dart';
 import 'package:flutter/material.dart';

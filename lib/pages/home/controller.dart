@@ -3,7 +3,7 @@ import 'dart:math';
 
 import 'package:PiliPro/http/api.dart';
 import 'package:PiliPro/http/init.dart';
-import 'package:PiliPro/models/common/home_tab_type.dart';
+import 'package:PiliPro/models_new/common/home_tab_type.dart';
 import 'package:PiliPro/pages/common/common_controller.dart';
 import 'package:PiliPro/services/account_service.dart';
 import 'package:PiliPro/utils/storage.dart';

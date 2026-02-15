@@ -2,7 +2,7 @@ import 'package:PiliPro/common/widgets/flutter/refresh_indicator.dart';
 import 'package:PiliPro/common/widgets/loading_widget/http_error.dart';
 import 'package:PiliPro/common/widgets/video_card/video_card_h.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/member/search_type.dart';
+import 'package:PiliPro/models_new/common/member/search_type.dart';
 import 'package:PiliPro/pages/dynamics/widgets/dynamic_panel.dart';
 import 'package:PiliPro/pages/member_search/child/controller.dart';
 import 'package:PiliPro/utils/global_data.dart';

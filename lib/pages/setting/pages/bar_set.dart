@@ -1,5 +1,5 @@
 import 'package:PiliPro/common/widgets/pair.dart';
-import 'package:PiliPro/models/common/enum_with_label.dart';
+import 'package:PiliPro/models_new/common/enum_with_label.dart';
 import 'package:PiliPro/utils/storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';

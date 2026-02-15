@@ -1,7 +1,7 @@
 import 'package:PiliPro/common/widgets/scroll_physics.dart' show ReloadMixin;
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/video.dart';
-import 'package:PiliPro/models/model_hot_video_item.dart';
+import 'package:PiliPro/models_new/model_hot_video_item.dart';
 import 'package:PiliPro/models_new/popular/popular_series_list/list.dart';
 import 'package:PiliPro/models_new/popular/popular_series_one/config.dart';
 import 'package:PiliPro/models_new/popular/popular_series_one/data.dart';

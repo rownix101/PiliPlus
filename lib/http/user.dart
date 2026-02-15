@@ -1,8 +1,8 @@
 import 'package:PiliPro/http/api.dart';
 import 'package:PiliPro/http/init.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/user/info.dart';
-import 'package:PiliPro/models/user/stat.dart';
+import 'package:PiliPro/models_new/user/info.dart';
+import 'package:PiliPro/models_new/user/stat.dart';
 import 'package:PiliPro/models_new/coin_log/data.dart';
 import 'package:PiliPro/models_new/follow/data.dart';
 import 'package:PiliPro/models_new/history/data.dart';

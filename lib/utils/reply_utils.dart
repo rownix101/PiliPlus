@@ -5,7 +5,7 @@ import 'package:PiliPro/grpc/bilibili/main/community/reply/v1.pb.dart'
     show ReplyInfo;
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/reply.dart';
-import 'package:PiliPro/models/common/reply/reply_sort_type.dart';
+import 'package:PiliPro/models_new/common/reply/reply_sort_type.dart';
 import 'package:PiliPro/utils/accounts.dart';
 import 'package:PiliPro/utils/accounts/account.dart';
 import 'package:PiliPro/utils/extension/iterable_ext.dart';

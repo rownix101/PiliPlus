@@ -4,8 +4,8 @@ import 'package:PiliPro/common/widgets/view_safe_area.dart';
 import 'package:PiliPro/grpc/bilibili/app/listener/v1.pbenum.dart'
     show PlaylistSource;
 import 'package:PiliPro/http/search.dart';
-import 'package:PiliPro/models/common/fav_type.dart';
-import 'package:PiliPro/models/common/video/source_type.dart';
+import 'package:PiliPro/models_new/common/fav_type.dart';
+import 'package:PiliPro/models_new/common/video/source_type.dart';
 import 'package:PiliPro/pages/audio/view.dart';
 import 'package:PiliPro/pages/fan/view.dart';
 import 'package:PiliPro/pages/follow/view.dart';

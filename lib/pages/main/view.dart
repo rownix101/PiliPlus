@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:PiliPro/common/widgets/flutter/pop_scope.dart';
 import 'package:PiliPro/common/widgets/flutter/tabs.dart';
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
-import 'package:PiliPro/models/common/nav_bar_config.dart';
+import 'package:PiliPro/models_new/common/nav_bar_config.dart';
 import 'package:PiliPro/pages/home/view.dart';
 import 'package:PiliPro/pages/main/controller.dart';
 import 'package:PiliPro/utils/app_scheme.dart';

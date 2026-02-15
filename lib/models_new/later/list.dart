@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/model_owner.dart';
+import 'package:PiliPro/models_new/model_owner.dart';
 import 'package:PiliPro/models_new/later/bangumi.dart';
 import 'package:PiliPro/models_new/later/page.dart';
 import 'package:PiliPro/models_new/later/rights.dart';

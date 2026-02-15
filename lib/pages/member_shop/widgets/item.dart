@@ -1,6 +1,6 @@
 import 'package:PiliPro/common/widgets/badge.dart';
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
-import 'package:PiliPro/models/common/badge_type.dart';
+import 'package:PiliPro/models_new/common/badge_type.dart';
 import 'package:PiliPro/models_new/space/space_shop/item.dart';
 import 'package:PiliPro/utils/extension/theme_ext.dart';
 import 'package:flutter/material.dart';

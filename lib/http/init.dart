@@ -7,6 +7,7 @@ import 'package:PiliPro/http/constants.dart';
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/retry_interceptor.dart';
 import 'package:PiliPro/http/user.dart';
+import 'package:PiliPro/services/logger.dart';
 import 'package:PiliPro/utils/accounts.dart';
 import 'package:PiliPro/utils/accounts/account.dart';
 import 'package:PiliPro/utils/accounts/account_manager/account_mgr.dart';
@@ -92,7 +93,11 @@ class Request {
           contentType: Headers.jsonContentType,
         ),
       );
-    } catch (_) {}
+    } catch (e) {
+      if (kDebugMode) {
+        logger.w('Buvid activation failed for ${account.mid}', error: e);
+      }
+    }
   }
 
   /*

@@ -2,7 +2,7 @@ import 'package:PiliPro/common/widgets/dialog/dialog.dart';
 import 'package:PiliPro/http/dynamics.dart';
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/msg.dart';
-import 'package:PiliPro/models/dynamics/vote_model.dart';
+import 'package:PiliPro/models_new/dynamics/vote_model.dart';
 import 'package:PiliPro/utils/accounts.dart';
 import 'package:PiliPro/utils/utils.dart';
 import 'package:get/get.dart';

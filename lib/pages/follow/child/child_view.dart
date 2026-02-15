@@ -5,7 +5,7 @@ import 'package:PiliPro/common/widgets/button/more_btn.dart';
 import 'package:PiliPro/common/widgets/flutter/refresh_indicator.dart';
 import 'package:PiliPro/common/widgets/loading_widget/http_error.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/follow_order_type.dart';
+import 'package:PiliPro/models_new/common/follow_order_type.dart';
 import 'package:PiliPro/models_new/follow/list.dart';
 import 'package:PiliPro/pages/follow/child/child_controller.dart';
 import 'package:PiliPro/pages/follow/controller.dart';

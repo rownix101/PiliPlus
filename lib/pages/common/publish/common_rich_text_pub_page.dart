@@ -5,9 +5,9 @@ import 'package:PiliPro/common/widgets/button/toolbar_icon_button.dart';
 import 'package:PiliPro/common/widgets/flutter/text_field/controller.dart';
 import 'package:PiliPro/common/widgets/flutter/text_field/text_field.dart';
 import 'package:PiliPro/http/msg.dart';
-import 'package:PiliPro/models/common/image_preview_type.dart';
-import 'package:PiliPro/models/common/publish_panel_type.dart';
-import 'package:PiliPro/models/dynamics/result.dart'
+import 'package:PiliPro/models_new/common/image_preview_type.dart';
+import 'package:PiliPro/models_new/common/publish_panel_type.dart';
+import 'package:PiliPro/models_new/dynamics/result.dart'
     show PicModel, FilePicModel, OpusPicModel;
 import 'package:PiliPro/models_new/dynamic/dyn_mention/item.dart';
 import 'package:PiliPro/models_new/emote/emote.dart' as e;

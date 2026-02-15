@@ -4,7 +4,7 @@ import 'package:PiliPro/common/constants.dart';
 import 'package:PiliPro/http/api.dart';
 import 'package:PiliPro/http/init.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/login/model.dart';
+import 'package:PiliPro/models_new/login/model.dart';
 import 'package:PiliPro/models_new/login_devices/data.dart';
 import 'package:PiliPro/utils/accounts.dart';
 import 'package:PiliPro/utils/accounts/account.dart';

@@ -1,11 +1,11 @@
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/video.dart';
-import 'package:PiliPro/models/common/account_type.dart';
-import 'package:PiliPro/models/common/video/audio_quality.dart';
-import 'package:PiliPro/models/common/video/video_decode_type.dart';
-import 'package:PiliPro/models/common/video/video_quality.dart';
-import 'package:PiliPro/models/common/video/video_type.dart';
-import 'package:PiliPro/models/video/play/url.dart';
+import 'package:PiliPro/models_new/common/account_type.dart';
+import 'package:PiliPro/models_new/common/video/audio_quality.dart';
+import 'package:PiliPro/models_new/common/video/video_decode_type.dart';
+import 'package:PiliPro/models_new/common/video/video_quality.dart';
+import 'package:PiliPro/models_new/common/video/video_type.dart';
+import 'package:PiliPro/models_new/video/play/url.dart';
 import 'package:PiliPro/models_new/download/bili_download_entry_info.dart';
 import 'package:PiliPro/models_new/download/bili_download_media_file_info.dart';
 import 'package:PiliPro/utils/accounts.dart';

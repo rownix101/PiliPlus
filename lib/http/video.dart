@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:PiliPro/models/common/video/subtitle_cue.dart';
+import 'package:PiliPro/models_new/common/video/subtitle_cue.dart';
 
 import 'package:PiliPro/common/constants.dart';
 import 'package:PiliPro/http/api.dart';
@@ -8,13 +8,13 @@ import 'package:PiliPro/http/init.dart';
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/login.dart';
 import 'package:PiliPro/http/ua_type.dart';
-import 'package:PiliPro/models/common/account_type.dart';
-import 'package:PiliPro/models/common/video/video_type.dart';
-import 'package:PiliPro/models/home/rcmd/result.dart';
-import 'package:PiliPro/models/model_hot_video_item.dart';
-import 'package:PiliPro/models/model_rec_video_item.dart';
-import 'package:PiliPro/models/pgc_lcf.dart';
-import 'package:PiliPro/models/video/play/url.dart';
+import 'package:PiliPro/models_new/common/account_type.dart';
+import 'package:PiliPro/models_new/common/video/video_type.dart';
+import 'package:PiliPro/models_new/home/rcmd/result.dart';
+import 'package:PiliPro/models_new/model_hot_video_item.dart';
+import 'package:PiliPro/models_new/model_rec_video_item.dart';
+import 'package:PiliPro/models_new/pgc_lcf.dart';
+import 'package:PiliPro/models_new/video/play/url.dart';
 import 'package:PiliPro/models_new/pgc/pgc_rank/pgc_rank_item_model.dart';
 import 'package:PiliPro/models_new/popular/popular_precious/data.dart';
 import 'package:PiliPro/models_new/popular/popular_series_list/list.dart';

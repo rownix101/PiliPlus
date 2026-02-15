@@ -1,5 +1,5 @@
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
-import 'package:PiliPro/models/model_owner.dart';
+import 'package:PiliPro/models_new/model_owner.dart';
 import 'package:flutter/material.dart';
 
 Widget avatars({

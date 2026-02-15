@@ -9,12 +9,12 @@ import 'package:PiliPro/http/init.dart';
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/ua_type.dart';
 import 'package:PiliPro/http/video.dart';
-import 'package:PiliPro/models/common/account_type.dart';
-import 'package:PiliPro/models/common/audio_normalization.dart';
+import 'package:PiliPro/models_new/common/account_type.dart';
+import 'package:PiliPro/models_new/common/audio_normalization.dart';
 
-import 'package:PiliPro/models/common/video/video_type.dart';
-import 'package:PiliPro/models/user/danmaku_rule.dart';
-import 'package:PiliPro/models/video/play/url.dart';
+import 'package:PiliPro/models_new/common/video/video_type.dart';
+import 'package:PiliPro/models_new/user/danmaku_rule.dart';
+import 'package:PiliPro/models_new/video/play/url.dart';
 import 'package:PiliPro/models_new/video/video_shot/data.dart';
 import 'package:PiliPro/pages/danmaku/danmaku_model.dart';
 import 'package:PiliPro/pages/mine/controller.dart';

@@ -185,7 +185,11 @@ class LiveMessageStream {
             final channel = WebSocketChannel.connect(Uri.parse(server));
             await channel.ready;
             return channel;
-          } catch (_) {}
+          } catch (e) {
+            if (kDebugMode) {
+              logger.w('Failed to connect to WebSocket server: $server', error: e);
+            }
+          }
         }
         throw Exception("all servers connect failed");
       }
@@ -228,7 +232,11 @@ class LiveMessageStream {
           _processingData(data.sublist(subHeader.totalSize));
         }
       }
-    } catch (_) {}
+    } catch (e) {
+      if (kDebugMode) {
+        logger.w('Error processing live data', error: e);
+      }
+    }
   }
 
   Future<void> _heartBeat() async {
@@ -295,7 +303,11 @@ class LiveMessageStream {
           //debugPrint('Body: ${utf8.decode()}');
         }
         _processingData(decompressedData);
-      } catch (_) {}
+      } catch (e) {
+        if (kDebugMode) {
+          logger.w('Error processing live message', error: e);
+        }
+      }
     }
   }
 

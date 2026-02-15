@@ -2,7 +2,7 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:PiliPro/models/common/enum_with_label.dart';
+import 'package:PiliPro/models_new/common/enum_with_label.dart';
 import 'package:PiliPro/pages/video/introduction/ugc/widgets/menu_row.dart';
 import 'package:PiliPro/plugin/pl_player/controller.dart';
 import 'package:PiliPro/plugin/pl_player/models/play_status.dart';

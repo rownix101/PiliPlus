@@ -9,9 +9,9 @@ import 'package:PiliPro/grpc/bilibili/im/interfaces/v1.pb.dart'
     show EmotionInfo;
 import 'package:PiliPro/grpc/bilibili/im/type.pb.dart' show Msg, MsgType;
 import 'package:PiliPro/http/search.dart';
-import 'package:PiliPro/models/common/badge_type.dart';
-import 'package:PiliPro/models/common/image_preview_type.dart';
-import 'package:PiliPro/models/common/image_type.dart';
+import 'package:PiliPro/models_new/common/badge_type.dart';
+import 'package:PiliPro/models_new/common/image_preview_type.dart';
+import 'package:PiliPro/models_new/common/image_type.dart';
 import 'package:PiliPro/utils/app_scheme.dart';
 import 'package:PiliPro/utils/date_utils.dart';
 import 'package:PiliPro/utils/duration_utils.dart';

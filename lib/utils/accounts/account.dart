@@ -1,5 +1,5 @@
 import 'package:PiliPro/common/constants.dart';
-import 'package:PiliPro/models/common/account_type.dart';
+import 'package:PiliPro/models_new/common/account_type.dart';
 import 'package:PiliPro/utils/accounts.dart';
 import 'package:PiliPro/utils/accounts/grpc_headers.dart';
 import 'package:PiliPro/utils/id_utils.dart';

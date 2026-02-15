@@ -1,5 +1,5 @@
 import 'package:PiliPro/common/constants.dart';
-import 'package:PiliPro/models/common/enum_with_label.dart';
+import 'package:PiliPro/models_new/common/enum_with_label.dart';
 import 'package:PiliPro/pages/setting/widgets/normal_item.dart';
 import 'package:PiliPro/pages/setting/widgets/popup_item.dart';
 import 'package:PiliPro/pages/setting/widgets/select_dialog.dart';

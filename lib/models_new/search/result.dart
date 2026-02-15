@@ -1,6 +1,6 @@
-import 'package:PiliPro/models/model_avatar.dart';
-import 'package:PiliPro/models/model_owner.dart';
-import 'package:PiliPro/models/model_video.dart';
+import 'package:PiliPro/models_new/model_avatar.dart';
+import 'package:PiliPro/models_new/model_owner.dart';
+import 'package:PiliPro/models_new/model_video.dart';
 import 'package:PiliPro/utils/duration_utils.dart';
 import 'package:PiliPro/utils/em.dart';
 import 'package:PiliPro/utils/extension/iterable_ext.dart';

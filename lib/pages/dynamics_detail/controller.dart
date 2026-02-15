@@ -1,7 +1,7 @@
 import 'package:PiliPro/http/dynamics.dart';
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/reply.dart';
-import 'package:PiliPro/models/dynamics/result.dart';
+import 'package:PiliPro/models_new/dynamics/result.dart';
 import 'package:PiliPro/pages/common/dyn/common_dyn_controller.dart';
 import 'package:PiliPro/utils/id_utils.dart';
 import 'package:PiliPro/utils/storage_pref.dart';

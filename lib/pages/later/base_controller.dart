@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/common/later_view_type.dart';
+import 'package:PiliPro/models_new/common/later_view_type.dart';
 import 'package:PiliPro/utils/storage.dart';
 import 'package:PiliPro/utils/storage_key.dart';
 import 'package:PiliPro/utils/storage_pref.dart';

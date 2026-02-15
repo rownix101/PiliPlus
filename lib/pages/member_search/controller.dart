@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/common/member/search_type.dart';
+import 'package:PiliPro/models_new/common/member/search_type.dart';
 import 'package:PiliPro/pages/member_search/child/controller.dart';
 import 'package:PiliPro/utils/extension/scroll_controller_ext.dart';
 import 'package:PiliPro/utils/utils.dart';

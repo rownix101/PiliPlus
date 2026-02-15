@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/model_owner.dart';
+import 'package:PiliPro/models_new/model_owner.dart';
 import 'package:PiliPro/utils/extension/iterable_ext.dart';
 
 class MusicDetail {

@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/model_avatar.dart';
+import 'package:PiliPro/models_new/model_avatar.dart';
 import 'package:PiliPro/models_new/live/live_feed_index/watched_show.dart';
 
 class MemberInfoModel {

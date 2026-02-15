@@ -2,7 +2,7 @@ import 'package:PiliPro/common/widgets/button/icon_button.dart';
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPro/common/widgets/scroll_physics.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/image_type.dart';
+import 'package:PiliPro/models_new/common/image_type.dart';
 import 'package:PiliPro/models_new/live/live_area_list/area_item.dart';
 import 'package:PiliPro/pages/live_area_detail/child/controller.dart';
 import 'package:PiliPro/pages/live_area_detail/child/view.dart';

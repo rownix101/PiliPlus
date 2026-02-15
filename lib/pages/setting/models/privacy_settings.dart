@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/common/account_type.dart';
+import 'package:PiliPro/models_new/common/account_type.dart';
 import 'package:PiliPro/pages/mine/controller.dart';
 import 'package:PiliPro/pages/setting/models/model.dart';
 import 'package:PiliPro/utils/accounts.dart';

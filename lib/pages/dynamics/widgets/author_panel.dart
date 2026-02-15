@@ -9,7 +9,7 @@ import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/reply.dart';
 import 'package:PiliPro/http/user.dart';
 import 'package:PiliPro/http/video.dart';
-import 'package:PiliPro/models/dynamics/result.dart';
+import 'package:PiliPro/models_new/dynamics/result.dart';
 import 'package:PiliPro/pages/dynamics/controller.dart';
 import 'package:PiliPro/pages/save_panel/view.dart';
 import 'package:PiliPro/utils/accounts.dart';

@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/model_video.dart';
+import 'package:PiliPro/models_new/model_video.dart';
 import 'package:PiliPro/utils/utils.dart';
 import 'package:hive/hive.dart';
 

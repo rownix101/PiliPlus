@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/common/video/source_type.dart';
+import 'package:PiliPro/models_new/common/video/source_type.dart';
 import 'package:PiliPro/models_new/later/data.dart';
 import 'package:PiliPro/models_new/later/list.dart';
 import 'package:PiliPro/pages/common/search/common_search_page.dart';

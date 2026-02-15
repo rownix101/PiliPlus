@@ -6,7 +6,7 @@ import 'package:PiliPro/common/widgets/flutter/list_tile.dart';
 import 'package:PiliPro/common/widgets/pendant_avatar.dart';
 import 'package:PiliPro/grpc/bilibili/app/im/v1.pb.dart'
     show Session, SessionId, SessionPageType, SessionType, UnreadStyle;
-import 'package:PiliPro/models/common/badge_type.dart';
+import 'package:PiliPro/models_new/common/badge_type.dart';
 import 'package:PiliPro/pages/whisper_secondary/view.dart';
 import 'package:PiliPro/utils/date_utils.dart';
 import 'package:PiliPro/utils/extension/num_ext.dart';

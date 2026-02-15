@@ -12,8 +12,8 @@ import 'package:PiliPro/grpc/bilibili/main/community/reply/v1.pb.dart'
     show ReplyInfo, ReplyControl, Content, Url;
 import 'package:PiliPro/http/reply.dart';
 import 'package:PiliPro/http/video.dart';
-import 'package:PiliPro/models/common/badge_type.dart';
-import 'package:PiliPro/models/common/image_type.dart';
+import 'package:PiliPro/models_new/common/badge_type.dart';
+import 'package:PiliPro/models_new/common/image_type.dart';
 import 'package:PiliPro/pages/dynamics/widgets/vote.dart';
 import 'package:PiliPro/pages/save_panel/view.dart';
 import 'package:PiliPro/pages/video/controller.dart';

@@ -1,7 +1,7 @@
 import 'package:PiliPro/common/constants.dart';
 import 'package:PiliPro/common/skeleton/video_card_h.dart';
 import 'package:PiliPro/common/widgets/video_card/video_card_h.dart';
-import 'package:PiliPro/models/search/result.dart';
+import 'package:PiliPro/models_new/search/result.dart';
 import 'package:PiliPro/pages/search_panel/all/controller.dart';
 import 'package:PiliPro/pages/search_panel/all/widgets/pgc_card_v_search.dart';
 import 'package:PiliPro/pages/search_panel/pgc/widgets/item.dart';

@@ -3,7 +3,7 @@ import 'package:PiliPro/common/widgets/loading_widget/http_error.dart';
 import 'package:PiliPro/grpc/bilibili/main/community/reply/v1.pb.dart'
     show SearchItem;
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/reply/reply_search_type.dart';
+import 'package:PiliPro/models_new/common/reply/reply_search_type.dart';
 import 'package:PiliPro/pages/video/reply_search_item/child/controller.dart';
 import 'package:PiliPro/pages/video/reply_search_item/child/widgets/item.dart';
 import 'package:PiliPro/utils/grid.dart';

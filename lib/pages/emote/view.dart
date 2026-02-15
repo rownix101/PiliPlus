@@ -4,7 +4,7 @@ import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPro/common/widgets/loading_widget/loading_widget.dart';
 import 'package:PiliPro/common/widgets/scroll_physics.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/image_type.dart';
+import 'package:PiliPro/models_new/common/image_type.dart';
 import 'package:PiliPro/models_new/emote/emote.dart';
 import 'package:PiliPro/models_new/emote/package.dart';
 import 'package:PiliPro/pages/emote/controller.dart';

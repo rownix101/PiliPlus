@@ -1,6 +1,6 @@
 import 'package:PiliPro/common/widgets/pair.dart';
-import 'package:PiliPro/models/common/sponsor_block/action_type.dart';
-import 'package:PiliPro/models/common/sponsor_block/segment_type.dart';
+import 'package:PiliPro/models_new/common/sponsor_block/action_type.dart';
+import 'package:PiliPro/models_new/common/sponsor_block/segment_type.dart';
 
 class PostSegmentModel {
   PostSegmentModel({

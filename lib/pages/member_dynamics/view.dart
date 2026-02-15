@@ -1,7 +1,7 @@
 import 'package:PiliPro/common/widgets/flutter/refresh_indicator.dart';
 import 'package:PiliPro/common/widgets/loading_widget/http_error.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/dynamics/result.dart';
+import 'package:PiliPro/models_new/dynamics/result.dart';
 import 'package:PiliPro/pages/dynamics/widgets/dynamic_panel.dart';
 import 'package:PiliPro/pages/member_dynamics/controller.dart';
 import 'package:PiliPro/utils/global_data.dart';

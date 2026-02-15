@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:PiliPro/models/model_owner.dart';
-import 'package:PiliPro/models/user/danmaku_rule_adapter.dart';
-import 'package:PiliPro/models/user/info.dart';
+import 'package:PiliPro/models_new/model_owner.dart';
+import 'package:PiliPro/models_new/user/danmaku_rule_adapter.dart';
+import 'package:PiliPro/models_new/user/info.dart';
 import 'package:PiliPro/utils/accounts.dart';
 import 'package:PiliPro/utils/accounts/account_adapter.dart';
 import 'package:PiliPro/utils/accounts/account_type_adapter.dart';

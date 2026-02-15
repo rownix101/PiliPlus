@@ -1,6 +1,6 @@
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/pgc.dart';
-import 'package:PiliPro/models/common/pgc_review_type.dart';
+import 'package:PiliPro/models_new/common/pgc_review_type.dart';
 import 'package:PiliPro/models_new/pgc/pgc_review/data.dart';
 import 'package:PiliPro/services/haptic_service.dart';
 import 'package:PiliPro/models_new/pgc/pgc_review/list.dart';

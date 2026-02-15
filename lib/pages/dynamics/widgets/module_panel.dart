@@ -4,7 +4,7 @@ import 'package:PiliPro/common/widgets/flutter/dyn/ink_well.dart';
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPro/grpc/bilibili/app/listener/v1.pbenum.dart'
     show PlaylistSource;
-import 'package:PiliPro/models/dynamics/result.dart';
+import 'package:PiliPro/models_new/dynamics/result.dart';
 import 'package:PiliPro/pages/audio/view.dart';
 import 'package:PiliPro/pages/dynamics/widgets/forward_panel.dart';
 import 'package:PiliPro/pages/dynamics/widgets/live_panel.dart';

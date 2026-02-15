@@ -1,7 +1,7 @@
 import 'package:PiliPro/common/widgets/button/icon_button.dart';
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPro/common/widgets/self_sized_horizontal_list.dart';
-import 'package:PiliPro/models/common/image_type.dart';
+import 'package:PiliPro/models_new/common/image_type.dart';
 import 'package:PiliPro/pages/contact/view.dart';
 import 'package:PiliPro/utils/extension/scroll_controller_ext.dart';
 import 'package:PiliPro/utils/request_utils.dart';

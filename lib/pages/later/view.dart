@@ -3,7 +3,7 @@ import 'package:PiliPro/common/widgets/flutter/page/tabs.dart';
 import 'package:PiliPro/common/widgets/gesture/horizontal_drag_gesture_recognizer.dart';
 import 'package:PiliPro/common/widgets/scroll_physics.dart';
 import 'package:PiliPro/common/widgets/view_safe_area.dart';
-import 'package:PiliPro/models/common/later_view_type.dart';
+import 'package:PiliPro/models_new/common/later_view_type.dart';
 import 'package:PiliPro/models_new/later/list.dart';
 import 'package:PiliPro/pages/fav_detail/view.dart';
 import 'package:PiliPro/pages/later/base_controller.dart';

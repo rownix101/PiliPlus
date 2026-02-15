@@ -5,7 +5,7 @@ import 'package:PiliPro/common/widgets/pendant_avatar.dart';
 import 'package:PiliPro/common/widgets/scroll_physics.dart';
 import 'package:PiliPro/common/widgets/view_sliver_safe_area.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/live/live_contribution_rank_type.dart';
+import 'package:PiliPro/models_new/common/live/live_contribution_rank_type.dart';
 import 'package:PiliPro/models_new/live/live_contribution_rank/item.dart';
 import 'package:PiliPro/models_new/live/live_contribution_rank/medal_info.dart';
 import 'package:PiliPro/pages/live_room/contribution_rank/controller.dart';

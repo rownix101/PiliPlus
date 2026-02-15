@@ -1,8 +1,8 @@
 import 'package:PiliPro/common/widgets/flutter/dyn/ink_well.dart';
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPro/common/widgets/stat/stat.dart';
-import 'package:PiliPro/models/common/image_type.dart';
-import 'package:PiliPro/models/common/stat_type.dart';
+import 'package:PiliPro/models_new/common/image_type.dart';
+import 'package:PiliPro/models_new/common/stat_type.dart';
 import 'package:PiliPro/models_new/space/space_opus/item.dart';
 import 'package:PiliPro/utils/page_utils.dart';
 import 'package:flutter/material.dart' hide InkWell;

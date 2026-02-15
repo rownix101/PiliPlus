@@ -2,7 +2,7 @@ import 'package:PiliPro/common/widgets/avatars.dart';
 import 'package:PiliPro/common/widgets/flutter/dyn/ink_well.dart';
 import 'package:PiliPro/common/widgets/image/image_save.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/dynamics/result.dart';
+import 'package:PiliPro/models_new/dynamics/result.dart';
 import 'package:PiliPro/pages/dynamics/widgets/action_panel.dart';
 import 'package:PiliPro/pages/dynamics/widgets/author_panel.dart';
 import 'package:PiliPro/pages/dynamics/widgets/dyn_content.dart';

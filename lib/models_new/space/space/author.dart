@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/model_avatar.dart';
+import 'package:PiliPro/models_new/model_avatar.dart';
 import 'package:PiliPro/models_new/space/space/nameplate.dart';
 import 'package:PiliPro/models_new/space/space/official_verify.dart';
 

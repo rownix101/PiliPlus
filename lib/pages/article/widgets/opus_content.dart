@@ -5,11 +5,11 @@ import 'package:PiliPro/common/widgets/image/cached_network_svg_image.dart';
 import 'package:PiliPro/common/widgets/image/custom_grid_view.dart';
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPro/http/constants.dart';
-import 'package:PiliPro/models/common/image_preview_type.dart';
-import 'package:PiliPro/models/common/image_type.dart';
-import 'package:PiliPro/models/dynamics/article_content_model.dart'
+import 'package:PiliPro/models_new/common/image_preview_type.dart';
+import 'package:PiliPro/models_new/common/image_type.dart';
+import 'package:PiliPro/models_new/dynamics/article_content_model.dart'
     show ArticleContentModel, Rich, Style, Word, Node;
-import 'package:PiliPro/models/dynamics/result.dart';
+import 'package:PiliPro/models_new/dynamics/result.dart';
 import 'package:PiliPro/pages/dynamics/widgets/vote.dart';
 import 'package:PiliPro/utils/app_scheme.dart';
 import 'package:PiliPro/utils/extension/num_ext.dart';

@@ -1,10 +1,10 @@
 import 'package:PiliPro/http/fav.dart';
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/user.dart';
-import 'package:PiliPro/models/common/account_type.dart';
-import 'package:PiliPro/models/common/theme/theme_type.dart';
-import 'package:PiliPro/models/user/info.dart';
-import 'package:PiliPro/models/user/stat.dart';
+import 'package:PiliPro/models_new/common/account_type.dart';
+import 'package:PiliPro/models_new/common/theme/theme_type.dart';
+import 'package:PiliPro/models_new/user/info.dart';
+import 'package:PiliPro/models_new/user/stat.dart';
 import 'package:PiliPro/models_new/fav/fav_folder/data.dart';
 import 'package:PiliPro/pages/common/common_data_controller.dart';
 import 'package:PiliPro/services/account_service.dart';

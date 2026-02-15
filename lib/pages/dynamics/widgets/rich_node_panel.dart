@@ -6,10 +6,10 @@ import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPro/http/dynamics.dart';
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/search.dart';
-import 'package:PiliPro/models/common/image_preview_type.dart'
+import 'package:PiliPro/models_new/common/image_preview_type.dart'
     show SourceModel;
-import 'package:PiliPro/models/common/image_type.dart';
-import 'package:PiliPro/models/dynamics/result.dart';
+import 'package:PiliPro/models_new/common/image_type.dart';
+import 'package:PiliPro/models_new/dynamics/result.dart';
 import 'package:PiliPro/pages/dynamics/widgets/vote.dart';
 import 'package:PiliPro/utils/page_utils.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;

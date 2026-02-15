@@ -4,7 +4,7 @@ import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/member.dart';
 import 'package:PiliPro/http/user.dart';
 import 'package:PiliPro/http/video.dart';
-import 'package:PiliPro/models/common/member/tab_type.dart';
+import 'package:PiliPro/models_new/common/member/tab_type.dart';
 import 'package:PiliPro/models_new/space/space/data.dart';
 import 'package:PiliPro/models_new/space/space/live.dart';
 import 'package:PiliPro/models_new/space/space/setting.dart';

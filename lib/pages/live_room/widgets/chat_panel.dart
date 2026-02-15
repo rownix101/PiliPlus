@@ -2,7 +2,7 @@ import 'package:PiliPro/common/widgets/flutter/popup_menu.dart';
 import 'package:PiliPro/common/widgets/gesture/tap_gesture_recognizer.dart';
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPro/http/live.dart';
-import 'package:PiliPro/models/common/image_type.dart';
+import 'package:PiliPro/models_new/common/image_type.dart';
 import 'package:PiliPro/models_new/live/live_danmaku/danmaku_msg.dart';
 import 'package:PiliPro/models_new/live/live_superchat/item.dart';
 import 'package:PiliPro/pages/live_room/controller.dart';

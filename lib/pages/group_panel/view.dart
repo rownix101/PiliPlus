@@ -1,7 +1,7 @@
 import 'package:PiliPro/common/widgets/loading_widget/loading_widget.dart';
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/member.dart';
-import 'package:PiliPro/models/member/tags.dart';
+import 'package:PiliPro/models_new/member/tags.dart';
 import 'package:PiliPro/utils/extension/iterable_ext.dart';
 import 'package:PiliPro/utils/extension/num_ext.dart';
 import 'package:PiliPro/utils/feed_back.dart';

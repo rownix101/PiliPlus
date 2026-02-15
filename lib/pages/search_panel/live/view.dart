@@ -1,6 +1,6 @@
 import 'package:PiliPro/common/constants.dart';
 import 'package:PiliPro/common/skeleton/video_card_v.dart';
-import 'package:PiliPro/models/search/result.dart';
+import 'package:PiliPro/models_new/search/result.dart';
 import 'package:PiliPro/pages/search_panel/controller.dart';
 import 'package:PiliPro/pages/search_panel/live/widgets/item.dart';
 import 'package:PiliPro/pages/search_panel/view.dart';

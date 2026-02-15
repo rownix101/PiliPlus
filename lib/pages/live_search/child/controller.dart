@@ -1,6 +1,6 @@
 import 'package:PiliPro/http/live.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/live/live_search_type.dart';
+import 'package:PiliPro/models_new/common/live/live_search_type.dart';
 import 'package:PiliPro/models_new/live/live_search/data.dart';
 import 'package:PiliPro/pages/common/common_list_controller.dart';
 import 'package:PiliPro/pages/live_search/controller.dart';

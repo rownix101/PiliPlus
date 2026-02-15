@@ -4,7 +4,7 @@ import 'package:PiliPro/common/widgets/view_safe_area.dart';
 import 'package:PiliPro/grpc/bilibili/main/community/reply/v1.pb.dart'
     show ReplyInfo;
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/image_type.dart';
+import 'package:PiliPro/models_new/common/image_type.dart';
 import 'package:PiliPro/models_new/match/match_info/contest.dart';
 import 'package:PiliPro/models_new/match/match_info/team.dart';
 import 'package:PiliPro/pages/common/dyn/common_dyn_page.dart';

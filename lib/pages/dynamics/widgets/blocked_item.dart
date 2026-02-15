@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/dynamics/result.dart' show ModuleBlocked;
+import 'package:PiliPro/models_new/dynamics/result.dart' show ModuleBlocked;
 import 'package:PiliPro/pages/article/widgets/opus_content.dart'
     show moduleBlockedItem;
 import 'package:flutter/material.dart';

@@ -3,7 +3,7 @@ import 'package:PiliPro/common/widgets/loading_widget/loading_widget.dart';
 import 'package:PiliPro/common/widgets/scroll_physics.dart';
 import 'package:PiliPro/common/widgets/view_safe_area.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/member/tags.dart';
+import 'package:PiliPro/models_new/member/tags.dart';
 import 'package:PiliPro/pages/follow/child/child_controller.dart';
 import 'package:PiliPro/pages/follow/child/child_view.dart';
 import 'package:PiliPro/pages/follow/controller.dart';

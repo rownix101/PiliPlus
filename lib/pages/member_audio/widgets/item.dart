@@ -4,7 +4,7 @@ import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPro/common/widgets/stat/stat.dart';
 import 'package:PiliPro/grpc/bilibili/app/listener/v1.pbenum.dart'
     show PlaylistSource;
-import 'package:PiliPro/models/common/stat_type.dart';
+import 'package:PiliPro/models_new/common/stat_type.dart';
 import 'package:PiliPro/models_new/space/space_audio/item.dart';
 import 'package:PiliPro/pages/audio/view.dart';
 import 'package:PiliPro/utils/date_utils.dart';

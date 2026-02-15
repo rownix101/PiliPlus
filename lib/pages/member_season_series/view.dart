@@ -1,7 +1,7 @@
 import 'package:PiliPro/common/widgets/loading_widget/http_error.dart';
 import 'package:PiliPro/common/widgets/view_safe_area.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/member/contribute_type.dart';
+import 'package:PiliPro/models_new/common/member/contribute_type.dart';
 import 'package:PiliPro/models_new/space/space_season_series/season.dart'
     show SpaceSsModel;
 import 'package:PiliPro/pages/member_season_series/controller.dart';

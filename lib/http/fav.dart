@@ -2,7 +2,7 @@ import 'package:PiliPro/common/constants.dart';
 import 'package:PiliPro/http/api.dart';
 import 'package:PiliPro/http/init.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/fav_order_type.dart';
+import 'package:PiliPro/models_new/common/fav_order_type.dart';
 import 'package:PiliPro/models_new/fav/fav_article/data.dart';
 import 'package:PiliPro/models_new/fav/fav_detail/data.dart';
 import 'package:PiliPro/models_new/fav/fav_folder/data.dart';

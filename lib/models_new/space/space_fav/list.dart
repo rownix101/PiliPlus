@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/model_owner.dart';
+import 'package:PiliPro/models_new/model_owner.dart';
 import 'package:PiliPro/models_new/sub/sub/list.dart';
 
 class SpaceFavItemModel extends SubItemModel {

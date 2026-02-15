@@ -6,7 +6,7 @@ import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPro/common/widgets/loading_widget/http_error.dart';
 import 'package:PiliPro/common/widgets/pair.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/image_type.dart';
+import 'package:PiliPro/models_new/common/image_type.dart';
 import 'package:PiliPro/models_new/dynamic/dyn_topic_feed/item.dart';
 import 'package:PiliPro/models_new/dynamic/dyn_topic_top/top_details.dart';
 import 'package:PiliPro/pages/dynamics/widgets/dynamic_panel.dart';

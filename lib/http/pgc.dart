@@ -1,7 +1,7 @@
 import 'package:PiliPro/http/api.dart';
 import 'package:PiliPro/http/init.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/pgc_review_type.dart';
+import 'package:PiliPro/models_new/common/pgc_review_type.dart';
 import 'package:PiliPro/models_new/pgc/pgc_index_condition/data.dart';
 import 'package:PiliPro/models_new/pgc/pgc_index_result/data.dart';
 import 'package:PiliPro/models_new/pgc/pgc_index_result/list.dart';

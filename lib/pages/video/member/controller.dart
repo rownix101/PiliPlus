@@ -1,7 +1,7 @@
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/member.dart';
-import 'package:PiliPro/models/common/member/contribute_type.dart';
-import 'package:PiliPro/models/member/info.dart';
+import 'package:PiliPro/models_new/common/member/contribute_type.dart';
+import 'package:PiliPro/models_new/member/info.dart';
 import 'package:PiliPro/models_new/space/space_archive/data.dart';
 import 'package:PiliPro/models_new/space/space_archive/item.dart';
 import 'package:PiliPro/pages/common/common_list_controller.dart';

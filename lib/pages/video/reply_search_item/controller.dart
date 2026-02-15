@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/common/reply/reply_search_type.dart';
+import 'package:PiliPro/models_new/common/reply/reply_search_type.dart';
 import 'package:PiliPro/pages/video/reply_search_item/child/controller.dart';
 import 'package:PiliPro/utils/extension/scroll_controller_ext.dart';
 import 'package:PiliPro/utils/utils.dart';

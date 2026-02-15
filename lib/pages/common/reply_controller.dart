@@ -4,7 +4,7 @@ import 'package:PiliPro/grpc/bilibili/main/community/reply/v1.pb.dart'
 import 'package:PiliPro/grpc/bilibili/pagination.pb.dart';
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/reply.dart';
-import 'package:PiliPro/models/common/reply/reply_sort_type.dart';
+import 'package:PiliPro/models_new/common/reply/reply_sort_type.dart';
 import 'package:PiliPro/pages/common/common_list_controller.dart';
 import 'package:PiliPro/pages/common/publish/publish_route.dart';
 import 'package:PiliPro/pages/video/reply_new/view.dart';

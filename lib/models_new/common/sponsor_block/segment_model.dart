@@ -1,5 +1,5 @@
-import 'package:PiliPro/models/common/sponsor_block/segment_type.dart';
-import 'package:PiliPro/models/common/sponsor_block/skip_type.dart';
+import 'package:PiliPro/models_new/common/sponsor_block/segment_type.dart';
+import 'package:PiliPro/models_new/common/sponsor_block/skip_type.dart';
 import 'package:PiliPro/models_new/sponsor_block/segment_item.dart';
 import 'package:PiliPro/pages/sponsor_block/block_mixin.dart';
 import 'package:PiliPro/utils/storage_pref.dart';

@@ -11,13 +11,13 @@ import 'package:PiliPro/common/widgets/pendant_avatar.dart';
 import 'package:PiliPro/grpc/reply.dart';
 import 'package:PiliPro/http/fav.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/audio_normalization.dart';
-import 'package:PiliPro/models/common/dynamic/dynamics_type.dart';
-import 'package:PiliPro/models/common/member/tab_type.dart';
-import 'package:PiliPro/models/common/reply/reply_sort_type.dart';
-import 'package:PiliPro/models/common/sponsor_block/skip_type.dart';
+import 'package:PiliPro/models_new/common/audio_normalization.dart';
+import 'package:PiliPro/models_new/common/dynamic/dynamics_type.dart';
+import 'package:PiliPro/models_new/common/member/tab_type.dart';
+import 'package:PiliPro/models_new/common/reply/reply_sort_type.dart';
+import 'package:PiliPro/models_new/common/sponsor_block/skip_type.dart';
 
-import 'package:PiliPro/models/dynamics/result.dart'
+import 'package:PiliPro/models_new/dynamics/result.dart'
     show DynamicsDataModel, ItemModulesModel;
 import 'package:PiliPro/pages/common/slide/common_slide_page.dart';
 import 'package:PiliPro/pages/home/controller.dart';

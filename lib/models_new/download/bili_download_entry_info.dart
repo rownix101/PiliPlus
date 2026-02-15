@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/common/video/video_type.dart';
+import 'package:PiliPro/models_new/common/video/video_type.dart';
 import 'package:PiliPro/pages/common/multi_select/base.dart'
     show MultiSelectData;
 import 'package:PiliPro/utils/page_utils.dart';

@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/common/pgc_review_type.dart';
+import 'package:PiliPro/models_new/common/pgc_review_type.dart';
 import 'package:PiliPro/pages/pgc_review/child/controller.dart';
 import 'package:PiliPro/pages/pgc_review/child/view.dart';
 import 'package:PiliPro/pages/pgc_review/post/view.dart';

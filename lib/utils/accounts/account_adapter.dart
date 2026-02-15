@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/common/account_type.dart';
+import 'package:PiliPro/models_new/common/account_type.dart';
 import 'package:PiliPro/utils/accounts/account.dart';
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:hive/hive.dart';

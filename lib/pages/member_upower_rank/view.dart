@@ -6,7 +6,7 @@ import 'package:PiliPro/common/widgets/loading_widget/http_error.dart';
 import 'package:PiliPro/common/widgets/loading_widget/loading_widget.dart';
 import 'package:PiliPro/common/widgets/scroll_physics.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/image_type.dart';
+import 'package:PiliPro/models_new/common/image_type.dart';
 import 'package:PiliPro/models_new/upower_rank/rank_info.dart';
 import 'package:PiliPro/pages/member_upower_rank/controller.dart';
 import 'package:PiliPro/utils/extension/widget_ext.dart';

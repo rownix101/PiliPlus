@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/model_hot_video_item.dart';
+import 'package:PiliPro/models_new/model_hot_video_item.dart'; // TODO: 迁移到 models_new/
 
 class PopularPreciousData {
   String? title;

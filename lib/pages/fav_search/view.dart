@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/common/fav_order_type.dart';
+import 'package:PiliPro/models_new/common/fav_order_type.dart';
 import 'package:PiliPro/models_new/fav/fav_detail/data.dart';
 import 'package:PiliPro/models_new/fav/fav_detail/media.dart';
 import 'package:PiliPro/pages/common/search/common_search_page.dart';

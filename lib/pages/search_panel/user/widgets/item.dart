@@ -1,5 +1,5 @@
 import 'package:PiliPro/common/widgets/pendant_avatar.dart';
-import 'package:PiliPro/models/search/result.dart';
+import 'package:PiliPro/models_new/search/result.dart';
 import 'package:PiliPro/utils/extension/num_ext.dart';
 import 'package:PiliPro/utils/num_utils.dart';
 import 'package:PiliPro/utils/utils.dart';

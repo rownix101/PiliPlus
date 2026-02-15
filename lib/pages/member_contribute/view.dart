@@ -1,5 +1,5 @@
 import 'package:PiliPro/common/widgets/loading_widget/loading_widget.dart';
-import 'package:PiliPro/models/common/member/contribute_type.dart';
+import 'package:PiliPro/models_new/common/member/contribute_type.dart';
 import 'package:PiliPro/models_new/space/space/tab2.dart';
 import 'package:PiliPro/pages/member_article/view.dart';
 import 'package:PiliPro/pages/member_audio/view.dart';

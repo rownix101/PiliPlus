@@ -2,9 +2,9 @@ import 'dart:io' show Platform;
 
 import 'package:PiliPro/common/widgets/color_palette.dart';
 import 'package:PiliPro/main.dart' show MyApp;
-import 'package:PiliPro/models/common/nav_bar_config.dart';
-import 'package:PiliPro/models/common/theme/theme_color_type.dart';
-import 'package:PiliPro/models/common/theme/theme_type.dart';
+import 'package:PiliPro/models_new/common/nav_bar_config.dart';
+import 'package:PiliPro/models_new/common/theme/theme_color_type.dart';
+import 'package:PiliPro/models_new/common/theme/theme_type.dart';
 import 'package:PiliPro/pages/home/view.dart';
 import 'package:PiliPro/pages/mine/controller.dart';
 import 'package:PiliPro/pages/setting/widgets/popup_item.dart';

@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:PiliPro/http/init.dart';
+import 'package:PiliPro/services/logger.dart';
+import 'package:flutter/foundation.dart';
 import 'package:PiliPro/models_new/download/bili_download_entry_info.dart';
 import 'package:PiliPro/utils/extension/file_ext.dart';
 import 'package:PiliPro/utils/extension/string_ext.dart';
@@ -46,7 +48,11 @@ class DownloadManager {
     Future<void> onError(Object e, {bool delete = false}) async {
       try {
         await sink.close();
-      } catch (_) {}
+      } catch (closeError) {
+        if (kDebugMode) {
+          logger.w('Error closing sink', error: closeError);
+        }
+      }
       if (_status == DownloadStatus.downloading) {
         _status = DownloadStatus.failDownload;
         if (delete && file.existsSync()) {

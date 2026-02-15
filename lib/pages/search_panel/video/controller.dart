@@ -1,9 +1,9 @@
 import 'dart:math';
 
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/search/search_type.dart';
-import 'package:PiliPro/models/common/search/video_search_type.dart';
-import 'package:PiliPro/models/search/result.dart';
+import 'package:PiliPro/models_new/common/search/search_type.dart';
+import 'package:PiliPro/models_new/common/search/video_search_type.dart';
+import 'package:PiliPro/models_new/search/result.dart';
 import 'package:PiliPro/pages/search/widgets/search_text.dart';
 import 'package:PiliPro/pages/search_panel/controller.dart';
 import 'package:PiliPro/utils/app_scheme.dart';

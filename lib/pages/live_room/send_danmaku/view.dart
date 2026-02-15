@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:PiliPro/common/widgets/flutter/text_field/text_field.dart';
 import 'package:PiliPro/common/widgets/view_safe_area.dart';
 import 'package:PiliPro/http/live.dart';
-import 'package:PiliPro/models/common/publish_panel_type.dart';
+import 'package:PiliPro/models_new/common/publish_panel_type.dart';
 import 'package:PiliPro/pages/common/publish/common_rich_text_pub_page.dart';
 import 'package:PiliPro/pages/live_emote/controller.dart';
 import 'package:PiliPro/pages/live_emote/view.dart';

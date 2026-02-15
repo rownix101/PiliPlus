@@ -2,7 +2,7 @@ import 'package:PiliPro/common/widgets/flutter/refresh_indicator.dart';
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPro/common/widgets/loading_widget/http_error.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/image_type.dart';
+import 'package:PiliPro/models_new/common/image_type.dart';
 import 'package:PiliPro/models_new/music/bgm_recommend_list.dart';
 import 'package:PiliPro/pages/music/video/controller.dart';
 import 'package:PiliPro/pages/music/widget/music_video_card_h.dart';

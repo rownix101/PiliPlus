@@ -3,7 +3,7 @@ import 'package:PiliPro/common/widgets/flutter/selectable_text/text.dart';
 import 'package:PiliPro/common/widgets/keep_alive_wrapper.dart';
 import 'package:PiliPro/common/widgets/scroll_physics.dart';
 import 'package:PiliPro/common/widgets/stat/stat.dart';
-import 'package:PiliPro/models/common/stat_type.dart';
+import 'package:PiliPro/models_new/common/stat_type.dart';
 import 'package:PiliPro/models_new/pgc/pgc_info_model/result.dart';
 import 'package:PiliPro/models_new/video/video_tag/data.dart';
 import 'package:PiliPro/pages/common/slide/common_slide_page.dart';

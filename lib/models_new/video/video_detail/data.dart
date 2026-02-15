@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/model_owner.dart';
+import 'package:PiliPro/models_new/model_owner.dart';
 import 'package:PiliPro/models_new/video/video_detail/argue_info.dart';
 import 'package:PiliPro/models_new/video/video_detail/desc_v2.dart';
 import 'package:PiliPro/models_new/video/video_detail/dimension.dart';

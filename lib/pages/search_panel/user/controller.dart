@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:PiliPro/models/common/search/user_search_type.dart';
-import 'package:PiliPro/models/search/result.dart';
+import 'package:PiliPro/models_new/common/search/user_search_type.dart';
+import 'package:PiliPro/models_new/search/result.dart';
 import 'package:PiliPro/pages/search/widgets/search_text.dart';
 import 'package:PiliPro/pages/search_panel/controller.dart';
 import 'package:PiliPro/utils/extension/context_ext.dart';

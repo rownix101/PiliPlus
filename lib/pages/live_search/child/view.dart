@@ -4,7 +4,7 @@ import 'package:PiliPro/common/skeleton/video_card_v.dart';
 import 'package:PiliPro/common/widgets/flutter/refresh_indicator.dart';
 import 'package:PiliPro/common/widgets/loading_widget/http_error.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/live/live_search_type.dart';
+import 'package:PiliPro/models_new/common/live/live_search_type.dart';
 import 'package:PiliPro/pages/live_search/child/controller.dart';
 import 'package:PiliPro/pages/live_search/widgets/live_search_room.dart';
 import 'package:PiliPro/pages/live_search/widgets/live_search_user.dart';

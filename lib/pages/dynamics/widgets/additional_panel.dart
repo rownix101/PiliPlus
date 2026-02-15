@@ -4,7 +4,7 @@ import 'package:PiliPro/common/widgets/gesture/tap_gesture_recognizer.dart';
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPro/http/dynamics.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/dynamics/result.dart';
+import 'package:PiliPro/models_new/dynamics/result.dart';
 import 'package:PiliPro/pages/dynamics/widgets/vote.dart';
 import 'package:PiliPro/utils/app_scheme.dart';
 import 'package:PiliPro/utils/num_utils.dart';

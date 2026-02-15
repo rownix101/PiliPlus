@@ -1,8 +1,8 @@
 import 'package:PiliPro/common/widgets/dialog/dialog.dart';
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/user.dart';
-import 'package:PiliPro/models/common/later_view_type.dart';
-import 'package:PiliPro/models/common/video/source_type.dart';
+import 'package:PiliPro/models_new/common/later_view_type.dart';
+import 'package:PiliPro/models_new/common/video/source_type.dart';
 import 'package:PiliPro/models_new/later/data.dart';
 import 'package:PiliPro/models_new/later/list.dart';
 import 'package:PiliPro/pages/common/common_list_controller.dart'

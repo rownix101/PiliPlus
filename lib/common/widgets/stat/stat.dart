@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/common/stat_type.dart';
+import 'package:PiliPro/models_new/common/stat_type.dart';
 import 'package:PiliPro/utils/num_utils.dart';
 import 'package:flutter/material.dart';
 

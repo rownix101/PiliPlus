@@ -7,7 +7,7 @@ import 'package:PiliPro/common/widgets/dialog/dialog.dart';
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPro/common/widgets/loading_widget/http_error.dart';
 import 'package:PiliPro/common/widgets/select_mask.dart';
-import 'package:PiliPro/models/common/badge_type.dart';
+import 'package:PiliPro/models_new/common/badge_type.dart';
 import 'package:PiliPro/models_new/download/bili_download_entry_info.dart';
 import 'package:PiliPro/models_new/download/download_info.dart';
 import 'package:PiliPro/pages/download/controller.dart';

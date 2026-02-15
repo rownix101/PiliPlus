@@ -5,7 +5,7 @@ import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPro/common/widgets/loading_widget/loading_widget.dart';
 import 'package:PiliPro/common/widgets/scroll_physics.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/image_type.dart';
+import 'package:PiliPro/models_new/common/image_type.dart';
 import 'package:PiliPro/models_new/live/live_emote/datum.dart';
 import 'package:PiliPro/models_new/live/live_emote/emoticon.dart';
 import 'package:PiliPro/pages/live_emote/controller.dart';

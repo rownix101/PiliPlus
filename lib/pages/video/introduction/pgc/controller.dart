@@ -7,8 +7,8 @@ import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/pgc.dart';
 import 'package:PiliPro/http/search.dart';
 import 'package:PiliPro/http/video.dart';
-import 'package:PiliPro/models/common/video/source_type.dart';
-import 'package:PiliPro/models/common/video/video_type.dart';
+import 'package:PiliPro/models_new/common/video/source_type.dart';
+import 'package:PiliPro/models_new/common/video/video_type.dart';
 import 'package:PiliPro/models_new/pgc/pgc_info_model/episode.dart';
 import 'package:PiliPro/models_new/pgc/pgc_info_model/result.dart';
 import 'package:PiliPro/models_new/video/video_detail/episode.dart'

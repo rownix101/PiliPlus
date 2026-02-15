@@ -1,8 +1,8 @@
 import 'package:PiliPro/common/widgets/scroll_physics.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/dynamic/dynamics_type.dart';
-import 'package:PiliPro/models/common/dynamic/up_panel_position.dart';
-import 'package:PiliPro/models/dynamics/up.dart';
+import 'package:PiliPro/models_new/common/dynamic/dynamics_type.dart';
+import 'package:PiliPro/models_new/common/dynamic/up_panel_position.dart';
+import 'package:PiliPro/models_new/dynamics/up.dart';
 import 'package:PiliPro/pages/dynamics/controller.dart';
 import 'package:PiliPro/pages/dynamics/widgets/up_panel.dart';
 import 'package:PiliPro/pages/dynamics_create/view.dart';

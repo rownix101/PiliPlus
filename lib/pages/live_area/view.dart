@@ -4,7 +4,7 @@ import 'package:PiliPro/common/widgets/keep_alive_wrapper.dart';
 import 'package:PiliPro/common/widgets/loading_widget/loading_widget.dart';
 import 'package:PiliPro/common/widgets/scroll_physics.dart';
 import 'package:PiliPro/http/loading_state.dart';
-import 'package:PiliPro/models/common/image_type.dart';
+import 'package:PiliPro/models_new/common/image_type.dart';
 import 'package:PiliPro/models_new/live/live_area_list/area_item.dart';
 import 'package:PiliPro/models_new/live/live_area_list/area_list.dart';
 import 'package:PiliPro/pages/live_area/controller.dart';

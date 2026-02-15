@@ -3,7 +3,7 @@ import 'package:PiliPro/common/widgets/dialog/dialog.dart';
 import 'package:PiliPro/common/widgets/keep_alive_wrapper.dart';
 import 'package:PiliPro/common/widgets/loading_widget/loading_widget.dart';
 import 'package:PiliPro/common/widgets/scroll_physics.dart';
-import 'package:PiliPro/models/common/live/live_dm_silent_type.dart';
+import 'package:PiliPro/models_new/common/live/live_dm_silent_type.dart';
 import 'package:PiliPro/models_new/live/live_dm_block/shield_user_list.dart';
 import 'package:PiliPro/pages/live_dm_block/controller.dart';
 import 'package:PiliPro/pages/search/widgets/search_text.dart';

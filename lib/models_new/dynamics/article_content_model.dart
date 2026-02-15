@@ -1,6 +1,6 @@
 import 'package:PiliPro/common/constants.dart';
-import 'package:PiliPro/models/dynamics/result.dart';
-import 'package:PiliPro/models/dynamics/vote_model.dart';
+import 'package:PiliPro/models_new/dynamics/result.dart';
+import 'package:PiliPro/models_new/dynamics/vote_model.dart';
 
 class ArticleContentModel {
   int? align;

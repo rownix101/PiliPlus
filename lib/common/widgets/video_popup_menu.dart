@@ -1,8 +1,8 @@
 import 'package:PiliPro/http/user.dart';
 import 'package:PiliPro/http/video.dart';
-import 'package:PiliPro/models/common/account_type.dart';
-import 'package:PiliPro/models/home/rcmd/result.dart';
-import 'package:PiliPro/models/model_video.dart';
+import 'package:PiliPro/models_new/common/account_type.dart';
+import 'package:PiliPro/models_new/home/rcmd/result.dart';
+import 'package:PiliPro/models_new/model_video.dart';
 import 'package:PiliPro/models_new/space/space_archive/item.dart';
 import 'package:PiliPro/pages/mine/controller.dart';
 import 'package:PiliPro/pages/search/widgets/search_text.dart';

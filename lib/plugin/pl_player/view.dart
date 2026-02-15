@@ -4,6 +4,7 @@ import 'dart:math' as math;
 import 'dart:ui' as ui;
 
 import 'package:PiliPro/common/constants.dart';
+import 'package:PiliPro/services/logger.dart';
 import 'package:PiliPro/common/widgets/cropped_image.dart';
 import 'package:PiliPro/common/widgets/custom_icon.dart';
 import 'package:PiliPro/common/widgets/disabled_icon.dart';
@@ -14,12 +15,12 @@ import 'package:PiliPro/common/widgets/pair.dart';
 import 'package:PiliPro/common/widgets/progress_bar/audio_video_progress_bar.dart';
 import 'package:PiliPro/common/widgets/progress_bar/segment_progress_bar.dart';
 import 'package:PiliPro/common/widgets/view_safe_area.dart';
-import 'package:PiliPro/models/common/sponsor_block/action_type.dart';
-import 'package:PiliPro/models/common/sponsor_block/post_segment_model.dart';
-import 'package:PiliPro/models/common/sponsor_block/segment_type.dart';
+import 'package:PiliPro/models_new/common/sponsor_block/action_type.dart';
+import 'package:PiliPro/models_new/common/sponsor_block/post_segment_model.dart';
+import 'package:PiliPro/models_new/common/sponsor_block/segment_type.dart';
 
-import 'package:PiliPro/models/common/video/video_quality.dart';
-import 'package:PiliPro/models/video/play/url.dart';
+import 'package:PiliPro/models_new/common/video/video_quality.dart';
+import 'package:PiliPro/models_new/video/play/url.dart';
 import 'package:PiliPro/models_new/video/video_detail/episode.dart' as ugc;
 import 'package:PiliPro/models_new/video/video_detail/episode.dart';
 import 'package:PiliPro/models_new/video/video_detail/section.dart';
@@ -212,7 +213,11 @@ class _PLVideoPlayerState extends State<PLVideoPlayer>
               }
             }
           });
-        } catch (_) {}
+        } catch (e) {
+          if (kDebugMode) {
+            logger.w('Volume listener error', error: e);
+          }
+        }
       });
 
       Future.microtask(() async {
@@ -235,7 +240,11 @@ class _PLVideoPlayerState extends State<PLVideoPlayer>
                     .instance
                     .onApplicationScreenBrightnessChanged
                     .listen(listener);
-        } catch (_) {}
+        } catch (e) {
+          if (kDebugMode) {
+            logger.w('Brightness listener error', error: e);
+          }
+        }
       });
     }
 
@@ -291,7 +300,11 @@ class _PLVideoPlayerState extends State<PLVideoPlayer>
           value,
         );
       }
-    } catch (_) {}
+    } catch (e) {
+      if (kDebugMode) {
+        logger.w('setBrightness error', error: e);
+      }
+    }
     _brightnessIndicator.value = true;
     _brightnessTimer?.cancel();
     _brightnessTimer = Timer(const Duration(milliseconds: 200), () {

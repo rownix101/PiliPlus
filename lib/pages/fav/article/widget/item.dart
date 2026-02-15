@@ -2,7 +2,7 @@ import 'package:PiliPro/common/constants.dart';
 import 'package:PiliPro/common/widgets/button/icon_button.dart';
 import 'package:PiliPro/common/widgets/image/network_img_layer.dart';
 import 'package:PiliPro/common/widgets/stat/stat.dart';
-import 'package:PiliPro/models/common/stat_type.dart';
+import 'package:PiliPro/models_new/common/stat_type.dart';
 import 'package:PiliPro/models_new/fav/fav_article/item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

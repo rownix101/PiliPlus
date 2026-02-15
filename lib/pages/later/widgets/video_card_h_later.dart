@@ -6,8 +6,8 @@ import 'package:PiliPro/common/widgets/progress_bar/video_progress_indicator.dar
 import 'package:PiliPro/common/widgets/select_mask.dart';
 import 'package:PiliPro/common/widgets/stat/stat.dart';
 import 'package:PiliPro/http/search.dart';
-import 'package:PiliPro/models/common/badge_type.dart';
-import 'package:PiliPro/models/common/stat_type.dart';
+import 'package:PiliPro/models_new/common/badge_type.dart';
+import 'package:PiliPro/models_new/common/stat_type.dart';
 import 'package:PiliPro/models_new/later/list.dart';
 import 'package:PiliPro/pages/later/controller.dart';
 import 'package:PiliPro/utils/duration_utils.dart';

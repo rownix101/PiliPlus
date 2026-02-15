@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/common/enum_with_label.dart';
+import 'package:PiliPro/models_new/common/enum_with_label.dart';
 import 'package:PiliPro/pages/dynamics/view.dart';
 import 'package:PiliPro/pages/home/view.dart';
 import 'package:PiliPro/pages/mine/view.dart';

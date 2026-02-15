@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/model_avatar.dart';
+import 'package:PiliPro/models_new/model_avatar.dart';
 import 'package:PiliPro/models_new/space/space/achieve.dart';
 import 'package:PiliPro/models_new/space/space/entrance.dart';
 import 'package:PiliPro/models_new/space/space/followings_followed_upper.dart';

@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/common/video/cdn_type.dart';
+import 'package:PiliPro/models_new/common/video/cdn_type.dart';
 import 'package:PiliPro/models_new/live/live_room_play_info/codec.dart';
 import 'package:PiliPro/utils/storage_pref.dart';
 import 'package:flutter/foundation.dart';

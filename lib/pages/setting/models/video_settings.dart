@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:PiliPro/models/common/video/audio_quality.dart';
-import 'package:PiliPro/models/common/video/cdn_type.dart';
-import 'package:PiliPro/models/common/video/live_quality.dart';
-import 'package:PiliPro/models/common/video/video_decode_type.dart';
-import 'package:PiliPro/models/common/video/video_quality.dart';
+import 'package:PiliPro/models_new/common/video/audio_quality.dart';
+import 'package:PiliPro/models_new/common/video/cdn_type.dart';
+import 'package:PiliPro/models_new/common/video/live_quality.dart';
+import 'package:PiliPro/models_new/common/video/video_decode_type.dart';
+import 'package:PiliPro/models_new/common/video/video_quality.dart';
 import 'package:PiliPro/pages/setting/models/model.dart';
 import 'package:PiliPro/pages/setting/widgets/ordered_multi_select_dialog.dart';
 import 'package:PiliPro/pages/setting/widgets/select_dialog.dart';

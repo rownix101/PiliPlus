@@ -1,4 +1,4 @@
-import 'package:PiliPro/models/common/super_chat_type.dart';
+import 'package:PiliPro/models_new/common/super_chat_type.dart';
 import 'package:PiliPro/pages/live_room/controller.dart';
 import 'package:PiliPro/pages/live_room/superchat/superchat_card.dart';
 import 'package:PiliPro/pages/search/controller.dart';

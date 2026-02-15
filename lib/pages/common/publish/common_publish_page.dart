@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:math' show max;
 
-import 'package:PiliPro/models/common/publish_panel_type.dart';
+import 'package:PiliPro/models_new/common/publish_panel_type.dart';
 import 'package:PiliPro/utils/extension/context_ext.dart';
 import 'package:PiliPro/utils/storage_pref.dart';
 import 'package:chat_bottom_container/chat_bottom_container.dart';
