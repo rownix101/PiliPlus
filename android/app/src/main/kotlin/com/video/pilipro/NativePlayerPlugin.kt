@@ -231,6 +231,7 @@ class NativePlayerPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
             .setTrackSelector(trackSelector)
             .build()
 
+        // Use setVideoSurface with proper null checks
         exoPlayer.setVideoSurface(surface)
 
         // Build media source(s) using cache
@@ -383,12 +384,17 @@ class NativePlayerPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
     }
     private fun disposePlayer() {
         mainHandler.removeCallbacks(positionUpdateRunnable)
+        // Important: Clear surface from player BEFORE releasing player
+        // This ensures buffers are returned to the queue
+        player?.setVideoSurface(null)
         player?.release()
         player = null
+        // Important: Release surface before SurfaceTexture to avoid buffer leaks
         surface?.release()
         surface = null
-        surfaceTexture = null
+        // Release the SurfaceTextureEntry which properly releases the SurfaceTexture
         textureEntry?.release()
         textureEntry = null
+        surfaceTexture = null
     }
 }

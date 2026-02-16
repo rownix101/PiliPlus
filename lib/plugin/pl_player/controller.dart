@@ -4,14 +4,14 @@ import 'dart:io' show Platform, File, Directory;
 import 'dart:math' show max, min;
 import 'dart:ui' as ui;
 
+import 'package:synchronized/synchronized.dart';
+
 import 'package:PiliPro/common/constants.dart';
 import 'package:PiliPro/http/init.dart';
 import 'package:PiliPro/http/loading_state.dart';
 import 'package:PiliPro/http/ua_type.dart';
 import 'package:PiliPro/http/video.dart';
 import 'package:PiliPro/models_new/common/account_type.dart';
-import 'package:PiliPro/models_new/common/audio_normalization.dart';
-
 import 'package:PiliPro/models_new/common/video/video_type.dart';
 import 'package:PiliPro/models_new/user/danmaku_rule.dart';
 import 'package:PiliPro/models_new/video/play/url.dart';
@@ -90,10 +90,15 @@ class SubtitleViewConfiguration {
 
 class PlPlayerController with BlockConfigMixin {
   NativePlayer? _nativePlayer;
-  int? _textureId;
 
   // 添加一个私有静态变量来保存实例
   static PlPlayerController? _instance;
+
+  // 用于保护 dispose 方法的锁，防止并发调用
+  final _disposeLock = Lock();
+
+  // 标记是否已释放，防止重复释放
+  bool _isDisposed = false;
 
   // 流事件  监听播放状态变化
   // StreamSubscription? _playerEventSubs;
@@ -220,16 +225,20 @@ class PlPlayerController with BlockConfigMixin {
   /// [nativePlayer] instance of NativePlayer
   NativePlayer? get nativePlayer => _nativePlayer;
 
-  /// Current texture ID for rendering
-  int? get textureId => _textureId;
+  /// Current texture ID for rendering (Rx for reactive updates)
+  final Rxn<int> _textureIdRx = Rxn<int>();
+  int? get textureId => _textureIdRx.value;
 
   /// 兼容旧代码：videoPlayerController 指向 nativePlayer
   NativePlayer? get videoPlayerController => _nativePlayer;
 
   /// 兼容旧代码：videoController 返回 textureId
-  int? get videoController => _textureId;
+  int? get videoController => _textureIdRx.value;
 
-
+  /// 释放纹理（在 dispose 前调用，确保 Texture widget 先停止渲染）
+  void releaseTexture() {
+    _textureIdRx.value = null;
+  }
 
   bool isMuted = false;
 
@@ -249,8 +258,8 @@ class PlPlayerController with BlockConfigMixin {
   /// 弹幕开关
   late final RxBool _enableShowDanmaku = Pref.enableShowDanmaku.obs;
   late final RxBool _enableShowLiveDanmaku = Pref.enableShowLiveDanmaku.obs;
-  RxBool get enableShowDanmaku =>
-      isLive ? _enableShowLiveDanmaku : _enableShowDanmaku;
+  final RxBool _enableShowDanmakuActive = Pref.enableShowDanmaku.obs;
+  RxBool get enableShowDanmaku => _enableShowDanmakuActive;
 
   late final bool autoPiP = Pref.autoPiP;
   bool get isPipMode =>
@@ -560,6 +569,23 @@ class PlPlayerController with BlockConfigMixin {
       enableHeart = false;
     }
 
+    // 设置弹幕开关双向同步
+    // 当 _enableShowDanmakuActive 改变时，同步到对应的源 Rx
+    ever(_enableShowDanmakuActive, (value) {
+      if (isLive) {
+        _enableShowLiveDanmaku.value = value;
+      } else {
+        _enableShowDanmaku.value = value;
+      }
+    });
+    // 当源 Rx 改变时，同步到 _enableShowDanmakuActive
+    ever(_enableShowDanmaku, (value) {
+      if (!isLive) _enableShowDanmakuActive.value = value;
+    });
+    ever(_enableShowLiveDanmaku, (value) {
+      if (isLive) _enableShowDanmakuActive.value = value;
+    });
+
     if (Platform.isAndroid && autoPiP) {
       Utils.sdkInt.then((sdkInt) {
         if (sdkInt < 36) {
@@ -583,6 +609,9 @@ class PlPlayerController with BlockConfigMixin {
     _instance ??= PlPlayerController._();
     _instance!
       ..isLive = isLive
+      .._enableShowDanmakuActive.value = isLive
+          ? _instance!._enableShowLiveDanmaku.value
+          : _instance!._enableShowDanmaku.value
       .._playerCount += 1;
     return _instance!;
   }
@@ -633,6 +662,9 @@ class PlPlayerController with BlockConfigMixin {
       isFileSource = dataSource.type == DataSourceType.file;
       _processing = true;
       this.isLive = isLive;
+      _enableShowDanmakuActive.value = isLive
+          ? _enableShowLiveDanmaku.value
+          : _enableShowDanmaku.value;
       _videoType = videoType ?? VideoType.ugc;
       this.width.value = width;
       this.height.value = height;
@@ -773,7 +805,7 @@ class PlPlayerController with BlockConfigMixin {
       videoUrl = dataSource.videoSource!;
     }
 
-    _textureId = await player.create(
+    _textureIdRx.value = await player.create(
       videoUrl: videoUrl,
       audioUrl: audioUrl,
       headers: dataSource.httpHeaders,
@@ -801,7 +833,7 @@ class PlPlayerController with BlockConfigMixin {
       SmartDialog.showToast('音频源为空');
     }
     await _nativePlayer!.dispose();
-    _textureId = await _nativePlayer!.create(
+    _textureIdRx.value = await _nativePlayer!.create(
       videoUrl: dataSource.videoSource!,
       audioUrl: isLive ? null : dataSource.audioSource,
       headers: dataSource.httpHeaders,
@@ -995,8 +1027,16 @@ class PlPlayerController with BlockConfigMixin {
   }
 
   /// 移除事件监听
-  Future<void> removeListeners() {
-    return Future.wait(subscriptions.map((e) => e.cancel()));
+  Future<void> removeListeners() async {
+    final subs = subscriptions.toList();
+    subscriptions.clear();
+    for (final subscription in subs) {
+      try {
+        await subscription.cancel();
+      } catch (e) {
+        // 忽略已关闭的订阅取消错误
+      }
+    }
   }
 
   /// 跳转至指定位置
@@ -1522,59 +1562,102 @@ class PlPlayerController with BlockConfigMixin {
 
   bool isCloseAll = false;
   Future<void> dispose() async {
-    // 每次减1，最后销毁
-    cancelLongPressTimer();
-    if (!isCloseAll && _playerCount > 1) {
-      _playerCount -= 1;
-      _heartDuration = 0;
-      if (!_isPreviousVideoPage) {
-        pause();
+    // 使用锁防止并发调用 dispose
+    await _disposeLock.synchronized(() async {
+      // 检查是否已释放，防止重复释放
+      if (_isDisposed) {
+        return;
       }
-      return;
-    }
 
-    _playerCount = 0;
-    danmakuController = null;
-    _stopListenerForVideoFit();
-    _stopListenerForEnterFullScreen();
-    _disableAutoEnterPip();
-    setPlayCallBack(null);
-    dmState.clear();
-    if (showSeekPreview) {
-      _clearPreview();
-    }
-    Utils.channel.setMethodCallHandler(null);
-    _timer?.cancel();
-    _timerForSeek?.cancel();
-    // _position.close();
-    // _playerEventSubs?.cancel();
-    // _sliderPosition.close();
-    // _sliderTempPosition.close();
-    // _isSliderMoving.close();
-    // _duration.close();
-    // _buffered.close();
-    // _showControls.close();
-    // _controlsLock.close();
+      // 每次减1，最后销毁
+      cancelLongPressTimer();
+      if (!isCloseAll && _playerCount > 1) {
+        _playerCount -= 1;
+        _heartDuration = 0;
+        if (!_isPreviousVideoPage) {
+          pause();
+        }
+        return;
+      }
 
-    // playerStatus.close();
-    // dataStatus.close();
+      _playerCount = 0;
+      danmakuController = null;
+      _stopListenerForVideoFit();
+      _stopListenerForEnterFullScreen();
+      _disableAutoEnterPip();
+      setPlayCallBack(null);
+      dmState.clear();
+      if (showSeekPreview) {
+        _clearPreview();
+      }
+      Utils.channel.setMethodCallHandler(null);
+      _timer?.cancel();
+      _timerForSeek?.cancel();
 
-    if (PlatformUtils.isDesktop && isAlwaysOnTop.value) {
-      windowManager.setAlwaysOnTop(false);
-    }
+      // 先移除监听器，防止在关闭 Rx 变量时触发回调
+      await removeListeners();
 
-    await removeListeners();
-    subscriptions.clear();
-    _positionListeners.clear();
-    _statusListeners.clear();
-    if (playerStatus.isPlaying) {
-      WakelockPlus.disable();
-    }
-    _nativePlayer?.dispose();
-    _nativePlayer = null;
-    _textureId = null;
-    _instance = null;
-    videoPlayerServiceHandler?.clear();
+      // 关闭所有 Rx 响应式变量以释放内存
+      dataStatus.close();
+      positionSeconds.close();
+      sliderPositionSeconds.close();
+      sliderTempPosition.close();
+      duration.close();
+      buffered.close();
+      bufferedSeconds.close();
+      _playbackSpeed.close();
+      _longPressSpeed.close();
+      volume.close();
+      brightness.close();
+      showControls.close();
+      showBrightnessStatus.close();
+      longPressStatus.close();
+      controlsLock.close();
+      isFullScreen.close();
+      videoFit.close();
+      continuePlayInBackground.close();
+      isSliderMoving.close();
+      width.close();
+      height.close();
+      onlyPlayAudio.close();
+      flipX.close();
+      flipY.close();
+      isBuffering.close();
+      _enableShowDanmaku.close();
+      _enableShowLiveDanmaku.close();
+      isAlwaysOnTop.close();
+      danmakuOpacity.close();
+      subtitleConfig.close();
+      volumeIndicator.close();
+      volumeInterceptEventStream.close();
+      mountSeekBackwardButton.close();
+      mountSeekForwardButton.close();
+      showPreview.close();
+
+      if (PlatformUtils.isDesktop && isAlwaysOnTop.value) {
+        windowManager.setAlwaysOnTop(false);
+      }
+
+      _positionListeners.clear();
+      _statusListeners.clear();
+      if (playerStatus.isPlaying) {
+        WakelockPlus.disable();
+      }
+
+      // 先清空 textureId 让 UI 停止渲染，再释放原生播放器
+      _textureIdRx.value = null;
+
+      // 给 Flutter 一帧时间处理 texture 释放
+      await Future.delayed(Duration.zero);
+
+      _nativePlayer?.dispose();
+      _nativePlayer = null;
+      _textureIdRx.close();
+      _instance = null;
+      videoPlayerServiceHandler?.clear();
+
+      _isDisposed = true;
+    });
   }
 
   static void updatePlayCount() {
